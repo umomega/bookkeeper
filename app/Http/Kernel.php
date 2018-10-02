@@ -62,6 +62,6 @@ class Kernel extends HttpKernel
         'signed' => \Illuminate\Routing\Middleware\ValidateSignature::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
-        'set-theme'  => \igaster\laravelTheme\Middleware\setTheme::class,
+        'set-theme'  => \Igaster\LaravelTheme\Middleware\setTheme::class
     ];
 }
