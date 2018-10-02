@@ -11,10 +11,25 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+require 'web/auth.php';
+require 'web/common.php';
+
+// Authenticated
+Route::group(['middleware' => [
+    'auth',
+    'set-theme:' . config('themes.active')
+]], function ()
+{
+    require 'web/accounts.php';
+    require 'web/clients.php';
+    require 'web/jobs.php';
+    require 'web/lists.php';
+    require 'web/overview.php';
+    require 'web/people.php';
+    require 'web/profile.php';
+    require 'web/settings.php';
+    require 'web/tags.php';
+    require 'web/transactions.php';
+    require 'web/update.php';
+    require 'web/users.php';
 });
-
-Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');

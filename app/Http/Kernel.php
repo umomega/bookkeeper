@@ -19,6 +19,8 @@ class Kernel extends HttpKernel
         \Bookkeeper\Http\Middleware\TrimStrings::class,
         \Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull::class,
         \Bookkeeper\Http\Middleware\TrustProxies::class,
+        \Bookkeeper\Http\Middleware\RedirectIfNotInstalled::class,
+        \Bookkeeper\Http\Middleware\DetermineLocale::class,
     ];
 
     /**
@@ -60,5 +62,6 @@ class Kernel extends HttpKernel
         'signed' => \Illuminate\Routing\Middleware\ValidateSignature::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
+        'set-theme'  => \igaster\laravelTheme\Middleware\setTheme::class,
     ];
 }
