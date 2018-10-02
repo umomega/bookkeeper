@@ -2,26 +2,26 @@
 
 // Authentication
 Route::get('auth/login', [
-    'uses' => 'Auth\AuthController@showLoginForm',
+    'uses' => 'Auth\LoginController@showLoginForm',
     'as'   => 'bookkeeper.auth.login']);
 Route::post('auth/login', [
-    'uses' => 'Auth\AuthController@login',
+    'uses' => 'Auth\LoginController@login',
     'as'   => 'bookkeeper.auth.login.post']);
 Route::get('auth/logout', [
-    'uses' => 'Auth\AuthController@logout',
+    'uses' => 'Auth\LoginController@logout',
     'as'   => 'bookkeeper.auth.logout']);
 
 // Password Reset
 Route::get('password/email', [
-    'uses' => 'Auth\PasswordController@showLinkRequestForm',
+    'uses' => 'Auth\ForgotPasswordController@showLinkRequestForm',
     'as'   => 'bookkeeper.password.email']);
 Route::post('password/email', [
-    'uses' => 'Auth\PasswordController@sendResetLinkEmail',
+    'uses' => 'Auth\ForgotPasswordController@sendResetLinkEmail',
     'as'   => 'bookkeeper.password.email.post']);
 
 Route::get('password/reset/{token}', [
-    'uses' => 'Auth\PasswordController@showResetForm',
+    'uses' => 'Auth\ResetPasswordController@showResetForm',
     'as'   => 'bookkeeper.password.reset']);
 Route::post('password/reset', [
-    'uses' => 'Auth\PasswordController@reset',
+    'uses' => 'Auth\ResetPasswordController@reset',
     'as'   => 'bookkeeper.password.reset.post']);
