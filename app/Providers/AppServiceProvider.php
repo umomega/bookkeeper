@@ -26,6 +26,14 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+        $this->registerHelpers();
+    }
+
+    /**
+     * Registers helper methods
+     */
+    protected function registerHelpers()
+    {
+        require_once __DIR__ . '/../Support/helpers.php';
     }
 }

@@ -31,6 +31,7 @@ class CreatePeopleTable extends Migration
 
             $table->string('address')->nullable();
             $table->string('city', 64)->nullable();
+            $table->string('state', 64)->nullable();
             $table->string('country', 64)->nullable();
             $table->string('postal_code', 16)->nullable();
             $table->text('notes')->nullable();
