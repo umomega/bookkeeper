@@ -6,6 +6,9 @@ use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
 {
+
+    const VERSION = '0.10-alpha.0';
+
     /**
      * Bootstrap any application services.
      *

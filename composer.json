@@ -1,16 +1,30 @@
 {
-    "name": "laravel/laravel",
-    "description": "The Laravel Framework.",
-    "keywords": ["framework", "laravel"],
+    "name": "umomega/bookkeeper",
+    "description": "Laravel Powered Finance Tracker and CRM.",
+    "keywords": ["umomega", "bookkeeper", "finance", "crm", "multilingual", "laravel", "laravel5"],
+    "version": "0.10-alpha.0",
     "license": "MIT",
     "type": "project",
+    "authors": [
+        {
+            "name": "Egemen Kızılcan",
+            "email": "egemen@umomega.com",
+            "homepage": "http://umomega.com/bookkeeper-en",
+            "role": "Developer / Designer"
+        }
+    ],
     "require": {
         "php": "^7.1.3",
         "fideloper/proxy": "^4.0",
+        "igaster/laravel-theme": "^2.0",
+        "kris/laravel-form-builder": "^1.15",
+        "laracasts/flash": "^3.0",
         "laravel/framework": "5.7.*",
-        "laravel/tinker": "^1.0"
+        "laravel/tinker": "^1.0",
+        "nicolaslopezj/searchable": "^1.10"
     },
     "require-dev": {
+        "barryvdh/laravel-debugbar": "^3.2",
         "beyondcode/laravel-dump-server": "^1.0",
         "filp/whoops": "^2.0",
         "fzaninotto/faker": "^1.4",
