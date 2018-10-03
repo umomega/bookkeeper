@@ -76,6 +76,23 @@ if ( ! function_exists('get_default_account'))
     }
 }
 
+if ( ! function_exists('get_full_locale_for'))
+{
+    /**
+     * Returns the locale count of the app
+     *
+     * @param string $locale
+     * @param bool $trim
+     * @return string
+     */
+    function get_full_locale_for($locale, $trim = false)
+    {
+        $locale = config('app.full_locales.' . $locale);
+
+        return $trim ? rtrim($locale, '.UTF-8') : $locale;
+    }
+}
+
 if ( ! function_exists('currency_string_for'))
 {
     /**

@@ -6,3 +6,4 @@
  */
 
 require('./bootstrap');
+require('./vendor/modernizr.min');

@@ -18,13 +18,22 @@
 
 </head>
 <body>
-    <div id="app" class="app">
-        @php $user = auth()->user() @endphp
 
-        @include('partials.navigation')
+    <section class="hero is-primary is-fullheight">
+        <div class="hero-body">
+            <div class="container">
+                <div class="install has-text-centered">
+                    {!! Theme::img('img/bookkeeper-logo-bg.svg', 'Bookkeeper Logo', 'install__logo') !!}
 
-        @yield('content')
-    </div>
+                    @include('partials.progress', ['currentStep' => 1])
+
+                    <h1 class="is-size-2">@yield('pageTitle')</h1>
+
+                    @yield('content')
+                </div>
+            </div>
+        </div>
+    </section>
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}"></script>

@@ -18,13 +18,7 @@
 
 </head>
 <body>
-    <div id="app" class="app">
-        @php $user = auth()->user() @endphp
-
-        @include('partials.navigation')
-
-        @yield('content')
-    </div>
+    @yield('content')
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}"></script>
