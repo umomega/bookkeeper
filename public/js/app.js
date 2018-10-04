@@ -767,6 +767,11 @@ module.exports = __webpack_require__(35);
 __webpack_require__(9);
 __webpack_require__(34);
 
+$('.notification > button.delete').click(function (e) {
+  e.preventDefault();
+  $(this).parent().fadeOut();
+});
+
 /***/ }),
 /* 9 */
 /***/ (function(module, exports, __webpack_require__) {

@@ -7,3 +7,8 @@
 
 require('./bootstrap');
 require('./vendor/modernizr.min');
+
+$('.notification > button.delete').click(function(e) {
+    e.preventDefault();
+    $(this).parent().fadeOut();
+});

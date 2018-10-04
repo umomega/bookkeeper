@@ -26,7 +26,7 @@
                 <div class="install has-text-centered">
                     {!! Theme::img('img/bookkeeper-logo-bg.svg', 'Bookkeeper Logo', 'install__logo') !!}
 
-                    @include('partials.progress', ['currentStep' => 1])
+                    @include('partials.progress')
 
                     <h1 class="is-size-2">@yield('pageTitle')</h1>
 
