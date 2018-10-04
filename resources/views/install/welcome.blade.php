@@ -1,3 +1,5 @@
+@php $currentStep = 1; @endphp
+
 @extends('layouts.app')
 
 @section('pageTitle', __('install.install_bookkeeper'))
@@ -19,7 +21,7 @@
                     {!! html()->label(__('validation.attributes.language'), 'language')->class('label') !!}
                     <div class="control is-expanded has-icons-left">
                         <div class="select is-fullwidth">
-                            {!! html()->select('timezone', Bookkeeper\Support\Install\InstallHelper::$locales,  env('APP_LOCALE', 'en')) !!}
+                            {!! html()->select('language', Bookkeeper\Support\Install\InstallHelper::$locales,  env('APP_LOCALE', 'en')) !!}
                         </div>
                         <div class="icon is-small is-left">
                             <i class="fas fa-language"></i>
