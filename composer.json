@@ -20,7 +20,8 @@
         "laracasts/flash": "^3.0",
         "laravel/framework": "5.7.*",
         "laravel/tinker": "^1.0",
-        "nicolaslopezj/searchable": "^1.10"
+        "nicolaslopezj/searchable": "^1.10",
+        "spatie/laravel-html": "^2.19"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.2",

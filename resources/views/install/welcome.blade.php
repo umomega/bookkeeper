@@ -13,29 +13,57 @@
 
             <p class="is-size-5">{{ __('install.choose_language_and_timezone') }}</p>
 
-            {{--
-            {!! field_wrapper_open([], 'language', $errors, 'form-group--inverted') !!}
-                {!! field_label(true, [], 'language', $errors) !!}
+            <div class="install-form__inner has-text-left">
 
-                <div class="form-group__select">
-                    {!! Form::select('language', Bookkeeper\Support\Install\InstallHelper::$locales, env('REACTOR_LOCALE', 'en')) !!}
-                    <i class="icon-arrow-down"></i>
+                <div class="field is-horizontal">
+                    <div class="field-label is-normal">
+                        {!! html()->label(__('validation.attributes.language'), 'language')->class('label') !!}
+                    </div>
+                    <div class="field-body">
+                        <div class="field">
+                            <div class="control is-expanded has-icons-left">
+                                <div class="select is-fullwidth">
+                                    {!! html()->select('timezone', Bookkeeper\Support\Install\InstallHelper::$locales,  env('APP_LOCALE', 'en')) !!}
+                                </div>
+                                <div class="icon is-small is-left">
+                                    <i class="fas fa-language"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            </div>
 
-            {!! field_wrapper_open([], 'language', $errors, 'form-group--inverted') !!}
-                {!! field_label(true, [], 'timezone', $errors) !!}
-
-                <div class="form-group__select">
-                    {!! Form::select('timezone', Bookkeeper\Support\Install\InstallHelper::$timezones, env('APP_TIMEZONE', 'Europe/Istanbul')) !!}
-                    <i class="icon-arrow-down"></i>
+                <div class="field is-horizontal">
+                    <div class="field-label is-normal">
+                        {!! html()->label(__('validation.attributes.timezone'), 'timezone')->class('label') !!}
+                    </div>
+                    <div class="field-body">
+                        <div class="field">
+                            <div class="control is-expanded has-icons-left">
+                                <div class="select is-fullwidth">
+                                    {!! html()->select('timezone', Bookkeeper\Support\Install\InstallHelper::$timezones, env('APP_TIMEZONE', 'Europe/Istanbul')) !!}
+                                </div>
+                                <div class="icon is-small is-left">
+                                    <i class="fas fa-globe"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
+
+                <hr>
+
+                <div class="field has-text-right">
+                    <button class="button is-inverted is-primary">
+                        <span>{{ __('install.database') }}</span>
+                        <span class="icon">
+                            <i class="fas fa-chevron-right"></i>
+                        </span>
+                    </button>
+                </div>
+
             </div>
 
-            <div class="modal-buttons">
-                {!! submit_button('icon-arrow-right', __('install.database')) !!}
-            </div>
-            --}}
         </form>
     @else
         <div class="install-message">

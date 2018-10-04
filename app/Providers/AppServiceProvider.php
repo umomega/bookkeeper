@@ -37,8 +37,6 @@ class AppServiceProvider extends ServiceProvider
     protected function registerHelpers()
     {
         require_once __DIR__ . '/../Support/helpers.php';
-
-        require_once __DIR__ . '/../Html/Builders/snippets.php';
     }
 
     /**
@@ -46,8 +44,8 @@ class AppServiceProvider extends ServiceProvider
      */
     protected function registerServices()
     {
-        $this->app->singleton('Bookkeeper\Html\Builders\FormsHtmlBuilder', function ($app) {
+        /*$this->app->singleton('Bookkeeper\Html\Builders\FormsHtmlBuilder', function ($app) {
             return $app->make('Bookkeeper\Html\Builders\FormsHtmlBuilder');
-        });
+        });*/
     }
 }

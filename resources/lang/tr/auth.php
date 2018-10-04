@@ -13,12 +13,12 @@ return [
     |
     */
 
-    'failed' => 'These credentials do not match our records.',
-    'throttle' => 'Too many login attempts. Please try again in :seconds seconds.',
+    'failed' => 'Bu kullanıcı bilgileri, bizdeki verilerle eşleşmiyor.',
+    'throttle' => 'Çok fazla oturum açma girişimleri. :seconds saniye içinde tekrar deneyin.',
 
-    'login' => 'Login',
-    'logout' => 'Logout',
-    'remember' => 'Remember',
-    'forgot' => 'I can\'t access my account!',
+    'login' => 'Giriş Yap',
+    'logout' => 'Çıkış Yap',
+    'remember' => 'Hatırla',
+    'forgot' => 'Hesabıma giremiyorum!',
 
 ];
