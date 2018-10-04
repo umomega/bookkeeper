@@ -15,38 +15,26 @@
 
             <div class="install-form__inner has-text-left">
 
-                <div class="field is-horizontal">
-                    <div class="field-label is-normal">
-                        {!! html()->label(__('validation.attributes.language'), 'language')->class('label') !!}
-                    </div>
-                    <div class="field-body">
-                        <div class="field">
-                            <div class="control is-expanded has-icons-left">
-                                <div class="select is-fullwidth">
-                                    {!! html()->select('timezone', Bookkeeper\Support\Install\InstallHelper::$locales,  env('APP_LOCALE', 'en')) !!}
-                                </div>
-                                <div class="icon is-small is-left">
-                                    <i class="fas fa-language"></i>
-                                </div>
-                            </div>
+                <div class="field">
+                    {!! html()->label(__('validation.attributes.language'), 'language')->class('label') !!}
+                    <div class="control is-expanded has-icons-left">
+                        <div class="select is-fullwidth">
+                            {!! html()->select('timezone', Bookkeeper\Support\Install\InstallHelper::$locales,  env('APP_LOCALE', 'en')) !!}
+                        </div>
+                        <div class="icon is-small is-left">
+                            <i class="fas fa-language"></i>
                         </div>
                     </div>
                 </div>
 
-                <div class="field is-horizontal">
-                    <div class="field-label is-normal">
-                        {!! html()->label(__('validation.attributes.timezone'), 'timezone')->class('label') !!}
-                    </div>
-                    <div class="field-body">
-                        <div class="field">
-                            <div class="control is-expanded has-icons-left">
-                                <div class="select is-fullwidth">
-                                    {!! html()->select('timezone', Bookkeeper\Support\Install\InstallHelper::$timezones, env('APP_TIMEZONE', 'Europe/Istanbul')) !!}
-                                </div>
-                                <div class="icon is-small is-left">
-                                    <i class="fas fa-globe"></i>
-                                </div>
-                            </div>
+                <div class="field">
+                    {!! html()->label(__('validation.attributes.timezone'), 'timezone')->class('label') !!}
+                    <div class="control is-expanded has-icons-left">
+                        <div class="select is-fullwidth">
+                            {!! html()->select('timezone', Bookkeeper\Support\Install\InstallHelper::$timezones, env('APP_TIMEZONE', 'Europe/Istanbul')) !!}
+                        </div>
+                        <div class="icon is-small is-left">
+                            <i class="fas fa-globe"></i>
                         </div>
                     </div>
                 </div>
