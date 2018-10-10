@@ -5,6 +5,7 @@ namespace Bookkeeper\Http\Middleware;
 
 
 use Closure;
+use Illuminate\Support\Facades\Artisan;
 
 class RedirectIfNotInstalled {
 
@@ -18,14 +19,22 @@ class RedirectIfNotInstalled {
      */
     public function handle($request, Closure $next, $guard = null)
     {
-        if ( ! is_installed() && ! is_request_install())
+        if ( ! is_installed())
         {
-            return redirect()->route('install-welcome');
+            if ( ! file_exists(base_path('.env')))
+            {
+                copy(base_path('.env.example'), base_path('.env'));
+
+                Artisan::call('key:generate', ['--force' => true]);
+            }
+
+            if( ! is_request_install())
+            {
+                return redirect()->route('install-welcome');
+            }
         }
 
         return $next($request);
     }
 
 }
-
-

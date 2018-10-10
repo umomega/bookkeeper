@@ -19,7 +19,6 @@ class Kernel extends HttpKernel
         \Bookkeeper\Http\Middleware\TrimStrings::class,
         \Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull::class,
         \Bookkeeper\Http\Middleware\TrustProxies::class,
-        \Bookkeeper\Http\Middleware\RedirectIfNotInstalled::class,
         \Bookkeeper\Http\Middleware\DetermineLocale::class,
     ];
 
@@ -37,7 +36,7 @@ class Kernel extends HttpKernel
             \Illuminate\View\Middleware\ShareErrorsFromSession::class,
             \Bookkeeper\Http\Middleware\VerifyCsrfToken::class,
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
-            \Bookkeeper\Http\Middleware\DetermineLocale::class,
+            \Bookkeeper\Http\Middleware\RedirectIfNotInstalled::class,
         ],
 
         'api' => [

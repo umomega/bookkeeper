@@ -21,11 +21,6 @@ class InstallController extends Controller {
     {
         $missing = $helper->checkRequirements();
 
-        if ( ! file_exists(base_path('.env')))
-        {
-            copy(base_path('.env.example'), base_path('.env'));
-        }
-
         return view('welcome', compact('missing'));
     }
 
@@ -77,8 +72,7 @@ class InstallController extends Controller {
 
         DB::reconnect(env('DB_CONNECTION'));
 
-        Artisan::call('migrate');
-        Artisan::call('db:seed');
+        Artisan::call('migrate', ['--force' => true]);
 
         return redirect()->route('install-user');
     }
@@ -139,12 +133,7 @@ class InstallController extends Controller {
 
         $helper->setEnvVariable('APP_URL', $request->get('base_url'));
         $helper->setEnvVariable('DEFAULT_CURRENCY', $request->get('default_currency'));
-
-        Artisan::call('key:generate');
         $helper->setEnvVariable('APP_STATUS', 'INSTALLED');
-
-        Artisan::call('route:cache');
-        Artisan::call('optimize');
 
         return redirect()->route('install-complete');
     }
@@ -156,6 +145,13 @@ class InstallController extends Controller {
      */
     public function getComplete()
     {
+        Artisan::call('route:cache');
+        Artisan::call('optimize');
+
+        // For some reason the middleware does not work,
+        // hence the theme is set here.
+        \Theme::set(config('themes.active_install'));
+
         return view('complete');
     }
 
