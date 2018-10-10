@@ -2,14 +2,14 @@
 
 @extends('layouts.app')
 
-@section('pageTitle', trans('install.database'))
+@section('pageTitle', __('install.database'))
 
 @section('content')
 
     <form action="{{ route('install-database-post') }}" method="post" class="install-form">
         {!! csrf_field() !!}
 
-        <p class="is-size-5">{{ trans('install.set_database_configuration') }}</p>
+        <p class="is-size-5">{{ __('install.set_database_configuration') }}</p>
 
         <div class="install-form__inner has-text-left">
             @foreach([

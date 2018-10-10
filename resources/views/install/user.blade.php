@@ -2,20 +2,20 @@
 
 @extends('layouts.app')
 
-@section('pageTitle', trans('install.user_information'))
+@section('pageTitle', __('install.user_information'))
 
 @section('content')
 
     <form action="{{ route('install-user-post') }}" method="post" class="install-form">
         {!! csrf_field() !!}
 
-        <p class="is-size-5">{{ trans('install.enter_user_information') }}</p>
+        <p class="is-size-5">{{ __('install.enter_user_information') }}</p>
 
         <div class="install-form__inner has-text-left">
             @if($errors->count() > 0)
                 <div class="notification is-danger">
                     <button class="delete"></button>
-                    {{ trans('install.check_user_information') }}
+                    {{ __('install.check_user_information') }}
                 </div>
             @endif
 
