@@ -67,7 +67,7 @@ return [
     'providers' => [
         'users' => [
             'driver' => 'eloquent',
-            'model' => Bookkeeper\User::class,
+            'model' => Bookkeeper\Users\User::class,
         ],
 
         // 'users' => [

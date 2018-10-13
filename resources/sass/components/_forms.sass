@@ -1,0 +1,21 @@
+label
+    cursor: pointer
+
+.regular-checkbox
+    display: none !important
+
+.regular-checkbox + label
+    border: 1px solid darken($primary, 10%)
+    box-shadow: $box-shadow
+    padding: 8px
+    border-radius: 4px
+    display: inline-block
+    position: relative
+
+.regular-checkbox:checked + label::after
+    content: '\2714'
+    font-size: 0.875rem
+    position: absolute
+    top: -4px
+    left: 0px
+    color: $primary !important

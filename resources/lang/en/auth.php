@@ -19,6 +19,6 @@ return [
     'login' => 'Login',
     'logout' => 'Logout',
     'remember' => 'Remember',
-    'forgot' => 'I can\'t access my account!',
+    'forgot' => 'Forgot Password',
 
 ];

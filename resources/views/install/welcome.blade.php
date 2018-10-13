@@ -11,7 +11,7 @@
         <p class="is-size-7">{{ __('install.bookkeeper_will_be_configured') }}</p>
 
         <form action="{{ route('install-welcome-post') }}" method="post" class="install-form">
-            {!! csrf_field() !!}
+            @csrf
 
             <p class="is-size-5">{{ __('install.choose_language_and_timezone') }}</p>
 

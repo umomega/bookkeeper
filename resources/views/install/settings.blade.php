@@ -7,7 +7,7 @@
 @section('content')
 
     <form action="{{ route('install-settings-post') }}" method="post" class="install-form">
-        {!! csrf_field() !!}
+        @csrf
 
         <p class="is-size-5">{{ trans('install.enter_bookkeeper_settings') }}</p>
 

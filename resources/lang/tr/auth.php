@@ -19,6 +19,6 @@ return [
     'login' => 'Giriş Yap',
     'logout' => 'Çıkış Yap',
     'remember' => 'Hatırla',
-    'forgot' => 'Hesabıma giremiyorum!',
+    'forgot' => 'Şifremi Unuttum',
 
 ];

@@ -7,7 +7,7 @@
 @section('content')
 
     <form action="{{ route('install-user-post') }}" method="post" class="install-form">
-        {!! csrf_field() !!}
+        @csrf
 
         <p class="is-size-5">{{ __('install.enter_user_information') }}</p>
 

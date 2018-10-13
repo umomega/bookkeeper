@@ -1,0 +1,81 @@
+.auth-outer
+    display: flex
+    align-items: center
+    justify-content: center
+    height: 100vh
+    background: $white-ter
+
+.auth
+    width: 100%
+    max-width: 24em
+
+    &__logo-outer
+        text-align: center
+        padding-bottom: 1em
+
+    &__logo
+        width: 4em
+
+    &__inner
+        background: $white
+        box-shadow: $box-shadow
+
+    &__head
+        background-color: $primary
+        padding: 1em
+
+        h1
+            color: $white
+            text-align: center
+            font-size: 1.5em
+
+    &__message
+        margin-bottom: 2em
+        text-align: center
+        line-height: 1.75em
+
+    &__content
+        padding: 2em 2em 0
+
+        input
+            display: block
+            width: 100%
+            font-size: 1em
+            margin-bottom: 1.75em
+            padding: 0.25em 0
+            border: none
+            border-bottom: 1px solid $grey-lighter
+            line-height: 1.5em
+
+        a
+            font-size: 0.875em
+
+        button
+            position: relative
+            padding: 0.75em 0
+            height: auto !important
+            box-shadow: $box-shadow
+            bottom: -1.5625em
+
+    &__options
+        color: $grey-light
+        position: relative
+        top: 0.5em
+
+    &__checkbox
+        color: $grey
+        font-size: 0.875em
+
+        span
+            margin-left: 0.5em
+
+    input:focus, select:focus, textarea:focus, button:focus
+        outline: none
+
+.no-touch
+    .auth__content
+        input
+            &:hover
+                border-color: $grey-light
+            &:active, &:focus
+                border-color: $primary

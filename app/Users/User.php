@@ -2,12 +2,14 @@
 
 namespace Bookkeeper\Users;
 
+use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Nicolaslopezj\Searchable\SearchableTrait;
+use Bookkeeper\Notifications\ResetPasswordNotification;
 
 class User extends Authenticatable
 {
-    use SearchableTrait;
+    use SearchableTrait, Notifiable;
 
     /**
      * The attributes that are mass assignable.
@@ -80,6 +82,17 @@ class User extends Authenticatable
     public function presentFullName()
     {
         return $this->first_name . ' ' . $this->last_name;
+    }
+
+    /**
+     * Send the password reset notification.
+     *
+     * @param  string  $token
+     * @return void
+     */
+    public function sendPasswordResetNotification($token)
+    {
+        $this->notify(new ResetPasswordNotification($token));
     }
 
 }

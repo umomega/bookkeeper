@@ -7,7 +7,7 @@
 @section('content')
 
     <form action="{{ route('install-database-post') }}" method="post" class="install-form">
-        {!! csrf_field() !!}
+        @csrf
 
         <p class="is-size-5">{{ __('install.set_database_configuration') }}</p>
 
@@ -46,7 +46,7 @@
                     </span>
                 </button>
             </div>
-            
+
         </div>
     </form>
 
