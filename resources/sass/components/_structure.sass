@@ -1,0 +1,39 @@
+.body
+    background-color: $white-ter
+    min-height: 100vh
+
+.app
+    padding-top: 3em
+    @media screen and (max-width: $desktop)
+        padding-top: 0
+
+.main-content
+    @media screen and (max-width: $desktop)
+        padding-left: 0.75em
+        padding-right: 0.75em
+
+    &__head
+        margin-bottom: 1em
+
+    &__heading
+        font-size: 2em
+        font-weight: $weight-bold
+
+.breadcrumbs
+    +clearfix
+
+    &__crumb
+        float: left
+        font-size: 0.75em
+        display: inline-block
+        color: $grey-light
+        font-weight: $weight-bold
+        &::after
+            display: inline-block
+            content: '/'
+            padding: 0 1em
+            color: $grey-light !important
+
+.no-touchevents
+    .breadcrumbs__crumb:hover
+        color: $primary

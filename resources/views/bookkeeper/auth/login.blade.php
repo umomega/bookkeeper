@@ -12,7 +12,7 @@
 
         <div class="level auth__options">
             <div class="auth__checkbox level-left">
-                <input type="checkbox" id="remember" class="regular-checkbox">
+                <input type="checkbox" name="remember" id="remember" value="true" class="regular-checkbox">
                 <label for="remember"></label>
                 <span>{{ __('auth.remember') }}</span>
             </div>

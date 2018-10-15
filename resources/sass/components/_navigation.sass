@@ -1,0 +1,78 @@
+.navbar
+    margin-bottom: 2.5em
+    background-color: transparent
+
+.navbar-item img
+    max-height: 2em
+
+.navbar-item-text
+    font-size: 0.75em
+    font-weight: $weight-bold
+    position: relative
+
+    &.is-selected
+        display: inline-block
+        color: $primary
+        &::after
+            content: ''
+            position: absolute
+            width: 3em
+            height: 2px
+            border-radius: 1px
+            background-color: $primary
+            display: block
+            left: 50%
+            bottom: -0.75em
+            margin-left: -1.5em
+
+    @media screen and (max-width: $desktop)
+        font-size: 1em
+
+.navbar-button
+    cursor: pointer
+    height: 2.5em
+    width: 2.5em
+    display: inline-block
+    background-color: $white
+    box-shadow: $box-shadow
+    border-radius: 1.25em
+    @media screen and (max-width: $desktop)
+        margin-left: 0.5em
+        margin-bottom: 0.25em
+
+    img
+        max-height: 2.5em
+        vertical-align: bottom
+
+.navbar-item .icon
+    margin-left: 0 !important
+    margin-right: 0 !important
+    display: inline-block
+
+.navbar-dropdown
+    border-radius: $radius-large
+    box-shadow: $box-shadow
+
+.navbar-avatar
+    position: relative
+    line-height: 2.5em
+    text-align: center
+    font-weight: $weight-bold
+    color: $white
+    background-color: $primary
+    display: inline-block
+    height: 2.5em
+    width: 2.5em
+    border-radius: 1.25em
+    overflow: hidden
+
+    img
+        position: absolute
+        top: 0
+        left: 0
+        z-index: 1
+        width: 100%
+
+.no-touchevents
+    .navbar-dropdown a.navbar-item:hover
+        color: $primary !important

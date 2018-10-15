@@ -60,7 +60,7 @@
 /******/ 	__webpack_require__.p = "/";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 7);
+/******/ 	return __webpack_require__(__webpack_require__.s = 8);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -70,7 +70,7 @@
 "use strict";
 
 
-var bind = __webpack_require__(2);
+var bind = __webpack_require__(3);
 var isBuffer = __webpack_require__(16);
 
 /*global toString:true*/
@@ -397,10 +397,10 @@ function getDefaultAdapter() {
   var adapter;
   if (typeof XMLHttpRequest !== 'undefined') {
     // For browsers use XHR adapter
-    adapter = __webpack_require__(3);
+    adapter = __webpack_require__(4);
   } else if (typeof process !== 'undefined') {
     // For node use HTTP adapter
-    adapter = __webpack_require__(3);
+    adapter = __webpack_require__(4);
   }
   return adapter;
 }
@@ -479,6 +479,34 @@ module.exports = defaults;
 
 /***/ }),
 /* 2 */
+/***/ (function(module, exports) {
+
+module.exports = function(module) {
+	if(!module.webpackPolyfill) {
+		module.deprecate = function() {};
+		module.paths = [];
+		// module.parent = undefined by default
+		if(!module.children) module.children = [];
+		Object.defineProperty(module, "loaded", {
+			enumerable: true,
+			get: function() {
+				return module.l;
+			}
+		});
+		Object.defineProperty(module, "id", {
+			enumerable: true,
+			get: function() {
+				return module.i;
+			}
+		});
+		module.webpackPolyfill = 1;
+	}
+	return module;
+};
+
+
+/***/ }),
+/* 3 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -496,7 +524,7 @@ module.exports = function bind(fn, thisArg) {
 
 
 /***/ }),
-/* 3 */
+/* 4 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -507,7 +535,7 @@ var settle = __webpack_require__(20);
 var buildURL = __webpack_require__(22);
 var parseHeaders = __webpack_require__(23);
 var isURLSameOrigin = __webpack_require__(24);
-var createError = __webpack_require__(4);
+var createError = __webpack_require__(5);
 var btoa = (typeof window !== 'undefined' && window.btoa && window.btoa.bind(window)) || __webpack_require__(25);
 
 module.exports = function xhrAdapter(config) {
@@ -683,7 +711,7 @@ module.exports = function xhrAdapter(config) {
 
 
 /***/ }),
-/* 4 */
+/* 5 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -708,7 +736,7 @@ module.exports = function createError(message, config, code, request, response) 
 
 
 /***/ }),
-/* 5 */
+/* 6 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -720,7 +748,7 @@ module.exports = function isCancel(value) {
 
 
 /***/ }),
-/* 6 */
+/* 7 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -746,15 +774,15 @@ module.exports = Cancel;
 
 
 /***/ }),
-/* 7 */
+/* 8 */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(8);
+__webpack_require__(9);
 module.exports = __webpack_require__(35);
 
 
 /***/ }),
-/* 8 */
+/* 9 */
 /***/ (function(module, exports, __webpack_require__) {
 
 
@@ -764,20 +792,25 @@ module.exports = __webpack_require__(35);
  * application frontend using useful Laravel and JavaScript libraries.
  */
 
-__webpack_require__(9);
+__webpack_require__(10);
 __webpack_require__(34);
 
 $('.notification > button.delete').click(function (e) {
-  e.preventDefault();
-  $(this).parent().fadeOut();
+    e.preventDefault();
+    $(this).parent().fadeOut();
+});
+
+$('.navbar-burger').click(function () {
+    $('.navbar-burger').toggleClass('is-active');
+    $('.navbar-menu').toggleClass('is-active');
 });
 
 /***/ }),
-/* 9 */
+/* 10 */
 /***/ (function(module, exports, __webpack_require__) {
 
 
-window._ = __webpack_require__(10);
+window._ = __webpack_require__(11);
 
 /**
  * We'll load jQuery and the Bootstrap jQuery plugin which provides support
@@ -831,7 +864,7 @@ if (token) {
 // });
 
 /***/ }),
-/* 10 */
+/* 11 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global, module) {var __WEBPACK_AMD_DEFINE_RESULT__;/**
@@ -17943,10 +17976,10 @@ if (token) {
   }
 }.call(this));
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(11), __webpack_require__(12)(module)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(12), __webpack_require__(2)(module)))
 
 /***/ }),
-/* 11 */
+/* 12 */
 /***/ (function(module, exports) {
 
 var g;
@@ -17970,34 +18003,6 @@ try {
 // easier to handle this case. if(!global) { ...}
 
 module.exports = g;
-
-
-/***/ }),
-/* 12 */
-/***/ (function(module, exports) {
-
-module.exports = function(module) {
-	if(!module.webpackPolyfill) {
-		module.deprecate = function() {};
-		module.paths = [];
-		// module.parent = undefined by default
-		if(!module.children) module.children = [];
-		Object.defineProperty(module, "loaded", {
-			enumerable: true,
-			get: function() {
-				return module.l;
-			}
-		});
-		Object.defineProperty(module, "id", {
-			enumerable: true,
-			get: function() {
-				return module.i;
-			}
-		});
-		module.webpackPolyfill = 1;
-	}
-	return module;
-};
 
 
 /***/ }),
@@ -28385,7 +28390,7 @@ module.exports = __webpack_require__(15);
 
 
 var utils = __webpack_require__(0);
-var bind = __webpack_require__(2);
+var bind = __webpack_require__(3);
 var Axios = __webpack_require__(17);
 var defaults = __webpack_require__(1);
 
@@ -28420,9 +28425,9 @@ axios.create = function create(instanceConfig) {
 };
 
 // Expose Cancel & CancelToken
-axios.Cancel = __webpack_require__(6);
+axios.Cancel = __webpack_require__(7);
 axios.CancelToken = __webpack_require__(32);
-axios.isCancel = __webpack_require__(5);
+axios.isCancel = __webpack_require__(6);
 
 // Expose all/spread
 axios.all = function all(promises) {
@@ -28765,7 +28770,7 @@ module.exports = function normalizeHeaderName(headers, normalizedName) {
 "use strict";
 
 
-var createError = __webpack_require__(4);
+var createError = __webpack_require__(5);
 
 /**
  * Resolve or reject a Promise based on response status.
@@ -29198,7 +29203,7 @@ module.exports = InterceptorManager;
 
 var utils = __webpack_require__(0);
 var transformData = __webpack_require__(29);
-var isCancel = __webpack_require__(5);
+var isCancel = __webpack_require__(6);
 var defaults = __webpack_require__(1);
 var isAbsoluteURL = __webpack_require__(30);
 var combineURLs = __webpack_require__(31);
@@ -29358,7 +29363,7 @@ module.exports = function combineURLs(baseURL, relativeURL) {
 "use strict";
 
 
-var Cancel = __webpack_require__(6);
+var Cancel = __webpack_require__(7);
 
 /**
  * A `CancelToken` is an object that can be used to request cancellation of an operation.
@@ -29451,67 +29456,109 @@ module.exports = function spread(callback) {
 
 /***/ }),
 /* 34 */
-/***/ (function(module, exports) {
+/***/ (function(module, exports, __webpack_require__) {
 
-var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+/* WEBPACK VAR INJECTION */(function(module) {var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
 
 /*! modernizr 3.6.0 (Custom Build) | MIT *
- * https://modernizr.com/download/?-touchevents-setclasses !*/
-!function (e, n, t) {
-  function o(e, n) {
-    return (typeof e === "undefined" ? "undefined" : _typeof(e)) === n;
-  }function s() {
-    var e, n, t, s, a, i, r;for (var l in c) {
-      if (c.hasOwnProperty(l)) {
-        if (e = [], n = c[l], n.name && (e.push(n.name.toLowerCase()), n.options && n.options.aliases && n.options.aliases.length)) for (t = 0; t < n.options.aliases.length; t++) {
-          e.push(n.options.aliases[t].toLowerCase());
-        }for (s = o(n.fn, "function") ? n.fn() : n.fn, a = 0; a < e.length; a++) {
-          i = e[a], r = i.split("."), 1 === r.length ? Modernizr[r[0]] = s : (!Modernizr[r[0]] || Modernizr[r[0]] instanceof Boolean || (Modernizr[r[0]] = new Boolean(Modernizr[r[0]])), Modernizr[r[0]][r[1]] = s), f.push((s ? "" : "no-") + r.join("-"));
+ * https://modernizr.com/download/?-touchevents-setclasses-shiv !*/
+!function (e, t, n) {
+  function o(e, t) {
+    return (typeof e === "undefined" ? "undefined" : _typeof(e)) === t;
+  }function a() {
+    var e, t, n, a, r, i, s;for (var c in f) {
+      if (f.hasOwnProperty(c)) {
+        if (e = [], t = f[c], t.name && (e.push(t.name.toLowerCase()), t.options && t.options.aliases && t.options.aliases.length)) for (n = 0; n < t.options.aliases.length; n++) {
+          e.push(t.options.aliases[n].toLowerCase());
+        }for (a = o(t.fn, "function") ? t.fn() : t.fn, r = 0; r < e.length; r++) {
+          i = e[r], s = i.split("."), 1 === s.length ? Modernizr[s[0]] = a : (!Modernizr[s[0]] || Modernizr[s[0]] instanceof Boolean || (Modernizr[s[0]] = new Boolean(Modernizr[s[0]])), Modernizr[s[0]][s[1]] = a), l.push((a ? "" : "no-") + s.join("-"));
         }
       }
     }
-  }function a(e) {
-    var n = u.className,
-        t = Modernizr._config.classPrefix || "";if (p && (n = n.baseVal), Modernizr._config.enableJSClass) {
-      var o = new RegExp("(^|\\s)" + t + "no-js(\\s|$)");n = n.replace(o, "$1" + t + "js$2");
-    }Modernizr._config.enableClasses && (n += " " + t + e.join(" " + t), p ? u.className.baseVal = n : u.className = n);
+  }function r(e) {
+    var t = u.className,
+        n = Modernizr._config.classPrefix || "";if (m && (t = t.baseVal), Modernizr._config.enableJSClass) {
+      var o = new RegExp("(^|\\s)" + n + "no-js(\\s|$)");t = t.replace(o, "$1" + n + "js$2");
+    }Modernizr._config.enableClasses && (t += " " + n + e.join(" " + n), m ? u.className.baseVal = t : u.className = t);
   }function i() {
-    return "function" != typeof n.createElement ? n.createElement(arguments[0]) : p ? n.createElementNS.call(n, "http://www.w3.org/2000/svg", arguments[0]) : n.createElement.apply(n, arguments);
-  }function r() {
-    var e = n.body;return e || (e = i(p ? "svg" : "body"), e.fake = !0), e;
-  }function l(e, t, o, s) {
-    var a,
+    return "function" != typeof t.createElement ? t.createElement(arguments[0]) : m ? t.createElementNS.call(t, "http://www.w3.org/2000/svg", arguments[0]) : t.createElement.apply(t, arguments);
+  }function s() {
+    var e = t.body;return e || (e = i(m ? "svg" : "body"), e.fake = !0), e;
+  }function c(e, n, o, a) {
+    var r,
+        c,
         l,
         f,
-        c,
         d = "modernizr",
-        p = i("div"),
-        h = r();if (parseInt(o, 10)) for (; o--;) {
-      f = i("div"), f.id = s ? s[o] : d + (o + 1), p.appendChild(f);
-    }return a = i("style"), a.type = "text/css", a.id = "s" + d, (h.fake ? h : p).appendChild(a), h.appendChild(p), a.styleSheet ? a.styleSheet.cssText = e : a.appendChild(n.createTextNode(e)), p.id = d, h.fake && (h.style.background = "", h.style.overflow = "hidden", c = u.style.overflow, u.style.overflow = "hidden", u.appendChild(h)), l = t(p, e), h.fake ? (h.parentNode.removeChild(h), u.style.overflow = c, u.offsetHeight) : p.parentNode.removeChild(p), !!l;
-  }var f = [],
-      c = [],
-      d = { _version: "3.6.0", _config: { classPrefix: "", enableClasses: !0, enableJSClass: !0, usePrefixes: !0 }, _q: [], on: function on(e, n) {
-      var t = this;setTimeout(function () {
-        n(t[e]);
+        m = i("div"),
+        h = s();if (parseInt(o, 10)) for (; o--;) {
+      l = i("div"), l.id = a ? a[o] : d + (o + 1), m.appendChild(l);
+    }return r = i("style"), r.type = "text/css", r.id = "s" + d, (h.fake ? h : m).appendChild(r), h.appendChild(m), r.styleSheet ? r.styleSheet.cssText = e : r.appendChild(t.createTextNode(e)), m.id = d, h.fake && (h.style.background = "", h.style.overflow = "hidden", f = u.style.overflow, u.style.overflow = "hidden", u.appendChild(h)), c = n(m, e), h.fake ? (h.parentNode.removeChild(h), u.style.overflow = f, u.offsetHeight) : m.parentNode.removeChild(m), !!c;
+  }var l = [],
+      f = [],
+      d = { _version: "3.6.0", _config: { classPrefix: "", enableClasses: !0, enableJSClass: !0, usePrefixes: !0 }, _q: [], on: function on(e, t) {
+      var n = this;setTimeout(function () {
+        t(n[e]);
       }, 0);
-    }, addTest: function addTest(e, n, t) {
-      c.push({ name: e, fn: n, options: t });
+    }, addTest: function addTest(e, t, n) {
+      f.push({ name: e, fn: t, options: n });
     }, addAsyncTest: function addAsyncTest(e) {
-      c.push({ name: null, fn: e });
+      f.push({ name: null, fn: e });
     } },
-      Modernizr = function Modernizr() {};Modernizr.prototype = d, Modernizr = new Modernizr();var u = n.documentElement,
-      p = "svg" === u.nodeName.toLowerCase(),
-      h = d._config.usePrefixes ? " -webkit- -moz- -o- -ms- ".split(" ") : ["", ""];d._prefixes = h;var m = d.testStyles = l;Modernizr.addTest("touchevents", function () {
-    var t;if ("ontouchstart" in e || e.DocumentTouch && n instanceof DocumentTouch) t = !0;else {
-      var o = ["@media (", h.join("touch-enabled),("), "heartz", ")", "{#modernizr{top:9px;position:absolute}}"].join("");m(o, function (e) {
-        t = 9 === e.offsetTop;
+      Modernizr = function Modernizr() {};Modernizr.prototype = d, Modernizr = new Modernizr();var u = t.documentElement,
+      m = "svg" === u.nodeName.toLowerCase(),
+      h = d._config.usePrefixes ? " -webkit- -moz- -o- -ms- ".split(" ") : ["", ""];d._prefixes = h;var p = d.testStyles = c;Modernizr.addTest("touchevents", function () {
+    var n;if ("ontouchstart" in e || e.DocumentTouch && t instanceof DocumentTouch) n = !0;else {
+      var o = ["@media (", h.join("touch-enabled),("), "heartz", ")", "{#modernizr{top:9px;position:absolute}}"].join("");p(o, function (e) {
+        n = 9 === e.offsetTop;
       });
-    }return t;
-  }), s(), a(f), delete d.addTest, delete d.addAsyncTest;for (var v = 0; v < Modernizr._q.length; v++) {
-    Modernizr._q[v]();
+    }return n;
+  });m || !function (e, t) {
+    function n(e, t) {
+      var n = e.createElement("p"),
+          o = e.getElementsByTagName("head")[0] || e.documentElement;return n.innerHTML = "x<style>" + t + "</style>", o.insertBefore(n.lastChild, o.firstChild);
+    }function o() {
+      var e = E.elements;return "string" == typeof e ? e.split(" ") : e;
+    }function a(e, t) {
+      var n = E.elements;"string" != typeof n && (n = n.join(" ")), "string" != typeof e && (e = e.join(" ")), E.elements = n + " " + e, l(t);
+    }function r(e) {
+      var t = y[e[g]];return t || (t = {}, v++, e[g] = v, y[v] = t), t;
+    }function i(e, n, o) {
+      if (n || (n = t), d) return n.createElement(e);o || (o = r(n));var a;return a = o.cache[e] ? o.cache[e].cloneNode() : p.test(e) ? (o.cache[e] = o.createElem(e)).cloneNode() : o.createElem(e), !a.canHaveChildren || h.test(e) || a.tagUrn ? a : o.frag.appendChild(a);
+    }function s(e, n) {
+      if (e || (e = t), d) return e.createDocumentFragment();n = n || r(e);for (var a = n.frag.cloneNode(), i = 0, s = o(), c = s.length; c > i; i++) {
+        a.createElement(s[i]);
+      }return a;
+    }function c(e, t) {
+      t.cache || (t.cache = {}, t.createElem = e.createElement, t.createFrag = e.createDocumentFragment, t.frag = t.createFrag()), e.createElement = function (n) {
+        return E.shivMethods ? i(n, e, t) : t.createElem(n);
+      }, e.createDocumentFragment = Function("h,f", "return function(){var n=f.cloneNode(),c=n.createElement;h.shivMethods&&(" + o().join().replace(/[\w\-:]+/g, function (e) {
+        return t.createElem(e), t.frag.createElement(e), 'c("' + e + '")';
+      }) + ");return n}")(E, t.frag);
+    }function l(e) {
+      e || (e = t);var o = r(e);return !E.shivCSS || f || o.hasCSS || (o.hasCSS = !!n(e, "article,aside,dialog,figcaption,figure,footer,header,hgroup,main,nav,section{display:block}mark{background:#FF0;color:#000}template{display:none}")), d || c(e, o), e;
+    }var f,
+        d,
+        u = "3.7.3",
+        m = e.html5 || {},
+        h = /^<|^(?:button|map|select|textarea|object|iframe|option|optgroup)$/i,
+        p = /^(?:a|b|code|div|fieldset|h1|h2|h3|h4|h5|h6|i|label|li|ol|p|q|span|strong|style|table|tbody|td|th|tr|ul)$/i,
+        g = "_html5shiv",
+        v = 0,
+        y = {};!function () {
+      try {
+        var e = t.createElement("a");e.innerHTML = "<xyz></xyz>", f = "hidden" in e, d = 1 == e.childNodes.length || function () {
+          t.createElement("a");var e = t.createDocumentFragment();return "undefined" == typeof e.cloneNode || "undefined" == typeof e.createDocumentFragment || "undefined" == typeof e.createElement;
+        }();
+      } catch (n) {
+        f = !0, d = !0;
+      }
+    }();var E = { elements: m.elements || "abbr article aside audio bdi canvas data datalist details dialog figcaption figure footer header hgroup main mark meter nav output picture progress section summary template time video", version: u, shivCSS: m.shivCSS !== !1, supportsUnknownElements: d, shivMethods: m.shivMethods !== !1, type: "default", shivDocument: l, createElement: i, createDocumentFragment: s, addElements: a };e.html5 = E, l(t), "object" == ( false ? "undefined" : _typeof(module)) && module.exports && (module.exports = E);
+  }("undefined" != typeof e ? e : this, t), a(), r(l), delete d.addTest, delete d.addAsyncTest;for (var g = 0; g < Modernizr._q.length; g++) {
+    Modernizr._q[g]();
   }e.Modernizr = Modernizr;
 }(window, document);
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)(module)))
 
 /***/ }),
 /* 35 */

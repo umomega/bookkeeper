@@ -1,0 +1,21 @@
+.footer
+    background-color: transparent
+    padding: 0
+    padding-top: 2.5em
+    padding-bottom: 2.5em
+    @media screen and (max-width: $desktop)
+        padding-left: 0.75em
+        padding-right: 0.75em
+
+    &__link
+        display: inline-block
+        margin-left: 1.25em
+        opacity: 0.2
+
+        img
+            width: 1.25em
+            vertical-align: bottom
+
+.no-touchevents
+    .footer__link:hover
+        opacity: 0.7

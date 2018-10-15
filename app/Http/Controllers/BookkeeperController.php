@@ -19,7 +19,7 @@ abstract class BookkeeperController extends Controller {
      */
     protected function compileView($view, array $parameters = [], $title = null)
     {
-        $parameters['pageTitle'] = ($title ?: trans($view));
+        $parameters['pageTitle'] = ($title ?: __($view));
 
         return view($view, $parameters);
     }

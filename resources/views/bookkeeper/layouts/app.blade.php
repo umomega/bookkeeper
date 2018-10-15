@@ -9,7 +9,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="robots" content="noindex">
 
-    <title>@yield('pageTitle') &mdash; Bookkeeper</title>
+    <title>{{ $pageTitle }} &mdash; Bookkeeper</title>
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
@@ -18,13 +18,27 @@
     @yield('styles')
 
 </head>
-<body>
-    <div id="app" class="app">
-        @php $user = auth()->user() @endphp
+<body class="body">
+    <div id="app" class="app container">
+        @php
+            $currentUser = auth()->user();
+            $currentSection = isset($currentSection) ? $currentSection : null;
+        @endphp
 
         @include('partials.navigation')
 
-        @yield('content')
+        <div class="main-content">
+            <div class="main-content__head">
+                <div class="breadcrumbs">
+                    <a href="{{ route('bookkeeper.overview') }}" class="breadcrumbs__crumb">BOOKKEEPER</a>
+                    @yield('breadcrumbs')
+                </div>
+                <h1 class="main-content__heading">{{ $pageTitle }}</h1>
+            </div>
+            @yield('content')
+        </div>
+
+        @include('partials.footer')
     </div>
 
     <!-- Scripts -->

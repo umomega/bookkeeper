@@ -12,3 +12,8 @@ $('.notification > button.delete').click(function(e) {
     e.preventDefault();
     $(this).parent().fadeOut();
 });
+
+$('.navbar-burger').click(function() {
+    $('.navbar-burger').toggleClass('is-active');
+    $('.navbar-menu').toggleClass('is-active');
+});
