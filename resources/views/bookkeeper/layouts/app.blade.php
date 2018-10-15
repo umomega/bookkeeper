@@ -26,6 +26,8 @@
         @endphp
 
         @include('partials.navigation')
+        
+        @include('partials.flash')
 
         <div class="main-content">
             <div class="main-content__head">
