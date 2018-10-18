@@ -36,11 +36,19 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @include($resourceName . '.list')
+                    @if(isset($isSearch) && $isSearch && count(${$resourceName}) == 0)
+                        <tr>
+                            <td colspan="42" class="contents__message has-text-centered">
+                                <p class="is-size-5">{{ __('general.search_no_results') }}</p>
+                            </td>
+                        </tr>
+                    @else
+                        @include($resourceName . '.list')
+                    @endif
                 </tbody>
             </table>
         </div>
-        
+
         @unless(isset($isSearch) && $isSearch)
             @if(${$resourceName}->lastPage() > 1)
                 <div class="contents__footer">

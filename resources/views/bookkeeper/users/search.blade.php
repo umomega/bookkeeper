@@ -3,7 +3,7 @@
 @php $resourceName = 'users'; $isSearch = true @endphp
 
 @section('breadcrumbs')
-    <a href="{{ route('bookkeeper.users.index') }}" class="breadcrumbs__crumb">{{ uppercase(__('users.index')) }}</a>
+    <a href="{{ route('bookkeeper.users.index') }}" class="breadcrumbs__crumb">{{ uppercase(__('users.title')) }}</a>
 @endsection
 
 @section('table-buttons')

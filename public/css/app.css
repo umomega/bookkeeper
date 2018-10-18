@@ -11787,6 +11787,10 @@ label.panel-block:hover {
   vertical-align: middle;
 }
 
+.contents__message {
+  padding: 2.5em 0.75em !important;
+}
+
 .dropdown-content {
   padding-top: 0;
 }
