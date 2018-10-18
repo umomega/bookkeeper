@@ -6,6 +6,7 @@ return [
     'yes' => 'Evet',
     'no' => 'Hayır',
     'or' => 'ya da',
+    'delete' => 'Kaldır',
 
     'back' => 'Geri',
     'page' => 'Sayfa',

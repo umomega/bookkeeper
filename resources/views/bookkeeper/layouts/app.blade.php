@@ -26,8 +26,21 @@
         @endphp
 
         @include('partials.navigation')
-        
-        @include('partials.flash')
+
+        <div class="flash-container">
+            <div class="container">
+                <div class="columns">
+                    <div class="column is-4 is-offset-8">
+                        @foreach (session('flash_notification', collect())->toArray() as $message)
+                            <div class="notification is-{{ $message['level'] }}">
+                                <button class="delete"></button>
+                                <span class="flash-text">{{ $message['message'] }}</span>
+                            </div>
+                        @endforeach
+                    </div>
+                </div>
+            </div>
+        </div>
 
         <div class="main-content">
             <div class="main-content__head">
@@ -40,7 +53,38 @@
             @yield('content')
         </div>
 
-        @include('partials.footer')
+        <footer class="footer is-transparent">
+            <div class="is-clearfix">
+                <div class="footer__inner is-pulled-right">
+                    <a href="https://github.com/umomega/bookkeeper" target="_blank" class="footer__link">
+                        {!! Theme::img('img/bookkeeper-logo-dark.svg') !!}
+                    </a><a href="http://umomega.com" target="_blank" class="footer__link">
+                        {!! Theme::img('img/umomega-logo-dark.svg') !!}
+                    </a>
+                </div>
+            </div>
+        </footer>
+
+    </div>
+
+    <div class="modal" id="deleteModal">
+        <div class="modal-background"></div>
+        <div class="modal-card">
+            <header class="modal-card-head is-danger">
+                <p class="modal-card-title">{{ __('general.delete') }}</p>
+                <button class="delete is-dismiss" aria-label="close"></button>
+            </header>
+            <section class="modal-card-body modal-card-body--padded">
+                <p>{{ __('general.confirm_delete') }}</p>
+            </section>
+            <div class="modal-buttons">
+                <form class="modal-form" action="#" method="post" id="deleteForm">
+                    @csrf
+                    @method('delete')
+                    <button class="button is-primary" type="submit">{{ __('general.delete') }}</button>
+                </form><button class="button is-dismiss">{{ __('general.dismiss') }}</button>
+            </div>
+        </div>
     </div>
 
     <!-- Scripts -->

@@ -37,7 +37,7 @@
 
                 <div class="navbar-dropdown is-right">
                     <a href="{{ route('bookkeeper.settings.edit') }}" class="navbar-item">
-                        <span class="icon"><i class="fa fa-wrench"></i></span> {{ __('settings.index') }}
+                        <span class="icon"><i class="fa fa-wrench"></i></span> {{ __('settings.edit') }}
                     </a>
                     <a href="{{ route('bookkeeper.update.index') }}" class="navbar-item">
                         <span class="icon"><i class="fa fa-sync"></i></span> {{ __('update.index') }}

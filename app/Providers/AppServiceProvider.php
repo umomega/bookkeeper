@@ -37,6 +37,7 @@ class AppServiceProvider extends ServiceProvider
     protected function registerHelpers()
     {
         require_once __DIR__ . '/../Support/helpers.php';
+        require_once __DIR__ . '/../Support/snippets.php';
     }
 
     /**

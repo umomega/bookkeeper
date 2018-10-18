@@ -6,6 +6,7 @@ return [
     'yes' => 'Yes',
     'no' => 'No',
     'or' => 'or',
+    'delete' => 'Delete',
 
     'back' => 'Back',
     'page' => 'Page',

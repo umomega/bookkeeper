@@ -1,0 +1,82 @@
+.contents
+    box-shadow: $box-shadow
+    border-radius: $radius
+    background-color: $white
+    font-size: 0.875em
+    margin-top: 3em
+
+    &__body, &__footer, &__head
+        padding: 1em 1.5em
+        @media screen and (max-width: $desktop)
+            padding: 1em 0.75em
+
+    &__head
+        padding-top: 0
+        padding-bottom: 0
+        position: relative
+        top: -1.25em
+        margin-bottom: 0 !important
+
+        .field
+            box-shadow: $box-shadow
+            border-radius: 2.85714286em
+            overflow: hidden
+
+        .input
+            border: 0
+            outline: none
+            height: 2.5em
+            padding-left: 1em
+
+        .button
+            padding-left: 2em
+            padding-right: 2em
+            height: 2.5em
+            padding: calc(0.625em - 1px) 1.5em
+            border-radius: 1.25em
+            &.is-action
+                box-shadow: $box-shadow
+
+    &__footer
+        background-color: $white-ter
+        text-align: center
+        &__inverted
+            color: $white
+            background-color: $primary
+
+    td
+        vertical-align: middle
+
+.dropdown-content
+    padding-top: 0
+
+.dropdown-head
+    padding: 0.75em 1em
+    color: $white
+    background-color: $primary
+    font-size: 0.75em
+    font-weight: $weight-bold
+    margin-bottom: 0.66666667em
+
+.dropdown-item .icon
+    display: inline-block
+    position: absolute
+    right: 0.375em
+    top: 50%
+    transform: translateY(-0.5em)
+
+.dropdown-trigger button
+    background-color: transparent
+    border-color: $grey-light
+    &:hover
+        border-color: $grey-light
+
+.pagination-link,.pagination-previous, .pagination-next
+    &.disabled
+        opacity: 0.2
+
+@media screen and (max-width: 512px)
+    .is-hidden-micro
+        display: none
+    .search
+        max-width: 13.75em

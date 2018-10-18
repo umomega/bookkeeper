@@ -6,10 +6,11 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Nicolaslopezj\Searchable\SearchableTrait;
 use Bookkeeper\Notifications\ResetPasswordNotification;
+use Kyslik\ColumnSortable\Sortable;
 
 class User extends Authenticatable
 {
-    use SearchableTrait, Notifiable;
+    use SearchableTrait, Notifiable, Sortable;
 
     /**
      * The attributes that are mass assignable.
@@ -41,6 +42,13 @@ class User extends Authenticatable
             'email'      => 10
         ]
     ];
+
+    /**
+     * The attributes that may be sorted by.
+     *
+     * @var array
+     */
+    public $sortable = ['first_name', 'email', 'created_at'];
 
     /**
      * Password setter

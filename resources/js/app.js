@@ -8,12 +8,34 @@
 require('./bootstrap');
 require('./vendor/modernizr.min');
 
+// NOTIFICATIONS
 $('.notification > button.delete').click(function(e) {
     e.preventDefault();
-    $(this).parent().fadeOut();
+    $(this).parent().hide();
 });
 
+// BURGER NAVIGATION
 $('.navbar-burger').click(function() {
     $('.navbar-burger').toggleClass('is-active');
     $('.navbar-menu').toggleClass('is-active');
+});
+
+// DELETE MODAL
+var deleteModal = $('#deleteModal'),
+    deleteForm = $('#deleteForm');
+
+$('.delete-option').click(function(e) {
+    e.preventDefault();
+    e.stopPropagation();
+
+    deleteModal.addClass('is-active');
+    deleteForm.attr('action', $(this).attr('href'));
+});
+
+$('.is-dismiss').click(function(e) {
+    e.preventDefault();
+    e.stopPropagation();
+
+    deleteModal.removeClass('is-active');
+    deleteForm.attr('action', '#');
 });
