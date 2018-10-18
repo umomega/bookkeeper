@@ -7,7 +7,7 @@
                 <div class="level-item">
                     <form class="field has-addons search" method="GET" action="{{ route('bookkeeper.' . $resourceName . '.search') }}">
                         <p class="control">
-                            <input class="input" type="search" placeholder="{{ __('general.search') }}" name="q">
+                            <input class="input" type="search" placeholder="{{ __($resourceName . '.search') }}" name="q" value="{{ request('q') }}">
                         </p>
                         <p class="control is-hidden-micro">
                             <button class="button is-primary" type="submit">
@@ -40,11 +40,13 @@
                 </tbody>
             </table>
         </div>
-
-        @if(${$resourceName}->lastPage() > 1)
-            <div class="contents__footer">
-                {!! ${$resourceName}->appends(request()->except('page'))->links('partials.pagination') !!}
-            </div>
-        @endif
+        
+        @unless(isset($isSearch) && $isSearch)
+            @if(${$resourceName}->lastPage() > 1)
+                <div class="contents__footer">
+                    {!! ${$resourceName}->appends(request()->except('page'))->links('partials.pagination') !!}
+                </div>
+            @endif
+        @endunless
     </div>
 @endsection
