@@ -18,4 +18,4 @@ Route::get('users/{id}/password', [
     'as'   => 'bookkeeper.users.password']);
 Route::put('users/{id}/password', [
     'uses' => 'UsersController@updatePassword',
-    'as'   => 'bookkeeper.users.password.post']);
+    'as'   => 'bookkeeper.users.password.put']);

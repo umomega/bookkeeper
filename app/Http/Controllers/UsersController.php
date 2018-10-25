@@ -44,7 +44,7 @@ class UsersController extends BookkeeperController {
     {
         $user = User::findOrFail($id);
 
-        // @TODO: VALIDATE FORM
+        $validated = $this->resolveRequest('UpdatePassword')->validated();
 
         $user->setPassword($request->input('password'))->save();
 

@@ -80,7 +80,7 @@ trait BasicResource {
 
         $item = $modelPath::findOrFail($id);
 
-        $this->validateEditForm($request, $item);
+        $validated = $this->resolveRequest('Update')->validated();
 
         $item->update($request->all());
 
@@ -146,7 +146,7 @@ trait BasicResource {
      */
     protected function resolveRequest($name)
     {
-        return app('Bookkeeper\Http\Requests\\' . $name . ucfirst($this->resourceSingular));
+        return app('Bookkeeper\Http\Requests\\' . ucfirst($this->resourceSingular) . $name);
     }
 
 }

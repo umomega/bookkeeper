@@ -15,6 +15,6 @@ Route::group(['prefix' => 'profile'], function ()
         'as'   => 'bookkeeper.profile.password']);
     Route::put('password', [
         'uses' => 'ProfileController@updatePassword',
-        'as'   => 'bookkeeper.profile.password.post']);
+        'as'   => 'bookkeeper.profile.password.put']);
 
 });

@@ -8502,7 +8502,7 @@ label.panel-block:hover {
           align-items: center;
   border-bottom-color: #F7F7F7;
   border-bottom-style: solid;
-  border-bottom-width: 1px;
+  border-bottom-width: 4px;
   color: #303030;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -8510,7 +8510,7 @@ label.panel-block:hover {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  margin-bottom: -1px;
+  margin-bottom: -4px;
   padding: 0.5em 1em;
   vertical-align: top;
 }
@@ -8535,7 +8535,7 @@ label.panel-block:hover {
           align-items: center;
   border-bottom-color: #F7F7F7;
   border-bottom-style: solid;
-  border-bottom-width: 1px;
+  border-bottom-width: 4px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -11841,6 +11841,10 @@ label.panel-block:hover {
   .search {
     max-width: 13.75em;
   }
+}
+
+.tabs--forms {
+  margin-bottom: 0 !important;
 }
 
 .flash-container {

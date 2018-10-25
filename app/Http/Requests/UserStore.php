@@ -4,7 +4,7 @@ namespace Bookkeeper\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreUser extends FormRequest
+class UserStore extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
