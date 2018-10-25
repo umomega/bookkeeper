@@ -11724,6 +11724,11 @@ label.panel-block:hover {
   margin-top: 3em;
 }
 
+.contents--form {
+  margin-top: 0;
+  margin-bottom: 1em;
+}
+
 .contents__body,
 .contents__footer,
 .contents__head {
@@ -11930,6 +11935,26 @@ label {
   top: -4px;
   left: 0px;
   color: #263A8A !important;
+}
+
+.form {
+  margin-bottom: -2em;
+  max-width: 60em;
+  margin: 0 auto;
+  padding-top: 2em;
+}
+
+@media screen and (max-width: 769px) {
+  .form {
+    padding-top: 1em;
+  }
+}
+
+.form__buttons {
+  position: relative;
+  bottom: -1em;
+  text-align: right;
+  height: 1em;
 }
 
 .modal-card-head.is-danger {

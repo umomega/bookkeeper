@@ -37,16 +37,15 @@ trait BasicResource {
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store()
     {
         extract($this->getResourceNames());
 
-        $this->validateCreateForm($request);
+        $validated = $this->resolveRequest('Store')->validated();
 
-        $item = $modelPath::create($request->all());
+        $item = $modelPath::create($validated);
 
         $this->notify($resourceMultiple . '.created');
 
@@ -137,6 +136,17 @@ trait BasicResource {
             'resourceMultiple' => $this->resourceMultiple,
             'resourceSingular' => $this->resourceSingular
         ];
+    }
+
+    /**
+     * Resolves a request from the app
+     *
+     * @param string $name
+     * @return Request
+     */
+    protected function resolveRequest($name)
+    {
+        return app('Bookkeeper\Http\Requests\\' . $name . ucfirst($this->resourceSingular));
     }
 
 }

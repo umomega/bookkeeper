@@ -31,6 +31,12 @@
             <div class="container">
                 <div class="columns">
                     <div class="column is-4 is-offset-8">
+                        @if($errors->any())
+                            <div class="notification is-danger">
+                                <button class="delete"></button>
+                                <span class="flash-text">{{ __('general.error_saving') }}</span>
+                            </div>
+                        @endif
                         @foreach (session('flash_notification', collect())->toArray() as $message)
                             <div class="notification is-{{ $message['level'] }}">
                                 <button class="delete"></button>
