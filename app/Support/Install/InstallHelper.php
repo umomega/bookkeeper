@@ -134,14 +134,14 @@ class InstallHelper {
      * @param string $key
      * @param string $value
      */
-    public function setEnvVariable($key, $value)
+    public function setEnvVariable($key, $value, $config = null)
     {
         $path = base_path('.env');
 
         if (file_exists($path))
         {
             file_put_contents($path, str_replace(
-                $key . '=' . env($key),
+                $key . '=' . ($config ? config($config) : env($key)),
                 $key . '=' . $value,
                 file_get_contents($path)
             ));

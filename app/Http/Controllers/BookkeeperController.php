@@ -1,13 +1,16 @@
 <?php
 
-
 namespace Bookkeeper\Http\Controllers;
 
-
-
+use Illuminate\Foundation\Bus\DispatchesJobs;
+use Illuminate\Routing\Controller as BaseController;
+use Illuminate\Foundation\Validation\ValidatesRequests;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Http\Request;
 
-abstract class BookkeeperController extends Controller {
+abstract class BookkeeperController extends BaseController {
+
+    use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 
     /**
      * Compiles view for display
@@ -36,6 +39,17 @@ abstract class BookkeeperController extends Controller {
         {
             flash()->{$type}(trans($flash));
         }
+    }
+
+    /**
+     * Resolves a request from the app
+     *
+     * @param string $name
+     * @return Request
+     */
+    protected function resolveRequest($name)
+    {
+        return app('Bookkeeper\Http\Requests\\' . $this->resourceName . $name);
     }
 
 }

@@ -138,15 +138,4 @@ trait BasicResource {
         ];
     }
 
-    /**
-     * Resolves a request from the app
-     *
-     * @param string $name
-     * @return Request
-     */
-    protected function resolveRequest($name)
-    {
-        return app('Bookkeeper\Http\Requests\\' . ucfirst($this->resourceSingular) . $name);
-    }
-
 }

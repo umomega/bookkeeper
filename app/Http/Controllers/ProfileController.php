@@ -9,14 +9,12 @@ use Bookkeeper\Users\User;
 
 class ProfileController extends BookkeeperController {
 
-    use BasicResource;
-
     /**
-     * Self model path required for ModifiesPermissions
+     * Resource names
      *
      * @var string
      */
-    protected $resourceSingular = 'profile';
+    protected $resourceName = 'Profile';
 
     /**
      * Show the form for editing the specified resource.

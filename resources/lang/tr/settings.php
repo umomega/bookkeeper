@@ -2,5 +2,5 @@
 
 return [
     'edit' => 'Ayarları Düzenle',
-    'edited' => 'Ayarlar düzenlendi.',
+    'edited' => 'Ayarlar düzenlendi. Değişikliklerin yürürlüğe girmesi birkaç dakika sürebilir.',
 ];

@@ -69,7 +69,7 @@ class CurrencyHelper {
      */
     public function __construct()
     {
-        $this->base = env('DEFAULT_CURRENCY');
+        $this->base = config('app.default_currency');
     }
 
     /**

@@ -12,13 +12,14 @@ class UsersController extends BookkeeperController {
     use BasicResource;
 
     /**
-     * Self model path required for ModifiesPermissions
+     * Resource names
      *
      * @var string
      */
     protected $modelPath = User::class;
     protected $resourceMultiple = 'users';
     protected $resourceSingular = 'user';
+    protected $resourceName = 'User';
 
     /**
      * Show the form for updating password.

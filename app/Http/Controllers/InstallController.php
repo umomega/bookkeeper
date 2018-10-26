@@ -145,7 +145,6 @@ class InstallController extends Controller {
      */
     public function getComplete()
     {
-        Artisan::call('route:cache');
         Artisan::call('optimize');
 
         // For some reason the middleware does not work,

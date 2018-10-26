@@ -158,9 +158,16 @@ class FormBuilder {
      */
     public function buildFieldInput($name, array $field)
     {
-        $input = $this->htmlBuilder->input($field['type'], $name);
+        if($field['type'] == 'select')
+        {
+            $input = $this->htmlBuilder->select($name, $field['choices']);
 
-        $html = $this->errors->has($name) ? $input->class('input is-danger') : $input->class('input');
+            $html = '<div class="select' . ($this->errors->has($name) ? ' is-danger' : '') . '">' . $input . '</div>';
+        } else {
+            $input = $this->htmlBuilder->input($field['type'], $name);
+
+            $html = $this->errors->has($name) ? $input->class('input is-danger') : $input->class('input');
+        }
 
         if(array_key_exists('icon', $field))
         {
