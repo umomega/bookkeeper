@@ -37,11 +37,7 @@
                 </thead>
                 <tbody>
                     @if(isset($isSearch) && $isSearch && count(${$resourceName}) == 0)
-                        <tr>
-                            <td colspan="42" class="contents__message has-text-centered">
-                                <p class="is-size-5">{{ __('general.search_no_results') }}</p>
-                            </td>
-                        </tr>
+                        {!! no_results_row('general.search_no_results') !!}
                     @else
                         @include($resourceName . '.list')
                     @endif

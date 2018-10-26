@@ -11796,6 +11796,14 @@ label.panel-block:hover {
   padding: 2.5em 0.75em !important;
 }
 
+.contents__inner-heading {
+  font-size: 1.5em;
+  margin-bottom: 0.75em;
+  margin-top: 1em;
+  color: #263A8A;
+  font-weight: 700;
+}
+
 .dropdown-content {
   padding-top: 0;
 }
@@ -11853,6 +11861,7 @@ label.panel-block:hover {
   left: 0;
   width: 100%;
   height: 0;
+  z-index: 19;
 }
 
 @media screen and (max-width: 1088px) {
@@ -11990,6 +11999,40 @@ label {
 
 .password-meter__inner--strong {
   background-color: #26A65B;
+}
+
+.form-separator {
+  text-align: center !important;
+  font-size: 1.25em;
+  position: relative;
+  padding: 1.5em 0;
+  margin-top: 1.5em;
+}
+
+.form-separator::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 100%;
+  display: block;
+  height: 2px;
+  background-color: #F7F7F7;
+  border-radius: 1px;
+}
+
+.form-separator__inner {
+  position: relative;
+  z-index: 2;
+  display: inline-block;
+  padding: 0 1em;
+  background-color: white;
+  font-weight: 700;
+  color: #263A8A;
+}
+
+.subform {
+  padding-bottom: 2em;
 }
 
 .modal-card-head.is-danger {

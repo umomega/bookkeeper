@@ -87,6 +87,11 @@ class User extends Authenticatable
             '<img src="http://www.gravatar.com/avatar/' . md5($this->email) . '?d=blank"></span>';
     }
 
+    /**
+     * Presenter for full name
+     *
+     * @return string
+     */
     public function presentFullName()
     {
         return $this->first_name . ' ' . $this->last_name;

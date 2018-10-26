@@ -81,13 +81,13 @@
                 <button class="delete is-dismiss" aria-label="close"></button>
             </header>
             <section class="modal-card-body modal-card-body--padded">
-                <p>{{ __('general.confirm_delete') }}</p>
+                <p id="deleteMessage"></p>
             </section>
             <div class="modal-buttons">
                 <form class="modal-form" action="#" method="post" id="deleteForm">
                     @csrf
                     @method('delete')
-                    <button class="button is-primary" type="submit">{{ __('general.delete') }}</button>
+                    <button class="button is-primary" type="submit">{{ __('general.confirm') }}</button>
                 </form><button class="button is-dismiss">{{ __('general.dismiss') }}</button>
             </div>
         </div>

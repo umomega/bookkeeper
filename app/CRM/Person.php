@@ -6,10 +6,11 @@ namespace Bookkeeper\CRM;
 
 use Illuminate\Database\Eloquent\Model as Eloquent;
 use Nicolaslopezj\Searchable\SearchableTrait;
+use Kyslik\ColumnSortable\Sortable;
 
 class Person extends Eloquent {
 
-    use SearchableTrait;
+    use SearchableTrait, Sortable;
 
     /**
      * The attributes that are mass assignable.
@@ -38,6 +39,18 @@ class Person extends Eloquent {
         ]
     ];
 
+    /**
+     * The attributes that may be sorted by.
+     *
+     * @var array
+     */
+    public $sortable = ['first_name', 'email', 'created_at'];
+
+    /**
+     * Presenter for full name
+     *
+     * @return string
+     */
     public function presentFullName()
     {
         return $this->first_name . ' ' . $this->last_name;
@@ -58,7 +71,7 @@ class Person extends Eloquent {
      *
      * @return BelongsToMany
      */
-    public function lists()
+    public function clients()
     {
         return $this->belongsToMany(Client::class);
     }

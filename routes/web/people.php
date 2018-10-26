@@ -19,6 +19,6 @@ Route::get('people/{id}/lists', [
 Route::put('people/{id}/lists', [
     'uses' => 'PeopleController@associateList',
     'as'   => 'bookkeeper.people.lists.associate']);
-Route::delete('people/{id}/lists', [
+Route::delete('people/{id}/lists/{list}', [
     'uses' => 'PeopleController@dissociateList',
     'as'   => 'bookkeeper.people.lists.dissociate']);

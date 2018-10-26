@@ -1,9 +1,9 @@
 @extends('layouts.resources.index')
 
-@php $resourceName = 'users' @endphp
+@php $resourceName = 'people' @endphp
 
 @section('table-buttons')
-    <a class="button is-primary is-action" href="{{ route('bookkeeper.users.create') }}"><i class="fa fa-user-plus"></i><span class="is-hidden-mobile">&nbsp;&nbsp;{{ __('users.create') }}</span></a>
+    <a class="button is-primary is-action" href="{{ route('bookkeeper.people.create') }}"><i class="fa fa-user-plus"></i><span class="is-hidden-mobile">&nbsp;&nbsp;{{ __('people.create') }}</span></a>
 @endsection
 
 @section('table-head')

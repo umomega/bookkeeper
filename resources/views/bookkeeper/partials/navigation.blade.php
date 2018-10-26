@@ -13,7 +13,7 @@
 
     <div class="navbar-menu" id="navbarSub">
         <div class="navbar-start">
-            @foreach(['transactions', 'accounts', 'clients', 'people'] as $section)
+            @foreach(['transactions', 'accounts', 'tags', 'clients', 'people', 'lists'] as $section)
                 <a class="navbar-item" href="{{ route('bookkeeper.' . $section . '.index') }}"><span class="navbar-item-text{{ $currentSection == $section ? ' is-selected' : '' }}">{{ __($section . '.title') }}</span></a>
             @endforeach
         </div>

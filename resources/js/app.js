@@ -23,7 +23,8 @@ $('.navbar-burger').click(function() {
 
 // DELETE MODAL
 var deleteModal = $('#deleteModal'),
-    deleteForm = $('#deleteForm');
+    deleteForm = $('#deleteForm'),
+    deleteMessage = $('#deleteMessage');
 
 $('.delete-option').click(function(e) {
     e.preventDefault();
@@ -31,6 +32,7 @@ $('.delete-option').click(function(e) {
 
     deleteModal.addClass('is-active');
     deleteForm.attr('action', $(this).attr('href'));
+    deleteMessage.text($(this).data('message'));
 });
 
 $('.is-dismiss').click(function(e) {

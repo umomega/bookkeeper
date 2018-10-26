@@ -99,10 +99,24 @@ class FormBuilder {
 
         foreach($this->fields as $name => $field)
         {
-            $html .= $this->buildField($name);
+            $html .= ($field['type'] == 'separator' ?
+                $this->buildSeparator($name, $field) :
+                $this->buildField($name));
         }
 
         return $html;
+    }
+
+    /**
+     * Builds a field seperator
+     *
+     * @param string $name
+     * @param array $field
+     * @return string
+     */
+    public function buildSeparator($name, array $field)
+    {
+        return '<h3 class="form-separator"><span class="form-separator__inner">' . $this->translateLabel($name, $field) . '</span></h3>';
     }
 
     /**
@@ -133,9 +147,7 @@ class FormBuilder {
      */
     public function buildFieldStart($name, array $field)
     {
-        $label = array_key_exists('label', $field) ?
-            (trans()->has($field['label']) ? __($field['label']) : $field['label']) :
-            (trans()->has('validation.attributes.' . $name) ? __('validation.attributes.' . $name) : ucfirst($name));
+        $label = $this->translateLabel($name, $field);
 
         return '<div class="field is-horizontal">
             <div class="field-label is-normal">
@@ -163,6 +175,10 @@ class FormBuilder {
             $input = $this->htmlBuilder->select($name, $field['choices']);
 
             $html = '<div class="select' . ($this->errors->has($name) ? ' is-danger' : '') . '">' . $input . '</div>';
+        } elseif($field['type'] == 'textarea') {
+            $input = $this->htmlBuilder->textarea($name);
+
+            $html = $this->errors->has($name) ? $input->class('textarea is-danger') : $input->class('textarea');
         } else {
             $input = $this->htmlBuilder->input($field['type'], $name);
 
@@ -230,6 +246,20 @@ class FormBuilder {
         }
 
         return $html . __($text) . '</button>';
+    }
+
+    /**
+     * Returns a label translated
+     *
+     * @param string $name
+     * @param array $field
+     * @return string
+     */
+    public function translateLabel($name, array $field)
+    {
+        return array_key_exists('label', $field) ?
+            (trans()->has($field['label']) ? __($field['label']) : $field['label']) :
+            (trans()->has('validation.attributes.' . $name) ? __('validation.attributes.' . $name) : ucfirst($name));
     }
 
 }
