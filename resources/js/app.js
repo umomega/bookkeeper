@@ -7,6 +7,7 @@
 
 require('./bootstrap');
 require('./vendor/modernizr.min');
+require('./modules/all');
 
 // NOTIFICATIONS
 $('.notification > button.delete').click(function(e) {
@@ -38,4 +39,9 @@ $('.is-dismiss').click(function(e) {
 
     deleteModal.removeClass('is-active');
     deleteForm.attr('action', '#');
+});
+
+// PASSWORD FIELDS
+$('.control--password').each(function () {
+    new PasswordMeter($(this));
 });

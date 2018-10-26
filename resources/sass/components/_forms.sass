@@ -33,3 +33,24 @@ label
         bottom: -1em
         text-align: right
         height: 1em
+
+.password-meter
+    background-color: $grey-lighter
+    height: 0.25em
+    margin-top: 0.25em
+    border-radius: 0.125em
+    overflow: hidden
+
+    &__inner
+        height: 0.25em
+        width: 0%
+        transition: all 150ms
+
+        &--veryweak
+            background-color: $danger
+        &--weak
+            background-color: $orange
+        &--medium
+            background-color: $yellow
+        &--strong
+            background-color: $success

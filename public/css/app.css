@@ -11961,6 +11961,37 @@ label {
   height: 1em;
 }
 
+.password-meter {
+  background-color: #F7F7F7;
+  height: 0.25em;
+  margin-top: 0.25em;
+  border-radius: 0.125em;
+  overflow: hidden;
+}
+
+.password-meter__inner {
+  height: 0.25em;
+  width: 0%;
+  -webkit-transition: all 150ms;
+  transition: all 150ms;
+}
+
+.password-meter__inner--veryweak {
+  background-color: #C0392B;
+}
+
+.password-meter__inner--weak {
+  background-color: #ff470f;
+}
+
+.password-meter__inner--medium {
+  background-color: #ffdd57;
+}
+
+.password-meter__inner--strong {
+  background-color: #26A65B;
+}
+
 .modal-card-head.is-danger {
   background-color: #C0392B;
 }

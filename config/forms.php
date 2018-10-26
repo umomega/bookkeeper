@@ -6,7 +6,7 @@ return [
             'email' => ['type' => 'email', 'hint' => 'email'],
             'first_name' => ['type' => 'text'],
             'last_name' => ['type' => 'text'],
-            'password' => ['type' => 'password', 'hint' => 'password'],
+            'password' => ['type' => 'password', 'hint' => 'password', 'meter' => true],
             'password_confirmation' => ['type' => 'password', 'hint' => 'password_confirmation']
         ],
         'edit' => [
@@ -15,7 +15,7 @@ return [
             'last_name' => ['type' => 'text']
         ],
         'password' => [
-            'password' => ['type' => 'password', 'hint' => 'password'],
+            'password' => ['type' => 'password', 'hint' => 'password', 'meter' => true],
             'password_confirmation' => ['type' => 'password', 'hint' => 'password_confirmation']
         ]
     ]

@@ -143,7 +143,10 @@ class FormBuilder {
             </div>
             <div class="field-body">
                 <div class="field">
-                    <div class="control' . (array_key_exists('icon', $field) ? ' has-icons-left' : '') . '">';
+                    <div class="control' .
+                    (array_key_exists('icon', $field) ? ' has-icons-left' : '') .
+                    (($field['type'] == 'password' && array_key_exists('meter', $field) && $field['meter']) ? ' control--password' : '') .
+                    '">';
     }
 
     /**
@@ -178,9 +181,16 @@ class FormBuilder {
     {
         $hint = '';
 
+        if($field['type'] == 'password' && array_key_exists('meter', $field) && $field['type'])
+        {
+            $hint .= '<div class="password-meter"><div class="password-meter__inner"> </div></div>';
+        }
+
+        $hint .= '</div>';
+
         if($this->errors->has($name))
         {
-            $hint = '<p class="help is-danger">';
+            $hint .= '<p class="help is-danger">';
 
             foreach($this->errors->get($name) as $error) {
                 $hint .= $error . '<br>';
@@ -190,10 +200,10 @@ class FormBuilder {
         }
         elseif(array_key_exists('hint', $field))
         {
-            $hint = '<p class="help">' . (trans()->has($field['hint']) ? __($field['hint']) : (trans()->has('hints.' . $field['hint']) ? __('hints.' . $field['hint']) : $field['hint'])) . '</p>';
+            $hint .= '<p class="help">' . (trans()->has($field['hint']) ? __($field['hint']) : (trans()->has('hints.' . $field['hint']) ? __('hints.' . $field['hint']) : $field['hint'])) . '</p>';
         }
 
-        return '</div>' . $hint . '</div></div></div>';
+        return $hint . '</div></div></div>';
     }
 
     /**
