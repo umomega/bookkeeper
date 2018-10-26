@@ -1,5 +1,9 @@
 <?php
 
+Route::get('lists/search', [
+    'uses' => 'ListsController@search',
+    'as'   => 'bookkeeper.lists.search']);
+
 Route::resource('lists', 'ListsController', ['names' => [
     'index'   => 'bookkeeper.lists.index',
     'show'    => 'bookkeeper.lists.show',
@@ -9,7 +13,3 @@ Route::resource('lists', 'ListsController', ['names' => [
     'update'  => 'bookkeeper.lists.update',
     'destroy' => 'bookkeeper.lists.destroy',
 ]]);
-
-Route::get('lists/search', [
-    'uses' => 'ListsController@search',
-    'as'   => 'bookkeeper.lists.search']);

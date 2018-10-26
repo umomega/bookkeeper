@@ -6,10 +6,11 @@ namespace Bookkeeper\CRM;
 
 use Illuminate\Database\Eloquent\Model as Eloquent;
 use Nicolaslopezj\Searchable\SearchableTrait;
+use Kyslik\ColumnSortable\Sortable;
 
 class PeopleList extends Eloquent {
 
-    use SearchableTrait;
+    use SearchableTrait, Sortable;
 
     /**
      * The attributes that are mass assignable.
@@ -30,6 +31,13 @@ class PeopleList extends Eloquent {
             'name' => 10
         ]
     ];
+
+    /**
+     * The attributes that may be sorted by.
+     *
+     * @var array
+     */
+    public $sortable = ['name', 'created_at'];
 
     /**
      * People relation

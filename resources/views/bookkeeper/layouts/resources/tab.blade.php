@@ -10,5 +10,6 @@
         <div class="contents__body">
             @yield('tab')
         </div>
+        @yield('contents-footer')
     </div>
 @endsection
