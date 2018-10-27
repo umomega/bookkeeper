@@ -13,6 +13,12 @@ return [
             'notes' => ['type' => 'textarea']
         ]
     ],
+    'jobs' => [
+        'create' => [
+            'name' => ['type' => 'text'],
+            'notes' => ['type' => 'textarea']
+        ]
+    ],
     'lists' => [
         'create' => [
             'name' => ['type' => 'text'],

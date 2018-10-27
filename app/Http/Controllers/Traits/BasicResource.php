@@ -14,9 +14,11 @@ trait BasicResource {
      * @param Request $request
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index(Request $request, $parent = null)
     {
         extract($this->getResourceNames());
+
+        $parent = $this->getParent($parent);
 
         if(empty($request->input('q')))
         {
@@ -28,7 +30,7 @@ trait BasicResource {
             $isSearch = true;
         }
 
-        return $this->compileView($resourceMultiple . '.index', [$resourceMultiple => $items, 'isSearch' => $isSearch]);
+        return $this->compileView($resourceMultiple . '.index', [$resourceMultiple => $items, 'parent' => $parent, 'isSearch' => $isSearch]);
     }
 
     /**
@@ -36,11 +38,13 @@ trait BasicResource {
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($parent = null)
     {
         extract($this->getResourceNames());
 
-        return $this->compileView($resourceMultiple . '.create');
+        $parent = $this->getParent($parent);
+
+        return $this->compileView($resourceMultiple . '.create', compact('parent'));
     }
 
     /**
@@ -48,36 +52,47 @@ trait BasicResource {
      *
      * @return \Illuminate\Http\Response
      */
-    public function store()
+    public function store($parent = null)
     {
         extract($this->getResourceNames());
 
         $validated = $this->resolveRequest('Store')->validated();
 
+        $parent = $this->getParent($parent);
+
         $item = $modelPath::create($validated);
 
         $this->notify($resourceMultiple . '.created');
 
-        return redirect()->route('bookkeeper.' . $resourceMultiple . '.edit', $item->getKey());
+        $params = is_null($parent) ? $item->getKey() : [$parent->getKey(), $item->getKey()];
+
+        return redirect()->route('bookkeeper.' . $resourceMultiple . '.edit', $params);
     }
 
     /**
      * Show the form for editing the specified resource.
      *
      * @param  int $id
+     * @param  int $parent
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($id, $parent = null)
     {
         extract($this->getResourceNames());
 
-        $item = $modelPath::findOrFail($id);
+        if(!is_null($parent))
+        {
+            $item = $modelPath::findOrFail($parent);
+            $parent = $this->parentModelPath::findOrFail($id);
+        } else {
+            $item = $modelPath::findOrFail($id);
+        }
 
         $titlePropery = $this->getTitleProperty();
 
         $title = is_null($titlePropery) ? null : $item->{$titlePropery};
 
-        return $this->compileView($resourceMultiple . '.edit', [$resourceSingular => $item], $title);
+        return $this->compileView($resourceMultiple . '.edit', [$resourceSingular => $item, 'parent' => $parent], $title);
     }
 
     /**
@@ -87,11 +102,17 @@ trait BasicResource {
      * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $id, $parent = null)
     {
         extract($this->getResourceNames());
 
-        $item = $modelPath::findOrFail($id);
+        if(!is_null($parent))
+        {
+            $item = $modelPath::findOrFail($parent);
+            $parent = $this->parentModelPath::findOrFail($id);
+        } else {
+            $item = $modelPath::findOrFail($id);
+        }
 
         $validated = $this->resolveRequest('Update')->validated();
 
@@ -108,11 +129,17 @@ trait BasicResource {
      * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($id, $parent = null)
     {
         extract($this->getResourceNames());
 
-        $item = $modelPath::findOrFail($id);
+        if(!is_null($parent))
+        {
+            $item = $modelPath::findOrFail($parent);
+            $parent = $this->parentModelPath::findOrFail($id);
+        } else {
+            $item = $modelPath::findOrFail($id);
+        }
 
         $item->delete();
 
@@ -145,4 +172,14 @@ trait BasicResource {
         return isset($this->resourceTitleProperty) ? $this->resourceTitleProperty : null;
     }
 
+    /**
+     * Retriever for parent
+     *
+     * @param int|null $parent
+     * @return Model|null
+     */
+    public function getParent($parent)
+    {
+        return is_null($parent) ? null : $this->parentModelPath::findOrFail($parent);
+    }
 }

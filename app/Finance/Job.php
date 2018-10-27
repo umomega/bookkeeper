@@ -7,10 +7,11 @@ namespace Bookkeeper\Finance;
 use Illuminate\Database\Eloquent\Model as Eloquent;
 use Nicolaslopezj\Searchable\SearchableTrait;
 use Bookkeeper\CRM\Client;
+use Kyslik\ColumnSortable\Sortable;
 
 class Job extends Eloquent {
 
-    use SearchableTrait;
+    use SearchableTrait, Sortable;
 
     /**
      * The attributes that are mass assignable.
@@ -31,6 +32,13 @@ class Job extends Eloquent {
             'name' => 10
         ]
     ];
+
+    /**
+     * The attributes that may be sorted by.
+     *
+     * @var array
+     */
+    public $sortable = ['name', 'created_at'];
 
     /**
      * Client relation

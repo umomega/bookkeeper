@@ -1,11 +1,13 @@
 <?php
 
-function resource_options_menu($resource, $key)
+function resource_options_menu($resource, $key, $parent = null)
 {
+    $routeParams = is_null($parent) ? $key : [$parent, $key];
+
     return options_menu_open($key) .
-        '<a class="dropdown-item" href="' . route('bookkeeper.' . $resource . '.edit', $key) . '">
+        '<a class="dropdown-item" href="' . route('bookkeeper.' . $resource . '.edit', $routeParams) . '">
             <i class="icon fa fa-edit" aria-hidden="true"></i>' . __($resource . '.edit') . '</a>' .
-            delete_option(route('bookkeeper.' . $resource . '.destroy', $key), $resource . '.destroy') .
+            delete_option(route('bookkeeper.' . $resource . '.destroy', $routeParams), $resource . '.destroy') .
         options_menu_close();
 }
 

@@ -4,11 +4,12 @@
 namespace Bookkeeper\Http\Controllers;
 
 
+use Bookkeeper\Finance\Job;
 use Bookkeeper\CRM\Client;
 use Bookkeeper\Http\Controllers\Traits\BasicResource;
 use Illuminate\Http\Request;
 
-class ClientsController extends BookkeeperController {
+class JobsController extends BookkeeperController {
 
     use BasicResource;
 
@@ -17,10 +18,11 @@ class ClientsController extends BookkeeperController {
      *
      * @var string
      */
-    protected $modelPath = Client::class;
-    protected $resourceMultiple = 'clients';
-    protected $resourceSingular = 'client';
-    protected $resourceName = 'Client';
+    protected $modelPath = Job::class;
+    protected $parentModelPath = Client::class;
+    protected $resourceMultiple = 'jobs';
+    protected $resourceSingular = 'job';
+    protected $resourceName = 'Job';
     protected $resourceTitleProperty = 'name';
 
     /**
@@ -32,9 +34,9 @@ class ClientsController extends BookkeeperController {
      */
     public function show(Request $request, $id)
     {
-        $client = Client::findOrFail($id);
+        $job = Job::findOrFail($id);
 
-        $jobs = $client->jobs();
+        $jobs = $job->jobs();
 
         if(empty($request->input('q')))
         {
@@ -45,9 +47,9 @@ class ClientsController extends BookkeeperController {
             $isSearch = true;
         }
 
-        $people = $client->people()->sortable()->get();
+        $people = $job->people()->sortable()->get();
 
-        return $this->compileView('clients.show', compact('client', 'jobs', 'people', 'isSearch'), $client->name);
+        return $this->compileView('jobs.show', compact('job', 'jobs', 'people', 'isSearch'), $job->name);
     }
 
 }
