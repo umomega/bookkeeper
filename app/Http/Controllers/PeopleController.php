@@ -22,6 +22,7 @@ class PeopleController extends BookkeeperController {
     protected $resourceMultiple = 'people';
     protected $resourceSingular = 'person';
     protected $resourceName = 'Person';
+    protected $resourceTitleProperty = 'full_name';
 
     /**
      * List the specified resource lists.
@@ -38,7 +39,7 @@ class PeopleController extends BookkeeperController {
             ->pluck('name', 'id')
             ->toArray();
 
-        return $this->compileView('people.lists', compact('person', 'availableLists'), trans('lists.title'));
+        return $this->compileView('people.lists', compact('person', 'availableLists'), $person->full_name);
     }
 
     /**
@@ -51,7 +52,7 @@ class PeopleController extends BookkeeperController {
     public function associateList(Request $request, $id)
     {
         $person = Person::findOrFail($id);
-        
+
         $validated = $request->validate([
             'list' => 'required'
         ]);

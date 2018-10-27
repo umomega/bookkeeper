@@ -8503,7 +8503,7 @@ label.panel-block:hover {
   border-bottom-color: #F7F7F7;
   border-bottom-style: solid;
   border-bottom-width: 4px;
-  color: #303030;
+  color: #CCCCCC;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -8516,8 +8516,8 @@ label.panel-block:hover {
 }
 
 .tabs a:hover {
-  border-bottom-color: #202020;
-  color: #202020;
+  border-bottom-color: #CCCCCC;
+  color: #CCCCCC;
 }
 
 .tabs li {

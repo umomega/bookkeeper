@@ -20,6 +20,7 @@ class UsersController extends BookkeeperController {
     protected $resourceMultiple = 'users';
     protected $resourceSingular = 'user';
     protected $resourceName = 'User';
+    protected $resourceTitleProperty = 'full_name';
 
     /**
      * Show the form for updating password.
@@ -31,7 +32,7 @@ class UsersController extends BookkeeperController {
     {
         $user = User::findOrFail($id);
 
-        return $this->compileView('users.password', compact('user'), __('users.change_password'));
+        return $this->compileView('users.password', compact('user'), $user->full_name);
     }
 
     /**

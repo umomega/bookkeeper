@@ -64,7 +64,11 @@ trait BasicResource {
 
         $item = $modelPath::findOrFail($id);
 
-        return $this->compileView($resourceMultiple . '.edit', [$resourceSingular => $item]);
+        $titlePropery = $this->getTitleProperty();
+
+        $title = is_null($titlePropery) ? null : $item->{$titlePropery};
+
+        return $this->compileView($resourceMultiple . '.edit', [$resourceSingular => $item], $title);
     }
 
     /**
@@ -136,6 +140,16 @@ trait BasicResource {
             'resourceMultiple' => $this->resourceMultiple,
             'resourceSingular' => $this->resourceSingular
         ];
+    }
+
+    /**
+     * Returns the title property name
+     *
+     * @return string
+     */
+    protected function getTitleProperty()
+    {
+        return isset($this->resourceTitleProperty) ? $this->resourceTitleProperty : null;
     }
 
 }

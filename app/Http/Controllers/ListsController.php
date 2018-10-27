@@ -20,6 +20,7 @@ class ListsController extends BookkeeperController {
     protected $resourceMultiple = 'lists';
     protected $resourceSingular = 'list';
     protected $resourceName = 'List';
+    protected $resourceTitleProperty = 'name';
 
     /**
      * List the specified resource people.
@@ -35,7 +36,7 @@ class ListsController extends BookkeeperController {
             ->sortable()
             ->paginate();
 
-        return $this->compileView('lists.show', compact('list', 'people'), trans('people.title'));
+        return $this->compileView('lists.show', compact('list', 'people'), $list->name);
     }
 
 }

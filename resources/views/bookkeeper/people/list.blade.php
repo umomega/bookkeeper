@@ -4,7 +4,7 @@
     @foreach($people as $person)
         <tr>
             <td>
-                <a href="{{ route('bookkeeper.people.edit', $person->getKey()) }}">{{ $person->presentFullName() }}</a>
+                <a href="{{ route('bookkeeper.people.edit', $person->getKey()) }}">{{ $person->full_name }}</a>
             </td>
             <td class="is-hidden-mobile">
                 <a href="mailto:{{ $person->email }}">

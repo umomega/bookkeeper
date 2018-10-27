@@ -88,11 +88,11 @@ class User extends Authenticatable
     }
 
     /**
-     * Presenter for full name
+     * Getter for full name
      *
      * @return string
      */
-    public function presentFullName()
+    public function getFullNameAttribute()
     {
         return $this->first_name . ' ' . $this->last_name;
     }
