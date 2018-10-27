@@ -2,10 +2,10 @@
 
 namespace Bookkeeper\Http\Controllers\Auth;
 
-use Bookkeeper\Http\Controllers\Controller;
+use Bookkeeper\Http\Controllers\BookkeeperController;
 use Illuminate\Foundation\Auth\SendsPasswordResetEmails;
 
-class ForgotPasswordController extends Controller
+class ForgotPasswordController extends BookkeeperController
 {
     /*
     |--------------------------------------------------------------------------

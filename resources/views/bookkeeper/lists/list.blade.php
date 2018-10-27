@@ -1,4 +1,4 @@
-@if(count($lists) == 0 && !(isset($isSearch) && !$isSearch))
+@if(count($lists) == 0 && !$isSearch)
     {!! no_results_row('lists.no_lists') !!}
 @else
     @foreach($lists as $list)

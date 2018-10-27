@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\DB;
 use Bookkeeper\Users\User;
 use Bookkeeper\Support\Install\InstallHelper;
 
-class InstallController extends Controller {
+class InstallController extends BookkeeperController {
 
     /**
      * Shows the "Welcome to Nuclear" page

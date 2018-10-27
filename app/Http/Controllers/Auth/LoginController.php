@@ -2,10 +2,10 @@
 
 namespace Bookkeeper\Http\Controllers\Auth;
 
-use Bookkeeper\Http\Controllers\Controller;
+use Bookkeeper\Http\Controllers\BookkeeperController;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
-class LoginController extends Controller
+class LoginController extends BookkeeperController
 {
     /*
     |--------------------------------------------------------------------------

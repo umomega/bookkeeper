@@ -6,7 +6,7 @@
             <div class="level-left"></div>
             <div class="level-right">
                 <div class="level-item">
-                    @if (empty($__env->yieldContent('table-buttons')))
+                    @if(empty($__env->yieldContent('table-buttons')))
                         <a class="button is-primary is-overlay" href="{{ route('bookkeeper.' . $resourceName . '.create') }}"><i class="fa fa-plus"></i><span class="is-hidden-mobile">&nbsp;&nbsp;{{ __($resourceName . '.create') }}</span></a>
                     @else
                         @yield('table-buttons')
