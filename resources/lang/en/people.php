@@ -13,7 +13,7 @@ return [
     'edit' => 'Edit Person',
     'edited' => 'Person was edited.',
     'destroy' => 'Delete Person',
-    'destroyed' => 'Deleted person(people).',
+    'destroyed' => 'Deleted person.',
 
     'new' => 'New Person',
     'no_people' => 'No people were found.',

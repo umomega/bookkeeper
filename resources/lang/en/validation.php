@@ -180,7 +180,9 @@ return [
         'job_title'                => 'Job Title',
         'currency'                 => 'Currency',
         'amount'                   => 'Amount',
-        'date'                     => 'Date'
+        'date'                     => 'Date',
+        'tax_administration'       => 'Tax Office',
+        'tax_number'               => 'Tax Number',
     ],
 
 ];

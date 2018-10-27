@@ -180,7 +180,9 @@ return [
         'job_title'                => 'İş Ünvanı',
         'currency'                 => 'Para Birimi',
         'amount'                   => 'Miktar',
-        'date'                     => 'Tarih'
+        'date'                     => 'Tarih',
+        'tax_administration'       => 'Vergi Dairesi',
+        'tax_number'               => 'Vergi Numarası',
     ],
 
 ];

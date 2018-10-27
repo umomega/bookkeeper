@@ -13,7 +13,7 @@ return [
     'edit' => 'Kişiyi Düzenle',
     'edited' => 'Kişi düzenlendi.',
     'destroy' => 'Kişiyi Sil',
-    'destroyed' => 'Kişi(ler) silindi.',
+    'destroyed' => 'Kişi silindi.',
 
     'new' => 'Yeni Kişi',
     'no_people' => 'Kişi bulunamadı.',

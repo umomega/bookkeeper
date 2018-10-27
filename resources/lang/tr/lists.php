@@ -13,7 +13,7 @@ return [
     'edit' => 'Listeyi Düzenle',
     'edited' => 'Liste düzenlendi.',
     'destroy' => 'Listeyi Sil',
-    'destroyed' => 'Liste(ler) silindi.',
+    'destroyed' => 'Liste silindi.',
 
     'new' => 'Yeni Liste',
     'associate' => 'Liste Ekle',
@@ -22,5 +22,5 @@ return [
     'dissociated' => 'Liste ayrıldı.',
     'confirm_dissociate' => 'Bu listeyi ayırmak istediğinizden emin misiniz?',
     'no_lists' => 'Liste bulunamadı.',
-    
+
 ];

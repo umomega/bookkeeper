@@ -13,7 +13,7 @@ return [
     'edit' => 'Kullanıcıyı Düzenle',
     'edited' => 'Kullanıcı düzenlendi.',
     'destroy' => 'Kullanıcıyı Sil',
-    'destroyed' => 'Kullanıcı(lar) silindi.',
+    'destroyed' => 'Kullanıcı silindi.',
 
     'update_profile' => 'Profili Güncelle',
     'updated_profile' => 'Profil güncellendi.',

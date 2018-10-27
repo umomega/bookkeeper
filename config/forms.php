@@ -1,6 +1,18 @@
 <?php
 
 return [
+    'clients' => [
+        'create' => [
+            'name' => ['type' => 'text'],
+            'tax_administration' => ['type' => 'text'],
+            'tax_number' => ['type' => 'text'],
+            'email' => ['type' => 'email'],
+            'tel' => ['type' => 'text'],
+            'fax' => ['type' => 'text'],
+            'address' => ['type' => 'textarea'],
+            'notes' => ['type' => 'textarea']
+        ]
+    ],
     'lists' => [
         'create' => [
             'name' => ['type' => 'text'],

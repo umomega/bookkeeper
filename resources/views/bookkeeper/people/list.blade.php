@@ -1,4 +1,4 @@
-@if(count($people) == 0 && !(isset($isSearch) && !$isSearch))
+@if(count($people) == 0 && !$isSearch)
     {!! no_results_row('people.no_people') !!}
 @else
     @foreach($people as $person)

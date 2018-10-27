@@ -13,7 +13,7 @@ return [
     'edit' => 'Edit User',
     'edited' => 'User was edited.',
     'destroy' => 'Delete User',
-    'destroyed' => 'Deleted user(s).',
+    'destroyed' => 'Deleted user.',
 
     'update_profile' => 'Update Profile',
     'updated_profile' => 'Updated profile.',
