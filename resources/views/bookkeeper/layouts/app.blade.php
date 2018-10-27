@@ -29,8 +29,8 @@
 
         <div class="flash-container">
             <div class="container">
-                <div class="columns">
-                    <div class="column is-4 is-offset-8">
+                <div class="columns is-tablet">
+                    <div class="column is-one-third-tablet is-offset-8-tablet is-quarter-desktop is-offset-9-desktop">
                         @if($errors->any())
                             <div class="notification is-danger">
                                 <button class="delete"></button>

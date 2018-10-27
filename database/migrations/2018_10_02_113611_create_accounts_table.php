@@ -24,7 +24,7 @@ class CreateAccountsTable extends Migration
                 'RON', 'RUB', 'SEK', 'SGD', 'THB', 'TRY', 'USD', 'ZAR'
             ]);
             $table->bigInteger('balance');
-            $table->text('notes');
+            $table->text('notes')->nullable();
 
             $table->timestamps();
         });

@@ -28,7 +28,7 @@ class CreateTransactionsTable extends Migration
             $table->boolean('received');
             $table->boolean('excluded');
 
-            $table->text('notes');
+            $table->text('notes')->nullable();
 
             $table->index('type');
             $table->index('account_id');

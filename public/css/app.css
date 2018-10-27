@@ -4954,7 +4954,7 @@ a.box:active {
 }
 
 .control.has-icon .icon {
-  color: #F7F7F7;
+  color: #CCCCCC;
   height: 2.25em;
   pointer-events: none;
   position: absolute;
@@ -5025,7 +5025,7 @@ a.box:active {
 
 .control.has-icons-left .icon,
 .control.has-icons-right .icon {
-  color: #F7F7F7;
+  color: #CCCCCC;
   height: 2.25em;
   pointer-events: none;
   position: absolute;

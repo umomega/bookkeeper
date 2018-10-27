@@ -17,8 +17,8 @@ class CreatePeopleListsTable extends Migration
             $table->increments('id');
 
             $table->string('name');
-            $table->text('notes');
-            
+            $table->text('notes')->nullable();
+
             $table->timestamps();
         });
     }

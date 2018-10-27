@@ -18,7 +18,7 @@ class CreateJobsTable extends Migration
 
             $table->unsignedInteger('client_id');
             $table->string('name');
-            $table->text('notes');
+            $table->text('notes')->nullable();
 
             $table->index('client_id');
 

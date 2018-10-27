@@ -2,8 +2,8 @@
 
 @section('content')
     @if(!empty($__env->yieldContent('sidebar')))
-        <div class="columns">
-            <div class="column is-three-quarters">
+        <div class="columns is-tablet">
+            <div class="column is-two-thirds-tablet is-three-quarters-desktop">
     @endif
 
     <div class="tabs is-centered tabs--forms">
@@ -28,7 +28,7 @@
 
     @if(!empty($__env->yieldContent('sidebar')))
             </div>
-            <div class="column is-quarter">
+            <div class="column is-one-third-tablet is-quarter-desktop">
                 @yield('sidebar')
             </div>
         </div>

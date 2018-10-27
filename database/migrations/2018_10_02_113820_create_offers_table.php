@@ -18,8 +18,8 @@ class CreateOffersTable extends Migration
 
             $table->unsignedInteger('job_id');
             $table->string('name');
-            $table->text('content');
-            $table->text('notes');
+            $table->text('content')->nullable();
+            $table->text('notes')->nullable();
 
             $table->index('job_id');
 
