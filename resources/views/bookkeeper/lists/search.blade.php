@@ -7,7 +7,7 @@
 @endsection
 
 @section('table-buttons')
-    <a class="button is-primary is-action" href="{{ route('bookkeeper.lists.create') }}"><i class="fa fa-plus"></i><span class="is-hidden-mobile">&nbsp;&nbsp;{{ __('lists.create') }}</span></a>
+    <a class="button is-primary is-overlay" href="{{ route('bookkeeper.lists.create') }}"><i class="fa fa-plus"></i><span class="is-hidden-mobile">&nbsp;&nbsp;{{ __('lists.create') }}</span></a>
 @endsection
 
 @section('table-head')

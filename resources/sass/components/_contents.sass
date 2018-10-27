@@ -3,11 +3,8 @@
     border-radius: $radius
     background-color: $white
     font-size: 0.875em
-    margin-top: 3em
-
-    &--form
-        margin-top: 0
-        margin-bottom: 1em
+    margin-top: 2em
+    margin-bottom: 1em
 
     &__body, &__footer, &__head
         padding: 1em 1.5em
@@ -21,25 +18,11 @@
         top: -1.25em
         margin-bottom: 0 !important
 
-        .field
-            box-shadow: $box-shadow
-            border-radius: 2.85714286em
-            overflow: hidden
-
-        .input
-            border: 0
-            outline: none
-            height: 2.5em
-            padding-left: 1em
-
-        .button
-            padding-left: 2em
-            padding-right: 2em
-            height: 2.5em
-            padding: calc(0.625em - 1px) 1.5em
-            border-radius: 1.25em
-            &.is-action
-                box-shadow: $box-shadow
+    &__search
+        padding-bottom: 1em
+        margin-top: -2em
+        @media screen and (max-width: $tablet-down)
+            margin-top: -1.5em
 
     &__footer
         background-color: $white-ter
@@ -88,12 +71,6 @@
 .pagination-link,.pagination-previous, .pagination-next
     &.disabled
         opacity: 0.2
-
-@media screen and (max-width: 512px)
-    .is-hidden-micro
-        display: none
-    .search
-        max-width: 13.75em
 
 .tabs
     &--forms

@@ -31,14 +31,14 @@
         @csrf
         @method('put')
 
-        <div class="field has-addons">
+        <div class="field has-addons is-pulled-left">
             <div class="control">
-                <div class="select">
+                <div class="select is-rounded">
                     {!! html()->select('list', $availableLists) !!}
                 </div>
             </div>
             <div class="control">
-                <button type="submit" class="button is-primary is-action">
+                <button type="submit" class="button is-primary is-rounded">
                     <i class="fa fa-plus"></i>&nbsp;&nbsp;{{ __('lists.associate') }}
                 </button>
             </div>

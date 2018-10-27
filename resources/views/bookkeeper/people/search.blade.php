@@ -7,7 +7,7 @@
 @endsection
 
 @section('table-buttons')
-    <a class="button is-primary is-action" href="{{ route('bookkeeper.people.create') }}"><i class="fa fa-user-plus"></i><span class="is-hidden-mobile">&nbsp;&nbsp;{{ __('people.create') }}</span></a>
+    <a class="button is-primary is-overlay" href="{{ route('bookkeeper.people.create') }}"><i class="fa fa-user-plus"></i><span class="is-hidden-mobile">&nbsp;&nbsp;{{ __('people.create') }}</span></a>
 @endsection
 
 @section('table-head')

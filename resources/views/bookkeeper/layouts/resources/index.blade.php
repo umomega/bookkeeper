@@ -5,22 +5,13 @@
         <div class="contents__head level is-mobile">
             <div class="level-left">
                 <div class="level-item">
-                    <form class="field has-addons search" method="GET" action="{{ route('bookkeeper.' . $resourceName . '.search') }}">
-                        <p class="control">
-                            <input class="input" type="search" placeholder="{{ __($resourceName . '.search') }}" name="q" value="{{ request('q') }}">
-                        </p>
-                        <p class="control is-hidden-micro">
-                            <button class="button is-primary" type="submit">
-                                <i class="fa fa-search"></i>
-                            </button>
-                        </p>
-                    </form>
+
                 </div>
             </div>
             <div class="level-right">
                 <div class="level-item">
                     @if (empty($__env->yieldContent('table-buttons')))
-                        <a class="button is-primary is-action" href="{{ route('bookkeeper.' . $resourceName . '.create') }}"><i class="fa fa-plus"></i><span class="is-hidden-mobile">&nbsp;&nbsp;{{ __($resourceName . '.create') }}</span></a>
+                        <a class="button is-primary is-overlay" href="{{ route('bookkeeper.' . $resourceName . '.create') }}"><i class="fa fa-plus"></i><span class="is-hidden-mobile">&nbsp;&nbsp;{{ __($resourceName . '.create') }}</span></a>
                     @else
                         @yield('table-buttons')
                     @endif
@@ -28,6 +19,18 @@
             </div>
         </div>
         <div class="contents__body">
+            <div class="contents__search has-text-centered">
+                <form class="field has-addons search" method="GET" action="{{ route('bookkeeper.' . $resourceName . '.search') }}">
+                    <p class="control">
+                        <input class="input is-rounded" type="search" placeholder="{{ __($resourceName . '.search') }}" name="q" value="{{ request('q') }}">
+                    </p>
+                    <p class="control">
+                        <button class="button is-overlay" type="submit">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </p>
+                </form>
+            </div>
             <table class="table is-fullwidth is-hoverable">
                 <thead>
                     <tr>

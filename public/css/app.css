@@ -11721,11 +11721,7 @@ label.panel-block:hover {
   border-radius: 4px;
   background-color: white;
   font-size: 0.875em;
-  margin-top: 3em;
-}
-
-.contents--form {
-  margin-top: 0;
+  margin-top: 2em;
   margin-bottom: 1em;
 }
 
@@ -11751,31 +11747,15 @@ label.panel-block:hover {
   margin-bottom: 0 !important;
 }
 
-.contents__head .field {
-  -webkit-box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.2);
-          box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.2);
-  border-radius: 2.85714286em;
-  overflow: hidden;
+.contents__search {
+  padding-bottom: 1em;
+  margin-top: -2em;
 }
 
-.contents__head .input {
-  border: 0;
-  outline: none;
-  height: 2.5em;
-  padding-left: 1em;
-}
-
-.contents__head .button {
-  padding-left: 2em;
-  padding-right: 2em;
-  height: 2.5em;
-  padding: calc(0.625em - 1px) 1.5em;
-  border-radius: 1.25em;
-}
-
-.contents__head .button.is-action {
-  -webkit-box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.2);
-          box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.2);
+@media screen and (max-width: 768px) {
+  .contents__search {
+    margin-top: -1.5em;
+  }
 }
 
 .contents__footer {
@@ -11839,16 +11819,6 @@ label.panel-block:hover {
 .pagination-previous.disabled,
 .pagination-next.disabled {
   opacity: 0.2;
-}
-
-@media screen and (max-width: 512px) {
-  .is-hidden-micro {
-    display: none;
-  }
-
-  .search {
-    max-width: 13.75em;
-  }
 }
 
 .tabs--forms {
@@ -11951,23 +11921,24 @@ label {
 }
 
 .form {
-  margin-bottom: -2em;
+  margin-bottom: -2.5em;
   max-width: 60em;
   margin: 0 auto;
   padding-top: 2em;
 }
 
-@media screen and (max-width: 769px) {
+@media screen and (max-width: 768px) {
   .form {
     padding-top: 1em;
   }
 }
 
 .form__buttons {
+  font-size: 1.14285714em;
   position: relative;
   bottom: -1em;
   text-align: right;
-  height: 1em;
+  height: 1.25em;
 }
 
 .password-meter {
@@ -12035,6 +12006,54 @@ label {
   padding-bottom: 2em;
 }
 
+.subform::after {
+  clear: both;
+  content: " ";
+  display: table;
+}
+
+.subform .select,
+.subform .button,
+.subform select {
+  height: 2.5em;
+}
+
+.subform select:hover {
+  border-color: transparent !important;
+}
+
+.subform > .field {
+  border-radius: 2.85714286em;
+  -webkit-box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.2);
+          box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+}
+
+.search {
+  display: inline-block;
+  max-width: 24em;
+}
+
+@media screen and (max-width: 768px) {
+  .search {
+    margin: 0 auto;
+  }
+}
+
+.search .input {
+  height: 2.5em;
+  padding-left: 1em;
+}
+
+.button.is-overlay {
+  padding-left: 2em;
+  padding-right: 2em;
+  height: 2.5em;
+  padding: calc(0.625em - 1px) 1.5em;
+  border-radius: 1.25em;
+  line-height: 1em;
+}
+
 .modal-card-head.is-danger {
   background-color: #C0392B;
 }
@@ -12050,7 +12069,7 @@ label {
   padding: 0 1.5em;
 }
 
-@media screen and (max-width: 769px) {
+@media screen and (max-width: 768px) {
   .modal-buttons {
     padding: 0 1em;
   }

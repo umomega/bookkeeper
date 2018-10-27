@@ -238,14 +238,14 @@ class FormBuilder {
      */
     public function buildSubmitButton($text, $icon = null)
     {
-        $html = '<button type="submit" class="button is-primary is-action">';
+        $html = '<button type="submit" class="button is-primary is-overlay">';
 
         if(!is_null($icon))
         {
-            $html .= '<i class="fa fa-' . $icon . '"></i>&nbsp;&nbsp;';
+            $html .= '<i class="fa fa-' . $icon . '"></i>&nbsp;&nbsp;<span>';
         }
 
-        return $html . __($text) . '</button>';
+        return $html . __($text) . '</span></button>';
     }
 
     /**
