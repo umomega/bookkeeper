@@ -10,9 +10,6 @@ Route::resource('tags', 'TagsController', ['names' => [
     'destroy' => 'bookkeeper.tags.destroy',
 ]]);
 
-Route::get('tags/search', [
-    'uses' => 'TagsController@search',
-    'as'   => 'bookkeeper.tags.search']);
 Route::post('tags/search', [
     'uses' => 'TagsController@searchJson',
     'as'   => 'bookkeeper.tags.search.json']);

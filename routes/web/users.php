@@ -9,10 +9,6 @@ Route::resource('users', 'UsersController', ['except' => ['show'], 'names' => [
     'destroy' => 'bookkeeper.users.destroy',
 ]]);
 
-Route::get('users/search', [
-    'uses' => 'UsersController@search',
-    'as'   => 'bookkeeper.users.search']);
-
 Route::get('users/{id}/password', [
     'uses' => 'UsersController@password',
     'as'   => 'bookkeeper.users.password']);

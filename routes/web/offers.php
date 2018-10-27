@@ -9,7 +9,3 @@ Route::resource('offers', 'OffersController', ['names' => [
     'update'  => 'bookkeeper.offers.update',
     'destroy' => 'bookkeeper.offers.destroy',
 ]]);
-
-Route::get('offers/search', [
-    'uses' => 'OffersController@search',
-    'as'   => 'bookkeeper.offers.search']);

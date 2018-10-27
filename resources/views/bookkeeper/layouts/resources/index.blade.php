@@ -3,11 +3,7 @@
 @section('content')
     <div class="contents">
         <div class="contents__head level is-mobile">
-            <div class="level-left">
-                <div class="level-item">
-
-                </div>
-            </div>
+            <div class="level-left"></div>
             <div class="level-right">
                 <div class="level-item">
                     @if (empty($__env->yieldContent('table-buttons')))
@@ -19,18 +15,9 @@
             </div>
         </div>
         <div class="contents__body">
-            <div class="contents__search has-text-centered">
-                <form class="field has-addons search" method="GET" action="{{ route('bookkeeper.' . $resourceName . '.search') }}">
-                    <p class="control">
-                        <input class="input is-rounded" type="search" placeholder="{{ __($resourceName . '.search') }}" name="q" value="{{ request('q') }}">
-                    </p>
-                    <p class="control">
-                        <button class="button is-overlay" type="submit">
-                            <i class="fa fa-search"></i>
-                        </button>
-                    </p>
-                </form>
-            </div>
+
+            @include('partials.search')
+
             <table class="table is-fullwidth is-hoverable">
                 <thead>
                     <tr>
@@ -39,7 +26,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @if(isset($isSearch) && $isSearch && count(${$resourceName}) == 0)
+                    @if($isSearch && count(${$resourceName}) == 0)
                         {!! no_results_row('general.search_no_results') !!}
                     @else
                         @include($resourceName . '.list')
@@ -48,12 +35,14 @@
             </table>
         </div>
 
-        @unless(isset($isSearch) && $isSearch)
+        @if($isSearch)
+            <div class="contents__footer"><a href="{{ route('bookkeeper.' . $resourceName . '.index') }}"><i class="fa fa-arrow-left"></i>&nbsp;&nbsp;{{ __($resourceName . '.all') }}</a></div>
+        @else
             @if(${$resourceName}->lastPage() > 1)
                 <div class="contents__footer">
                     {!! ${$resourceName}->appends(request()->except('page'))->links('partials.pagination') !!}
                 </div>
             @endif
-        @endunless
+        @endif
     </div>
 @endsection

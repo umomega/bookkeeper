@@ -11,15 +11,24 @@ trait BasicResource {
     /**
      * Display a listing of the resource.
      *
+     * @param Request $request
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         extract($this->getResourceNames());
 
-        $items = $modelPath::sortable()->paginate();
+        if(empty($request->input('q')))
+        {
+            $items = $modelPath::sortable()->paginate();
+            $isSearch = false;
+        } else {
+            $items = $modelPath::search($request->input('q'), null, true)
+                ->groupBy('id')->get();
+            $isSearch = true;
+        }
 
-        return $this->compileView($resourceMultiple . '.index', [$resourceMultiple => $items]);
+        return $this->compileView($resourceMultiple . '.index', [$resourceMultiple => $items, 'isSearch' => $isSearch]);
     }
 
     /**
@@ -110,22 +119,6 @@ trait BasicResource {
         $this->notify($resourceMultiple . '.destroyed');
 
         return redirect()->back();
-    }
-
-    /**
-     * Display results of searching the resource.
-     *
-     * @param Request $request
-     * @return Response
-     */
-    public function search(Request $request)
-    {
-        extract($this->getResourceNames());
-
-        $results = $modelPath::search($request->input('q'), null, true)
-            ->groupBy('id')->get();
-
-        return $this->compileView($resourceMultiple . '.search', [$resourceMultiple => $results]);
     }
 
     /**

@@ -9,10 +9,6 @@ Route::resource('people', 'PeopleController', ['except' => ['show'], 'names' => 
     'destroy' => 'bookkeeper.people.destroy',
 ]]);
 
-Route::get('people/search', [
-    'uses' => 'PeopleController@search',
-    'as'   => 'bookkeeper.people.search']);
-
 Route::get('people/{id}/lists', [
     'uses' => 'PeopleController@lists',
     'as'   => 'bookkeeper.people.lists']);

@@ -6,6 +6,7 @@ namespace Bookkeeper\Http\Controllers;
 
 use Bookkeeper\CRM\PeopleList;
 use Bookkeeper\Http\Controllers\Traits\BasicResource;
+use Illuminate\Http\Request;
 
 class ListsController extends BookkeeperController {
 
@@ -25,18 +26,26 @@ class ListsController extends BookkeeperController {
     /**
      * List the specified resource people.
      *
+     * @param Request $request
      * @param int $id
      * @return Response
      */
-    public function show($id)
+    public function show(Request $request, $id)
     {
         $list = PeopleList::findOrFail($id);
 
-        $people = $list->people()
-            ->sortable()
-            ->paginate();
+        $people = $list->people();
 
-        return $this->compileView('lists.show', compact('list', 'people'), $list->name);
+        if(empty($request->input('q')))
+        {
+            $people = $people->sortable()->paginate();
+            $isSearch = false;
+        } else {
+            $people = $people->search($request->input('q'), null, true)->get();
+            $isSearch = true;
+        }
+
+        return $this->compileView('lists.show', compact('list', 'people', 'isSearch'), $list->name);
     }
 
 }

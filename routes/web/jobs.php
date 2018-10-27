@@ -9,7 +9,3 @@ Route::resource('jobs', 'JobsController', ['names' => [
     'update'  => 'bookkeeper.jobs.update',
     'destroy' => 'bookkeeper.jobs.destroy',
 ]]);
-
-Route::get('jobs/search', [
-    'uses' => 'JobsController@search',
-    'as'   => 'bookkeeper.jobs.search']);

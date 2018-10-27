@@ -11743,18 +11743,18 @@ label.panel-block:hover {
   padding-top: 0;
   padding-bottom: 0;
   position: relative;
-  top: -1.25em;
+  height: 0;
   margin-bottom: 0 !important;
 }
 
 .contents__search {
+  padding-top: 0.75em;
   padding-bottom: 1em;
-  margin-top: -2em;
 }
 
 @media screen and (max-width: 768px) {
   .contents__search {
-    margin-top: -1.5em;
+    padding-top: 1.25em;
   }
 }
 
@@ -11822,7 +11822,7 @@ label.panel-block:hover {
 }
 
 .tabs--forms {
-  margin-bottom: 0 !important;
+  margin-bottom: -2em !important;
 }
 
 .flash-container {

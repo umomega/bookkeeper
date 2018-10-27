@@ -7,7 +7,3 @@ Route::resource('transactions', 'TransactionsController', ['except' => ['show', 
     'update'  => 'bookkeeper.transactions.update',
     'destroy' => 'bookkeeper.transactions.destroy',
 ]]);
-
-Route::get('transactions/search', [
-    'uses' => 'TransactionsController@search',
-    'as'   => 'bookkeeper.transactions.search']);
