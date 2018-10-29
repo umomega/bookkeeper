@@ -18,3 +18,13 @@ Route::put('people/{id}/lists', [
 Route::delete('people/{id}/lists/{list}', [
     'uses' => 'PeopleController@dissociateList',
     'as'   => 'bookkeeper.people.lists.dissociate']);
+
+Route::post('people/search', [
+    'uses' => 'PeopleController@searchJson',
+    'as'   => 'bookkeeper.people.search.json']);
+Route::put('people/{id}/clients/{client}', [
+    'uses' => 'PeopleController@associateClient',
+    'as'   => 'bookkeeper.people.clients.associate']);
+Route::delete('people/{id}/clients/{client}', [
+    'uses' => 'PeopleController@dissociateClient',
+    'as'   => 'bookkeeper.people.clients.dissociate']);

@@ -67,20 +67,10 @@ class Person extends Eloquent {
     }
 
     /**
-     * Clients relation
-     *
-     * @return BelongsToMany
-     */
-    public function clients()
-    {
-        return $this->belongsToMany(Client::class);
-    }
-
-    /**
      * Assign a list to the person by id
      *
      * @param int $id
-     * @return Role
+     * @return PeopleList
      */
     public function assignListById($id)
     {
@@ -93,12 +83,48 @@ class Person extends Eloquent {
      * Retract a list from the person by id
      *
      * @param int $id
-     * @return Role
+     * @return PeopleList
      */
     public function retractListById($id)
     {
         return $this->lists()->detach(
             PeopleList::findOrFail($id)
+        );
+    }
+
+    /**
+     * Clients relation
+     *
+     * @return BelongsToMany
+     */
+    public function clients()
+    {
+        return $this->belongsToMany(Client::class);
+    }
+
+    /**
+     * Assign a client to the person by id
+     *
+     * @param int $id
+     * @return Client
+     */
+    public function assignClientById($id)
+    {
+        return $this->clients()->attach(
+            Client::findOrFail($id)
+        );
+    }
+
+    /**
+     * Retract a client from the person by id
+     *
+     * @param int $id
+     * @return Client
+     */
+    public function retractClientById($id)
+    {
+        return $this->clients()->detach(
+            Client::findOrFail($id)
         );
     }
 

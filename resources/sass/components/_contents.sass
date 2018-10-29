@@ -5,6 +5,8 @@
     font-size: 0.875em
     margin-top: 2em
     margin-bottom: 1em
+    &--sidebar
+        margin-top: 1em
 
     &__body, &__footer, &__head
         padding: 1em 1.5em
@@ -25,9 +27,11 @@
             padding-top: 1.25em
 
     &__footer
+        border-bottom-left-radius: $radius
+        border-bottom-right-radius: $radius
         background-color: $white-ter
         text-align: center
-        &__inverted
+        &--inverted
             color: $white
             background-color: $primary
 
@@ -75,3 +79,94 @@
 .tabs
     &--forms
         margin-bottom: -2em !important
+
+.contents-sidebar
+    &__spacer
+        height: 2.75em
+
+    &__heading
+        padding-left: $radius
+        font-size: 1.25em
+        font-weight: $weight-bold
+        line-height: 1.5em
+
+    &__item-heading
+        font-size: 0.71428571em
+        font-weight: $weight-bold
+        color: $primary
+        text-align: left
+        &--inverted
+            color: rgba($white, 0.7)
+
+.subcontents
+    &__item
+        position: relative
+        font-size: 1.14285714em
+        padding: 0.75em 2.25em 0.75em 0
+        border-bottom: 1px solid $grey-lighter
+        &--padded
+            padding: 1em 0
+        &:last-child
+            border-bottom: 0
+
+        .delete-option
+            position: absolute
+            top: 50%
+            right: 0
+            transform: translateY(-50%)
+
+.searcher
+    position: relative
+
+    &__input
+        background-color: transparent
+        color: $white
+        width: 100%
+        font-size: 1.14285714em
+        padding: 0.5em 0
+        border: 0 !important
+        border-bottom: 1px solid $white !important
+        outline: none
+        +placeholder
+            color: rgba($white, 0.7)
+
+    &__hint
+        margin-top: 0.5em
+        font-size: 0.75em
+        text-align: left
+        color: rgba($white, 0.6)
+
+    &__results
+        position: absolute
+        top: 2.57142857em
+        left: 0
+        text-align: left
+        background-color: $white
+        color: $primary
+        width: 100%
+        border-radius: $radius
+        box-shadow: $box-shadow
+        overflow: hidden
+
+    &__result
+        position: relative
+        border-bottom: 1px solid $primary
+        line-height: 3em
+        cursor: pointer
+        padding: 0 1em
+        width: 100%
+        display: block !important
+        &:last-child
+            border-bottom: 0
+
+        &--selected
+            background-color: rgba($primary, 0.15)
+
+    &__result-input
+        position: absolute
+        top: 0
+        left: 0
+        height: 100%
+        width: 100%
+        z-index: -1
+        opacity: 0

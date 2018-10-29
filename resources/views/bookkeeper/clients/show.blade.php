@@ -26,5 +26,44 @@
 @endsection
 
 @section('sidebar')
-    HERE BE ASSOCIATED PEOPLE
+    <div class="contents-sidebar__spacer"></div>
+    <h3 class="contents-sidebar__heading">{{ __('people.title') }}</h3>
+    <div class="contents contents--sidebar">
+        <div class="contents__body">
+            <div class="subcontents" id="subcontents">
+                @if(count($people) > 0)
+                    @foreach($people as $person)
+                        <div class="subcontents__item">
+                            <a href="{{ route('bookkeeper.people.edit', $person->getKey()) }}">{{ $person->full_name }}</a>
+                            <a class="delete delete-option" href="{{ route('bookkeeper.people.clients.dissociate', [$person->getKey(), $client->getKey()]) }}" data-message="{{ __('people.confirm_dissociate') }}"></a>
+                        </div>
+                    @endforeach
+                @else
+                    <div class="subcontents__item subcontents__item--padded">
+                        {{ __('people.no_people') }}
+                    </div>
+                @endif
+            </div>
+        </div>
+        <div class="contents__footer contents__footer--inverted">
+            <h4 class="contents-sidebar__item-heading contents-sidebar__item-heading--inverted">{{ uppercase(__('people.add_person')) }}</h4>
+            <div id="clientSearch" class="searcher"
+                data-searchurl="{{ route('bookkeeper.people.search.json') }}">
+                <input type="hidden" name="_exclude" value="{{ json_encode($people->pluck('id')) }}">
+                <input type="hidden" name="_additional" value="{{ json_encode(['client_id' => $client->getKey()]) }}">
+                <input type="text" name="_searcher" autocomplete="off" placeholder="{{ __('general.search') }}" class="searcher__input">
+                <p class="searcher__hint">{{ __('people.type_to_search_and_add') }}</p>
+
+                <ul class="searcher__results">
+
+                </ul>
+            </div>
+        </div>
+    </div>
 @endsection
+
+@push('scripts')
+<script type="text/javascript">
+    var searcher = new Searcher($('#clientSearch'), $('#subcontents'));
+</script>
+@endpush

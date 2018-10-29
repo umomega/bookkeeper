@@ -83,4 +83,72 @@ class PeopleController extends BookkeeperController {
         return redirect()->back();
     }
 
+    /**
+     * Returns the collection of retrieved nodes by json response
+     *
+     * @param Request $request
+     * @return Response
+     */
+    public function searchJson(Request $request)
+    {
+        $people = Person::search($request->input('q'), null, true)
+            ->groupBy('id')->limit(10)->get();
+
+        $clientId = json_decode($request->input('additional'))->client_id;
+
+        $results = [];
+
+        foreach($people as $person)
+        {
+            $results[$person->getKey()] = [
+                'id' => $person->getKey(),
+                'name' => $person->full_name,
+                'associate_route' => route('bookkeeper.people.clients.associate', [$person->getKey(), $clientId])
+            ];
+        }
+
+        return $results;
+    }
+
+    /**
+     * Associate a client to the specified resource.
+     *
+     * @param Request $request
+     * @param int $id
+     * @return Response
+     */
+    public function associateClient(Request $request, $id, $client)
+    {
+        $person = Person::findOrFail($id);
+
+        $person->assignClientById($client);
+
+        return [
+            'id' => $person->getKey(),
+            'name' => $person->full_name,
+            'edit_route' => route('bookkeeper.people.edit', $person->getKey()),
+            'dissociate_route' => route('bookkeeper.people.clients.dissociate', [$person->getKey(), $client]),
+            'dissociate_message' => __('people.confirm_dissociate')
+        ];
+    }
+
+    /**
+     * Dissociate a client from the specified resource.
+     *
+     * @param Request $request
+     * @param int $id
+     * @param int $client
+     * @return Response
+     */
+    public function dissociateClient(Request $request, $id, $client)
+    {
+        $person = Person::findOrFail($id);
+
+        $person->retractClientById($client);
+
+        $this->notify('people.dissociated');
+
+        return redirect()->back();
+    }
+
 }

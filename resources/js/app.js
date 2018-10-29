@@ -26,13 +26,15 @@ var deleteModal = $('#deleteModal'),
     deleteForm = $('#deleteForm'),
     deleteMessage = $('#deleteMessage');
 
-$('.delete-option').click(function(e) {
+$('#app').on('click', 'a.delete-option', function(e) {
     e.preventDefault();
     e.stopPropagation();
 
+    var item = $(e.target);
+
     deleteModal.addClass('is-active');
-    deleteForm.attr('action', $(this).attr('href'));
-    deleteMessage.text($(this).data('message'));
+    deleteForm.attr('action', item.attr('href'));
+    deleteMessage.text(item.data('message'));
 });
 
 $('.is-dismiss').click(function(e) {
@@ -47,3 +49,8 @@ $('.is-dismiss').click(function(e) {
 $('.control--password').each(function () {
     new PasswordMeter($(this));
 });
+
+// INHERITANCE
+var inheritsFrom = function (child, parent) {
+    child.prototype = Object.create(parent.prototype);
+};
