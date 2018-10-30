@@ -12,6 +12,7 @@ trait BasicResource {
      * Display a listing of the resource.
      *
      * @param Request $request
+     * @param int|null $parent
      * @return \Illuminate\Http\Response
      */
     public function index(Request $request, $parent = null)
@@ -36,6 +37,7 @@ trait BasicResource {
     /**
      * Show the form for creating a new resource.
      *
+     * @param int|null $parent
      * @return \Illuminate\Http\Response
      */
     public function create($parent = null)
@@ -50,6 +52,7 @@ trait BasicResource {
     /**
      * Store a newly created resource in storage.
      *
+     * @param int|null $parent
      * @return \Illuminate\Http\Response
      */
     public function store($parent = null)
@@ -73,7 +76,7 @@ trait BasicResource {
      * Show the form for editing the specified resource.
      *
      * @param  int $id
-     * @param  int $parent
+     * @param  int|null $parent
      * @return \Illuminate\Http\Response
      */
     public function edit($id, $parent = null)
@@ -99,7 +102,7 @@ trait BasicResource {
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request $request
-     * @param  int $id
+     * @param  int|null $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id, $parent = null)

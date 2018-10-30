@@ -170,19 +170,30 @@ class FormBuilder {
      */
     public function buildFieldInput($name, array $field)
     {
-        if($field['type'] == 'select')
-        {
-            $input = $this->htmlBuilder->select($name, $field['choices']);
+        switch ($field['type']) {
+            case 'select':
+                $input = $this->htmlBuilder->select($name, $field['choices']);
+                $html = '<div class="select' . ($this->errors->has($name) ? ' is-danger' : '') . '">' . $input . '</div>';
+                break;
 
-            $html = '<div class="select' . ($this->errors->has($name) ? ' is-danger' : '') . '">' . $input . '</div>';
-        } elseif($field['type'] == 'textarea') {
-            $input = $this->htmlBuilder->textarea($name);
+            case 'textarea':
+                $input = $this->htmlBuilder->textarea($name);
+                $html = $this->errors->has($name) ? $input->class('textarea is-danger') : $input->class('textarea');
+                break;
 
-            $html = $this->errors->has($name) ? $input->class('textarea is-danger') : $input->class('textarea');
-        } else {
-            $input = $this->htmlBuilder->input($field['type'], $name);
+            case 'amount':
+                $input = $this->htmlBuilder->text('_' . $name . 'Placeholder');
+                $input = $this->errors->has($name) ? $input->class('input is-danger amount-field__input') : $input->class('input amount-field__input');
+                $html = '<div class="amount-field" id="amountField' . ucfirst($name) . '">' . $this->htmlBuilder->text($name, 0)->class('amount-field__value')->attribute('autocomplete', 'off') . $input . '<span class="amount-field__currency"></span></div>';
+                break;
 
-            $html = $this->errors->has($name) ? $input->class('input is-danger') : $input->class('input');
+            case 'checkbox':
+                $html = '<label class="checkbox"><input name="' . $name . '" type="hidden" value="0">' . $this->htmlBuilder->checkbox($name) . ' ' . __('general.yes') . '</label>';
+                break;
+
+            default:
+                $input = $this->htmlBuilder->input($field['type'], $name);
+                $html = $this->errors->has($name) ? $input->class('input is-danger') : $input->class('input');
         }
 
         if(array_key_exists('icon', $field))

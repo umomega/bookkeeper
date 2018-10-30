@@ -2,12 +2,15 @@
 
 namespace Bookkeeper\Providers;
 
+use Bookkeeper\Observers\AccountObserver;
+use Bookkeeper\Finance\Account;
 use Illuminate\Support\ServiceProvider;
+use Bookkeeper\Support\Currencies\CurrencyHelper;
 
 class AppServiceProvider extends ServiceProvider
 {
 
-    const VERSION = '0.10-alpha.0';
+    const VERSION = '1.0-alpha.0';
 
     /**
      * Bootstrap any application services.
@@ -16,7 +19,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        Account::observe(AccountObserver::class);
     }
 
     /**
@@ -45,8 +48,8 @@ class AppServiceProvider extends ServiceProvider
      */
     protected function registerServices()
     {
-        /*$this->app->singleton('Bookkeeper\Html\Builders\FormsHtmlBuilder', function ($app) {
-            return $app->make('Bookkeeper\Html\Builders\FormsHtmlBuilder');
-        });*/
+        $this->app->singleton(CurrencyHelper::class, function ($app) {
+            return new CurrencyHelper;
+        });
     }
 }

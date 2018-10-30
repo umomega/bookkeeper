@@ -17,13 +17,14 @@ class CreateAccountsTable extends Migration
             $table->increments('id');
 
             $table->string('name');
+            $table->boolean('default');
             $table->enum('currency', [
                 'AUD', 'BGN', 'BRL', 'CAD', 'CHF', 'CNY', 'CZK', 'DKK',
                 'EUR', 'GBP', 'HKD', 'HRK', 'HUF', 'IDR', 'ILS', 'INR',
                 'JPY', 'KRW', 'MXN', 'MYR', 'NOK', 'NZD', 'PHP', 'PLN',
                 'RON', 'RUB', 'SEK', 'SGD', 'THB', 'TRY', 'USD', 'ZAR'
             ]);
-            $table->bigInteger('balance');
+            $table->bigInteger('balance')->default(0);
             $table->text('notes')->nullable();
 
             $table->timestamps();

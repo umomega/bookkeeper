@@ -9,6 +9,11 @@ require('./bootstrap');
 require('./vendor/modernizr.min');
 require('./modules/all');
 
+// INHERITANCE
+var inheritsFrom = function (child, parent) {
+    child.prototype = Object.create(parent.prototype);
+};
+
 // NOTIFICATIONS
 $('.notification > button.delete').click(function(e) {
     e.preventDefault();
@@ -49,8 +54,3 @@ $('.is-dismiss').click(function(e) {
 $('.control--password').each(function () {
     new PasswordMeter($(this));
 });
-
-// INHERITANCE
-var inheritsFrom = function (child, parent) {
-    child.prototype = Object.create(parent.prototype);
-};

@@ -183,6 +183,7 @@ return [
         'date'                     => 'Date',
         'tax_administration'       => 'Tax Office',
         'tax_number'               => 'Tax Number',
+        'balance'                  => 'Balance',
     ],
 
 ];

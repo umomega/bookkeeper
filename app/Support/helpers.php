@@ -104,7 +104,7 @@ if ( ! function_exists('currency_string_for'))
      */
     function currency_string_for($amount, $account)
     {
-        return app('bookkeeper.support.currency')
+        return resolve('Bookkeeper\Support\Currencies\CurrencyHelper')
             ->currencyStringFor($amount, $account);
     }
 }
@@ -120,7 +120,7 @@ if ( ! function_exists('currency_float_for'))
      */
     function currency_float_for($amount, $accountId)
     {
-        return app('bookkeeper.support.currency')
+        return resolve('Bookkeeper\Support\Currencies\CurrencyHelper')
             ->currencyFloatFor($amount, $accountId);
     }
 }

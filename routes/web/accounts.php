@@ -9,3 +9,7 @@ Route::resource('accounts', 'AccountsController', ['names' => [
     'update'  => 'bookkeeper.accounts.update',
     'destroy' => 'bookkeeper.accounts.destroy',
 ]]);
+
+Route::get('accounts/{id}/transactions', [
+    'uses' => 'AccountsController@transactions',
+    'as' => 'bookkeeper.accounts.transactions']);

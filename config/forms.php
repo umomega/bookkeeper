@@ -1,6 +1,21 @@
 <?php
 
 return [
+    'accounts' => [
+        'create' => [
+            'name' => ['type' => 'text'],
+            'currency' => ['type' => 'select', 'choices' => Bookkeeper\Support\Currencies\CurrencyHelper::getCurrencies()],
+            'balance' => ['type' => 'amount'],
+            'default' => ['type' => 'checkbox'],
+            'notes' => ['type' => 'textarea'],
+        ],
+        'edit' => [
+            'name' => ['type' => 'text'],
+            'currency' => ['type' => 'select', 'choices' => Bookkeeper\Support\Currencies\CurrencyHelper::getCurrencies()],
+            'default' => ['type' => 'checkbox'],
+            'notes' => ['type' => 'textarea'],
+        ]
+    ],
     'clients' => [
         'create' => [
             'name' => ['type' => 'text'],

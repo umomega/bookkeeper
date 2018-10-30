@@ -73,6 +73,78 @@ class CurrencyHelper {
     }
 
     /**
+     * Converts amount to currency text
+     *
+     * @param int $amount
+     * @param int|Account $account
+     * @return string
+     */
+    public function currencyStringFor($amount, $account)
+    {
+        if ( ! $account instanceof Account) {
+            $account = $this->getAccount($account);
+        }
+
+        $currency = $account->currency;
+        $decimal = static::getDecimalDigitsFor($currency);
+
+        if ($amount == 0)
+        {
+            return $this->zeroCurrencyFloat($decimal) . ' ' . $currency;
+        }
+
+        if ($decimal == 0)
+        {
+            return $amount . ' ' . $currency;
+        }
+
+        return $this->decimalCurrencyFloat($decimal, $amount) . ' ' . $currency;
+    }
+
+    /**
+     * Converts amount to currency float
+     *
+     * @param int $amount
+     * @param int $accountId
+     * @return float
+     */
+    public function currencyFloatFor($amount, $accountId)
+    {
+        $account = $this->getAccount($accountId);
+
+        $decimal = static::getDecimalDigitsFor($account->currency);
+
+        if ($amount == 0)
+        {
+            return $this->zeroCurrencyFloat($decimal);
+        }
+
+        if ($decimal == 0)
+        {
+            return $amount;
+        }
+
+        return $this->decimalCurrencyFloat($decimal, $amount);
+    }
+
+    /**
+     * Gets and caches an account
+     *
+     * @param int $id
+     * @return Account
+     */
+    protected function getAccount($id)
+    {
+        if ( ! array_key_exists($id, $this->accounts))
+        {
+            $account = Account::findOrFail($id);
+            $this->accounts[$id] = $account;
+        }
+
+        return $this->accounts[$id];
+    }
+
+    /**
      * Generates a zero string response
      *
      * @param int $decimal

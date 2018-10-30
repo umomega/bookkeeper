@@ -183,6 +183,7 @@ return [
         'date'                     => 'Tarih',
         'tax_administration'       => 'Vergi Dairesi',
         'tax_number'               => 'Vergi Numarası',
+        'balance'                  => 'Bakiye',
     ],
 
 ];

@@ -12053,7 +12053,7 @@ label {
 
 .form {
   margin-bottom: -2.5em;
-  max-width: 60em;
+  max-width: 50em;
   margin: 0 auto;
   padding-top: 2em;
 }
@@ -12183,6 +12183,45 @@ label {
   padding: calc(0.625em - 1px) 1.5em;
   border-radius: 1.25em;
   line-height: 1em;
+}
+
+.amount-field {
+  position: relative;
+}
+
+.amount-field__input {
+  padding-right: 3em;
+}
+
+.amount-field__value {
+  z-index: 10;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  opacity: 0;
+  padding-right: 4em;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+}
+
+.amount-field__currency {
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 11;
+  display: inline-block;
+  width: 3.5em;
+  padding-right: 0.75em;
+  font-weight: 700;
+  color: #263A8A;
+  height: 100%;
+  text-align: right;
+  line-height: 2.375em;
+  vertical-align: middle;
 }
 
 .modal-card-head.is-danger {
