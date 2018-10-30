@@ -21,9 +21,11 @@ trait BasicResource {
 
         $parent = $this->getParent($parent);
 
+        $pageItems = ($resourceMultiple == 'tags') ? 30 : 15;
+
         if(empty($request->input('q')))
         {
-            $items = $modelPath::sortable()->paginate();
+            $items = $modelPath::sortable()->paginate($pageItems);
             $isSearch = false;
         } else {
             $items = $modelPath::search($request->input('q'), null, true)

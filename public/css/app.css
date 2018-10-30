@@ -12429,6 +12429,47 @@ label {
   color: #263A8A;
 }
 
+@media screen and (max-width: 768px) {
+  .tags-search .search {
+    max-width: 13em;
+  }
+
+  .tags-search .search .control:last-child {
+    display: none;
+  }
+
+  .tags-search .search.field.has-addons .control:first-child .input.is-rounded {
+    border-bottom-right-radius: 290486px !important;
+    border-top-right-radius: 290486px !important;
+  }
+}
+
+.tags-list__sortable {
+  margin-top: -1em;
+  padding-bottom: 2em;
+  font-size: 0.875em;
+  font-weight: 700;
+}
+
+.tags-list__sortable a {
+  display: inline-block;
+  margin-left: 2em;
+}
+
+.tags-list__sortable a:first-child {
+  margin-left: 0;
+}
+
+.tags .tag {
+  -webkit-box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.2);
+          box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.2);
+}
+
+.tags .is-delete {
+  background-color: white;
+  padding-right: 0.5em;
+}
+
 .auth-outer {
   display: -webkit-box;
   display: -ms-flexbox;

@@ -13,7 +13,7 @@ return [
     'edit' => 'Hesabı Düzenle',
     'edited' => 'Hesap düzenlendi.',
     'destroy' => 'Hesabı Sil',
-    'destroyed' => 'Hesap(lar) silindi.',
+    'destroyed' => 'Hesap silindi.',
 
     'new' => 'Yeni Hesap',
     'no_accounts' => 'Hesap bulunamadı.',

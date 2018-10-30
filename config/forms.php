@@ -69,6 +69,11 @@ return [
             'DEFAULT_CURRENCY' => ['type' => 'select', 'choices' => Bookkeeper\Support\Currencies\CurrencyHelper::getCurrencies(), 'label' => 'currencies.default_currency']
         ]
     ],
+    'tags' => [
+        'create' => [
+            'name' => ['type' => 'text']
+        ]
+    ],
     'users' => [
         'create' => [
             'email' => ['type' => 'email', 'hint' => 'email'],

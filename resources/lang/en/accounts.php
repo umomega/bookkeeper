@@ -13,12 +13,12 @@ return [
     'edit' => 'Edit Account',
     'edited' => 'Account was edited.',
     'destroy' => 'Delete Account',
-    'destroyed' => 'Deleted account(s).',
+    'destroyed' => 'Deleted account.',
 
     'new' => 'New Account',
     'no_accounts' => 'No accounts were found.',
     'balance' => 'Balance',
 
     'default_account' => 'Default Account',
-    
+
 ];

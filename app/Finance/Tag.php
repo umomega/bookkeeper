@@ -4,10 +4,11 @@ namespace Bookkeeper\Finance;
 
 use Illuminate\Database\Eloquent\Model as Eloquent;
 use Nicolaslopezj\Searchable\SearchableTrait;
+use Kyslik\ColumnSortable\Sortable;
 
 class Tag extends Eloquent {
 
-    use SearchableTrait;
+    use SearchableTrait, Sortable;
 
     /**
      * The attributes that are mass assignable.
@@ -28,6 +29,13 @@ class Tag extends Eloquent {
             'name' => 10
         ]
     ];
+
+    /**
+     * Sortable columns
+     *
+     * @var array
+     */
+    protected $sortableColumns = ['name', 'created_at'];
 
     /**
      * Transactions relation
