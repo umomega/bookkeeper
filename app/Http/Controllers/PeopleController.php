@@ -115,6 +115,7 @@ class PeopleController extends BookkeeperController {
      *
      * @param Request $request
      * @param int $id
+     * @param int $client
      * @return Response
      */
     public function associateClient(Request $request, $id, $client)

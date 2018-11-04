@@ -93,8 +93,13 @@
         </div>
     </div>
 
+    @stack('modules')
+
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}"></script>
+    <script type="text/javascript">
+        window.locale = '{{ config('app.locale') }}';
+    </script>
 
     @stack('scripts')
 

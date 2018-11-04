@@ -24,3 +24,12 @@
     </form>
 
 @endsection
+
+@push('scripts')
+<script type="text/javascript">
+    $('.auth__checkbox').on('click', 'span', function() {
+        var checkboxes = $(this).parent().find('input[type="checkbox"]');
+        checkboxes.attr("checked", !checkboxes.attr("checked"));
+    });
+</script>
+@endpush
