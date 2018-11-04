@@ -39,6 +39,16 @@ class TransactionObserver
      */
     public function saved(Transaction $transaction)
     {
+        // This is for account balance calculation
+        if($transaction->getOriginal('type') != $transaction->type) {
+            $differance = ((int)$transaction->getOriginal('total_amount') + (int)$transaction->total_amount) * ($transaction->type == 'income' ? 1 : -1);
+        } else {
+            $differance = ((int)$transaction->getOriginal('total_amount') - (int)$transaction->total_amount) * ($transaction->type == 'income' ? -1 : 1);
+        }
+
+        $account = $transaction->account;
+        $account->update(['balance' => (int)$account->balance + $differance]);
+
         // We do this here to be able to store for both creation and updating
         if(!is_null($uploadedInvoice = request()->file('invoice')))
         {
@@ -63,7 +73,10 @@ class TransactionObserver
      */
     public function deleted(Transaction $transaction)
     {
-        //
+        $differance = $transaction->total_amount * ($transaction->type == 'income' ? -1 : 1);
+
+        $account = $transaction->account;
+        $account->update(['balance' => (int)$account->balance + $differance]);
     }
 
 }

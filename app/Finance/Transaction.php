@@ -19,7 +19,8 @@ class Transaction extends Eloquent {
      */
     protected $fillable = [
         'name', 'type', 'amount', 'account_id', 'job_id',
-        'received', 'excluded', 'notes', 'invoice', 'created_at'
+        'received', 'excluded', 'notes', 'invoice', 'created_at',
+        'vat_percentage', 'vat_amount', 'total_amount'
     ];
 
     /**
