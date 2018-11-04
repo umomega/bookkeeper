@@ -26,7 +26,8 @@ class SettingsController extends BookkeeperController {
     {
         $settings = [
             'APP_LOCALE' => config('app.locale'),
-            'DEFAULT_CURRENCY' => config('app.default_currency')
+            'DEFAULT_VAT' => config('app.default_vat'),
+            'DEFAULT_CURRENCY' => config('app.default_currency'),
         ];
 
         return $this->compileView('settings.edit', compact('settings'));
@@ -44,6 +45,7 @@ class SettingsController extends BookkeeperController {
         $validated = $this->resolveRequest('Update')->validated();
 
         $helper->setEnvVariable('APP_LOCALE', $request->input('APP_LOCALE'), 'app.locale');
+        $helper->setEnvVariable('DEFAULT_VAT', $request->input('DEFAULT_VAT'), 'app.default_vat');
         $helper->setEnvVariable('DEFAULT_CURRENCY', $request->input('DEFAULT_CURRENCY'), 'app.default_currency');
 
         // Forget the currency rates cache since default account may have been changed

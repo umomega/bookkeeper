@@ -100,6 +100,7 @@ return [
     */
     'status' => env('APP_STATUS', 'NOT-INSTALLED'),
     'default_currency' => env('DEFAULT_CURRENCY', 'EUR'),
+    'default_vat' => env('DEFAULT_VAT', 10),
 
     /*
     |--------------------------------------------------------------------------

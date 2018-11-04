@@ -27,6 +27,7 @@ class SettingsUpdate extends FormRequest
     {
         return [
             'APP_LOCALE' => 'required|in:' . implode(',', array_keys(InstallHelper::$locales)),
+            'DEFAULT_VAT' => 'required|numeric',
             'DEFAULT_CURRENCY' => 'required|in:' . implode(',', array_keys(CurrencyHelper::getCurrencies()))
         ];
     }

@@ -184,6 +184,7 @@ return [
         'tax_administration'       => 'Tax Office',
         'tax_number'               => 'Tax Number',
         'balance'                  => 'Balance',
+        'vat_percentage'           => 'VAT Percentage',
     ],
 
 ];

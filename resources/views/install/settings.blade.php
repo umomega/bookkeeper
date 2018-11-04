@@ -22,7 +22,14 @@
             <div class="field">
                 {!! html()->label(__('install.bookkeeper_base_url'), 'base_url')->class('label') !!}
                 <div class="control">
-                    {!! html()->text('base_url', env('base_url', 'http://bookkeeper.test'))->class('input') !!}
+                    {!! html()->text('base_url', env('APP_URL', 'http://bookkeeper.test'))->class('input') !!}
+                </div>
+            </div>
+
+            <div class="field">
+                {!! html()->label(__('settings.default_vat_percentage'), 'default_vat')->class('label') !!}
+                <div class="control">
+                    {!! html()->number('default_vat', env('DEFAULT_VAT', 10))->class('input') !!}
                 </div>
             </div>
 

@@ -128,11 +128,13 @@ class InstallController extends BookkeeperController {
     {
         $this->validate($request, [
             'base_url' => 'required|url',
-            'default_currency' => 'required'
+            'default_currency' => 'required',
+            'default_vat' => 'required|numeric',
         ]);
 
         $helper->setEnvVariable('APP_URL', $request->get('base_url'));
         $helper->setEnvVariable('DEFAULT_CURRENCY', $request->get('default_currency'));
+        $helper->setEnvVariable('DEFAULT_VAT', $request->get('default_vat'));
         $helper->setEnvVariable('APP_STATUS', 'INSTALLED');
 
         return redirect()->route('install-complete');
