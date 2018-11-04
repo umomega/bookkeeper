@@ -34,4 +34,5 @@ return [
     'zh' => 'Çince',
     'ja' => 'Japonca',
 
+    'choose_a_file' => 'Bir dosya seçin',
 ];

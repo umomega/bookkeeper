@@ -23,6 +23,11 @@ class FormBuilder {
     protected $errors = null;
 
     /**
+     * @var \ArrayAccess|array
+     */
+    protected $model;
+
+    /**
      * Constructor
      *
      * @param Html $fields
@@ -54,6 +59,7 @@ class FormBuilder {
     public function setModel($model)
     {
         $this->htmlBuilder->model($model);
+        $this->model = $model;
 
         return $this;
     }
@@ -64,6 +70,7 @@ class FormBuilder {
      * @param ViewErrorBag $errors
      * @param string $form
      * @param $model
+     * @return self
      */
     public function configure(ViewErrorBag $errors, $form, $model = null)
     {
@@ -73,6 +80,22 @@ class FormBuilder {
         {
             $this->setModel($model);
         }
+
+        return $this;
+    }
+
+    /**
+     * Setter for field configuration
+     *
+     * @param string $key
+     * @param mixed $value
+     * @param return self
+     */
+    public function setFieldConfiguration($key, $value)
+    {
+        array_set($this->fields, $key, $value);
+
+        return $this;
     }
 
     /**
@@ -170,29 +193,73 @@ class FormBuilder {
      */
     public function buildFieldInput($name, array $field)
     {
+        $builder = $this->htmlBuilder;
+
         switch ($field['type']) {
             case 'select':
-                $input = $this->htmlBuilder->select($name, $field['choices']);
+                $input = $builder->select($name, $field['choices']);
                 $html = '<div class="select' . ($this->errors->has($name) ? ' is-danger' : '') . '">' . $input . '</div>';
                 break;
 
             case 'textarea':
-                $input = $this->htmlBuilder->textarea($name);
+                $input = $builder->textarea($name);
                 $html = $this->errors->has($name) ? $input->class('textarea is-danger') : $input->class('textarea');
                 break;
 
             case 'amount':
-                $input = $this->htmlBuilder->text('_' . $name . 'Placeholder');
+                $input = $builder->text('_' . $name . 'Placeholder');
                 $input = $this->errors->has($name) ? $input->class('input is-danger amount-field__input') : $input->class('input amount-field__input');
-                $html = '<div class="amount-field" id="amountField' . ucfirst($name) . '">' . $this->htmlBuilder->text($name, 0)->class('amount-field__value')->attribute('autocomplete', 'off') . $input . '<span class="amount-field__currency"></span></div>';
+                $html = '<div class="amount-field" id="amountField' . studly_case($name) . '">' . $builder->text($name, 0)->class('amount-field__value')->attribute('autocomplete', 'off') . $input . '<span class="amount-field__currency"></span></div>';
                 break;
 
             case 'checkbox':
-                $html = '<label class="checkbox"><input name="' . $name . '" type="hidden" value="0">' . $this->htmlBuilder->checkbox($name) . ' ' . __('general.yes') . '</label>';
+                $html = '<label class="checkbox"><input name="' . $name . '" type="hidden" value="0">' . $builder->checkbox($name) . ' ' . __('general.yes') . '</label>';
+                break;
+
+            case 'datetime':
+                $input = $builder->text($name);
+                $html = $this->errors->has($name) ? $input->class('input datetime is-danger') : $input->class('input datetime');
+                break;
+
+            case 'file':
+                $html = '<div class="file is-primary has-name is-fullwidth">
+                    <label class="file-label">
+                        <input class="file-input" type="file" name="' . $name . '">
+                        <span class="file-cta">
+                            <span class="file-icon"><i class="fa fa-upload"></i></span>
+                            <span class="file-label">' . __('general.choose_a_file') . '...</span>
+                        </span>
+                        <span class="file-name"></span>
+                    </label>
+                </div>';
+
+                if($info = json_decode($this->model->{$name}))
+                {
+                    $html .= '<div class="file-links level">
+                        <div class="level-left"><a href="' . $this->model->{camel_case($name) . 'DownloadLink'} . '"><i class="fa fa-download"></i> ' . $info->name . '</a></div>
+                        <div class="level-right"><a class="has-text-danger delete-option" data-message="' . __('general.confirm_delete') . '" href="' . $this->model->{camel_case($name) . 'DeleteLink'} . '">' . __('general.delete') . ' <i class="fa fa-trash"></i></a></div>
+                    </div>';
+                }
+                break;
+
+            case 'relation':
+                $html = '<div class="relation" data-searchurl="' . route($field['search']) . '">
+                    <div class="subcontents">' .
+                        (is_null($this->model->{$name}) ? '' : '<div class="subcontents__item subcontents__item--form">' . $this->model->{$field['relation_key']}->name . '<a href="#" class="delete relation-detach"></a></div>') .
+                    '</div>
+                    <div class="searcher">' .
+                        $builder->hidden($name)->class('relation-input') . '
+                        <input type="hidden" name="_exclude" value="' . (is_null($this->model->{$name}) ? '' : json_encode([$this->model->{$name}])) . '">
+                        <input type="hidden" name="_additional" value="">
+                        <input type="text" name="_searcher" autocomplete="off" placeholder="' . __('general.search') . '" class="input">
+
+                        <ul class="searcher__results"></ul>
+                    </div>
+                </div>';
                 break;
 
             default:
-                $input = $this->htmlBuilder->input($field['type'], $name);
+                $input = $builder->input($field['type'], $name);
                 $html = $this->errors->has($name) ? $input->class('input is-danger') : $input->class('input');
         }
 
@@ -270,7 +337,7 @@ class FormBuilder {
     {
         return array_key_exists('label', $field) ?
             (trans()->has($field['label']) ? __($field['label']) : $field['label']) :
-            (trans()->has('validation.attributes.' . $name) ? __('validation.attributes.' . $name) : ucfirst($name));
+            (trans()->has('validation.attributes.' . $name) ? __('validation.attributes.' . $name) : str_replace('_', ' ', title_case($name)));
     }
 
 }

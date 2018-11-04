@@ -1,3 +1,5 @@
 require('./amounts.js')
 require('./passwords.js')
 require('./searchers.js')
+require('./relations.js')
+require('./tags.js')

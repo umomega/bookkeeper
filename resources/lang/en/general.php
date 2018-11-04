@@ -34,4 +34,6 @@ return [
     'zh' => 'Chinese',
     'ja' => 'Japanese',
 
+    'choose_a_file' => 'Choose a file',
+
 ];

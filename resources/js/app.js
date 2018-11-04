@@ -7,12 +7,8 @@
 
 require('./bootstrap');
 require('./vendor/modernizr.min');
+require('./vendor/datetimepicker.min');
 require('./modules/all');
-
-// INHERITANCE
-var inheritsFrom = function (child, parent) {
-    child.prototype = Object.create(parent.prototype);
-};
 
 // NOTIFICATIONS
 $('.notification > button.delete').click(function(e) {
@@ -53,4 +49,29 @@ $('.is-dismiss').click(function(e) {
 // PASSWORD FIELDS
 $('.control--password').each(function () {
     new PasswordMeter($(this));
+});
+
+// DATE FIELDS
+$.datetimepicker.setLocale(window.locale);
+$('.datetime').each(function() {
+    $(this).datetimepicker({
+        format:'Y-m-d H:i:s'
+    });
+});
+
+// FILE FIELDS
+$('.file').each(function() {
+    var el = $(this),
+        input = el.find('input.file-input'),
+        name = el.find('span.file-name');
+
+    input.change(function() {
+        var namePieces = input.val().split('\\');
+        name.text(namePieces[namePieces.length -1]);
+    });
+});
+
+// RELATION FIELDS
+$('.relation').each(function() {
+    var relation = new Relation($(this));
 });

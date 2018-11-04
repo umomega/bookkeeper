@@ -14,6 +14,7 @@
         "bulma": "^0.7.1",
         "cross-env": "^5.1",
         "jquery": "^3.2",
+        "jquery-mousewheel": "^3.1.13",
         "laravel-mix": "^2.0",
         "lodash": "^4.17.5"
     }

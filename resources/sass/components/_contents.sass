@@ -109,11 +109,22 @@
         &:last-child
             border-bottom: 0
 
-        .delete-option
+        .delete-option, .relation-detach
+            display: inline-block
             position: absolute
             top: 50%
             right: 0
             transform: translateY(-50%)
+
+        .relation-detach
+            right: 10.5px
+
+        &--form
+            padding: 0.375em 3em 0.375em 1em
+            font-size: 1em
+            border-radius: $radius
+            box-shadow: $box-shadow
+            margin-bottom: 0.5em
 
 .searcher
     position: relative
@@ -147,6 +158,7 @@
         border-radius: $radius
         box-shadow: $box-shadow
         overflow: hidden
+        z-index: 100
 
     &__result
         position: relative
@@ -161,6 +173,10 @@
 
         &--selected
             background-color: rgba($primary, 0.15)
+
+        &--compact
+            line-height: 2.5em
+            font-size: 0.875em
 
     &__result-input
         position: absolute

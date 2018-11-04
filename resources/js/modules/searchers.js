@@ -198,14 +198,13 @@
             .then(function (response) {
                 var data = response.data;
 
-                self.list.find('.subcontents__item--padded').remove();
+                self.list.find('.subcontents__item--padded').hide();
 
-                var item = $('<div class="subcontents__item"><a href="' + data.edit_route + '">' + data.name + '</a><a class="delete delete-option" href="' + data.dissociate_route + '" data-message="' + data.dissociate_message + '"></a></div>');
+                var item = self._createItem(data);
 
                 self.list.append(item);
 
                 self.itemKeys.push(data.id);
-                console.log(self.itemKeys);
 
                 self._clearSearch();
 
@@ -214,6 +213,9 @@
             .catch(function (error) {
                 console.log(error);
             });
+        },
+        _createItem : function (data) {
+            return $('<div class="subcontents__item"><a href="' + data.edit_route + '">' + data.name + '</a><a class="delete delete-option" href="' + data.dissociate_route + '" data-message="' + data.dissociate_message + '"></a></div>');
         }
     };
 
