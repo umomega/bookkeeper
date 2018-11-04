@@ -14,6 +14,7 @@ return [
     'edited' => 'Tag was edited.',
     'destroy' => 'Delete Tag',
     'destroyed' => 'Deleted tag.',
+    'add_tag' => 'Add Tag',
 
     'new' => 'New Tag',
     'no_tags' => 'No tags were found.',

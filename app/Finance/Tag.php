@@ -47,4 +47,30 @@ class Tag extends Eloquent {
         return $this->belongsToMany(Transaction::class);
     }
 
+    /**
+     * Assign a transaction to the tag by id
+     *
+     * @param int $id
+     * @return Transaction
+     */
+    public function assignTransactionById($id)
+    {
+        return $this->transactions()->attach(
+            Transaction::findOrFail($id)
+        );
+    }
+
+    /**
+     * Retract a transaction from the tag by id
+     *
+     * @param int $id
+     * @return Transaction
+     */
+    public function retractTransactionById($id)
+    {
+        return $this->transactions()->detach(
+            Transaction::findOrFail($id)
+        );
+    }
+
 }

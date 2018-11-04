@@ -14,6 +14,7 @@ return [
     'edited' => 'Etiket düzenlendi.',
     'destroy' => 'Etiketi Sil',
     'destroyed' => 'Etiket silindi.',
+    'add_tag' => 'Etiket Ekle',
 
     'new' => 'Yeni Etiket',
     'no_tags' => 'Etiket bulunamadı.',

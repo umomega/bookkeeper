@@ -17,3 +17,10 @@ Route::get('tags/{id}/transactions', [
 Route::post('tags/search', [
     'uses' => 'TagsController@searchJson',
     'as'   => 'bookkeeper.tags.search.json']);
+
+Route::put('tags/{id}/transactions/{transaction}', [
+    'uses' => 'TagsController@associateTransaction',
+    'as'   => 'bookkeeper.tags.transactions.associate']);
+Route::delete('tags/{id}/transactions/{transaction}', [
+    'uses' => 'TagsController@dissociateTransaction',
+    'as'   => 'bookkeeper.tags.transactions.dissociate']);
