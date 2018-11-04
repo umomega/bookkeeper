@@ -155,7 +155,7 @@ class FormBuilder {
         // Hidden fields
         if($field['type'] == 'hidden')
         {
-            return $this->$htmlBuilder->hidden($name);
+            return $this->htmlBuilder->hidden($name);
         }
 
         return $this->buildFieldStart($name, $field) . $this->buildFieldInput($name, $field) . $this->buildFieldEnd($name, $field);
@@ -194,15 +194,16 @@ class FormBuilder {
     public function buildFieldInput($name, array $field)
     {
         $builder = $this->htmlBuilder;
+        $value = isset($field['default']) ? $field['default'] : null;
 
         switch ($field['type']) {
             case 'select':
-                $input = $builder->select($name, $field['choices']);
+                $input = $builder->select($name, $field['choices'], $value);
                 $html = '<div class="select' . ($this->errors->has($name) ? ' is-danger' : '') . '">' . $input . '</div>';
                 break;
 
             case 'textarea':
-                $input = $builder->textarea($name);
+                $input = $builder->textarea($name, $value);
                 $html = $this->errors->has($name) ? $input->class('textarea is-danger') : $input->class('textarea');
                 break;
 
@@ -213,11 +214,12 @@ class FormBuilder {
                 break;
 
             case 'checkbox':
-                $html = '<label class="checkbox"><input name="' . $name . '" type="hidden" value="0">' . $builder->checkbox($name) . ' ' . __('general.yes') . '</label>';
+                $checked = (isset($field['checked']) && $field['checked']);
+                $html = '<label class="checkbox"><input name="' . $name . '" type="hidden" value="0">' . $builder->checkbox($name, $checked) . ' ' . __('general.yes') . '</label>';
                 break;
 
             case 'datetime':
-                $input = $builder->text($name);
+                $input = $builder->text($name, $value);
                 $html = $this->errors->has($name) ? $input->class('input datetime is-danger') : $input->class('input datetime');
                 break;
 
@@ -233,7 +235,7 @@ class FormBuilder {
                     </label>
                 </div>';
 
-                if($info = json_decode($this->model->{$name}))
+                if(!is_null($this->model) && $info = json_decode($this->model->{$name}))
                 {
                     $html .= '<div class="file-links level">
                         <div class="level-left"><a href="' . $this->model->{camel_case($name) . 'DownloadLink'} . '"><i class="fa fa-download"></i> ' . $info->name . '</a></div>
@@ -245,11 +247,11 @@ class FormBuilder {
             case 'relation':
                 $html = '<div class="relation" data-searchurl="' . route($field['search']) . '">
                     <div class="subcontents">' .
-                        (is_null($this->model->{$name}) ? '' : '<div class="subcontents__item subcontents__item--form">' . $this->model->{$field['relation_key']}->name . '<a href="#" class="delete relation-detach"></a></div>') .
+                        ((!is_null($this->model) && !is_null($this->model->{$name})) ? '<div class="subcontents__item subcontents__item--form">' . $this->model->{$field['relation_key']}->name . '<a href="#" class="delete relation-detach"></a></div>' : '') .
                     '</div>
                     <div class="searcher">' .
                         $builder->hidden($name)->class('relation-input') . '
-                        <input type="hidden" name="_exclude" value="' . (is_null($this->model->{$name}) ? '' : json_encode([$this->model->{$name}])) . '">
+                        <input type="hidden" name="_exclude" value="' . ((!is_null($this->model) && !is_null($this->model->{$name})) ? json_encode([$this->model->{$name}]) : '') . '">
                         <input type="hidden" name="_additional" value="">
                         <input type="text" name="_searcher" autocomplete="off" placeholder="' . __('general.search') . '" class="input">
 
@@ -259,7 +261,7 @@ class FormBuilder {
                 break;
 
             default:
-                $input = $builder->input($field['type'], $name);
+                $input = $builder->input($field['type'], $name, $value);
                 $html = $this->errors->has($name) ? $input->class('input is-danger') : $input->class('input');
         }
 
