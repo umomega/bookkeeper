@@ -13305,6 +13305,82 @@ label {
   margin: 0.5em;
 }
 
+#transactionModal .modal-card-body--transaction {
+  padding-bottom: 5em;
+}
+
+#transactionModal .modal-content,
+#transactionModal .modal-card {
+  width: calc(100% - 3em);
+  max-width: 60em;
+}
+
+@media screen and (max-width: 768px) {
+  #transactionModal .modal-content,
+  #transactionModal .modal-card {
+    width: 100%;
+  }
+}
+
+#transactionModal .modal-card-title--hidden {
+  display: none;
+}
+
+#transactionModal .modal-card-head.is-success {
+  background-color: #26A65B;
+}
+
+#transactionModal .modal-card-head.is-danger {
+  background-color: #C0392B;
+}
+
+#transactionModal .is-transaction-add {
+  margin-right: 1em;
+}
+
+#transactionModal .modal-columns::after {
+  clear: both;
+  content: " ";
+  display: table;
+}
+
+#transactionModal .modal-column {
+  display: inline-block;
+  vertical-align: top;
+  float: left;
+}
+
+@media screen and (max-width: 768px) {
+  #transactionModal .modal-column {
+    display: block;
+    float: none;
+  }
+}
+
+#transactionModal .modal-column--main {
+  width: 66.66666667%;
+  padding-right: 0.75em;
+}
+
+@media screen and (max-width: 768px) {
+  #transactionModal .modal-column--main {
+    width: 100%;
+    padding-right: 0;
+  }
+}
+
+#transactionModal .modal-column--side {
+  padding-right: 0.75em;
+  width: 33.33333333%;
+}
+
+@media screen and (max-width: 768px) {
+  #transactionModal .modal-column--side {
+    width: 100%;
+    padding-left: 0;
+  }
+}
+
 .no-touchevents .transaction-controls__button--income:hover {
   background-color: #1d7d44;
 }

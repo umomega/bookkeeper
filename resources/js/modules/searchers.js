@@ -18,7 +18,7 @@
             this.results = this.el.find('ul.searcher__results');
             this.search = this.el.find('input[name="_searcher"]');
             this.exclude = this.el.find('input[name="_exclude"]');
-            this.additional = this.el.find('input[name="_additional"]');
+            this.additional = this.el.find('input[name="_additional"]').val();
 
             this.searching = false;
 
@@ -176,7 +176,7 @@
             if (!self.searching) {
                 axios.post(this.searchurl, {
                     q: keywords,
-                    additional: self.additional.val()
+                    additional: self.additional
                 })
                 .then(function (response) {
                     self._populateResults(response.data);
@@ -193,7 +193,8 @@
             var self = this;
 
             axios.post(item.data('associateroute'), {
-                _method: 'put'
+                _method: 'put',
+                additional: self.additional
             })
             .then(function (response) {
                 var data = response.data;

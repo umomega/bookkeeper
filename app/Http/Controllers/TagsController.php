@@ -76,17 +76,30 @@ class TagsController extends BookkeeperController {
         $tags = Tag::search($request->input('q'), null, true)
             ->groupBy('id')->limit(10)->get();
 
-        $transactionId = json_decode($request->input('additional'))->transaction_id;
+        $additional = json_decode($request->input('additional'));
 
         $results = [];
 
-        foreach($tags as $tag)
+        if(isset($additional->passive))
         {
-            $results[$tag->getKey()] = [
-                'id' => $tag->getKey(),
-                'name' => $tag->name,
-                'associate_route' => route('bookkeeper.tags.transactions.associate', [$tag->getKey(), $transactionId])
-            ];
+            foreach($tags as $tag)
+            {
+                $results[$tag->getKey()] = [
+                    'id' => $tag->getKey(),
+                    'name' => $tag->name
+                ];
+            }
+        } else {
+            $transactionId = $additional->transaction_id;
+
+            foreach($tags as $tag)
+            {
+                $results[$tag->getKey()] = [
+                    'id' => $tag->getKey(),
+                    'name' => $tag->name,
+                    'associate_route' => route('bookkeeper.tags.transactions.associate', [$tag->getKey(), $transactionId])
+                ];
+            }
         }
 
         return $results;

@@ -6,10 +6,11 @@ namespace Bookkeeper\Finance;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model as Eloquent;
 use Nicolaslopezj\Searchable\SearchableTrait;
+use Kyslik\ColumnSortable\Sortable;
 
 class Transaction extends Eloquent {
 
-    use SearchableTrait;
+    use SearchableTrait, Sortable;
 
     /**
      * The attributes that are mass assignable.
@@ -18,7 +19,7 @@ class Transaction extends Eloquent {
      */
     protected $fillable = [
         'name', 'type', 'amount', 'account_id', 'job_id',
-        'received', 'excluded', 'notes', 'created_at'
+        'received', 'excluded', 'notes', 'invoice', 'created_at'
     ];
 
     /**
@@ -31,6 +32,13 @@ class Transaction extends Eloquent {
             'name' => 10
         ]
     ];
+
+    /**
+     * Sortable columns
+     *
+     * @var array
+     */
+    protected $sortableColumns = ['name', 'amount', 'created_at'];
 
     /**
      * Scope for request filter
@@ -94,6 +102,26 @@ class Transaction extends Eloquent {
     public function presentAmount()
     {
         return currency_string_for($this->amount, $this->account_id);
+    }
+
+    /**
+     * Returns the download link for the invoice
+     *
+     * @return string
+     */
+    public function getInvoiceDownloadLinkAttribute()
+    {
+        return route('bookkeeper.transactions.invoice.download', $this->getKey());
+    }
+
+    /**
+     * Returns the download link for the invoice
+     *
+     * @return string
+     */
+    public function getInvoiceDeleteLinkAttribute()
+    {
+        return route('bookkeeper.transactions.invoice.delete', $this->getKey());
     }
 
 }

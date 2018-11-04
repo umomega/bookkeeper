@@ -3,7 +3,9 @@
 namespace Bookkeeper\Providers;
 
 use Bookkeeper\Observers\AccountObserver;
+use Bookkeeper\Observers\TransactionObserver;
 use Bookkeeper\Finance\Account;
+use Bookkeeper\Finance\Transaction;
 use Illuminate\Support\ServiceProvider;
 use Bookkeeper\Support\Currencies\CurrencyHelper;
 
@@ -20,6 +22,36 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         Account::observe(AccountObserver::class);
+        Transaction::observe(TransactionObserver::class);
+
+        $this->registerViewBindings();
+    }
+
+    /**
+     * Registers view bindings
+     */
+    public function registerViewBindings()
+    {
+        if ( ! is_installed())
+        {
+            return;
+        }
+
+        view()->composer('transactions.create', function ($view)
+        {
+            $accounts = Account::all();
+            $view->with('accounts', $accounts->pluck('name', 'id')->toArray());
+            $view->with('accountCurrencies', $accounts
+                ->pluck('currency', 'id')->toArray());
+        });
+
+        view()->composer('transactions.edit', function ($view)
+        {
+            $accounts = Account::all();
+            $view->with('accounts', $accounts->pluck('name', 'id')->toArray());
+            $view->with('accountCurrencies', $accounts
+                ->pluck('currency', 'id')->toArray());
+        });
     }
 
     /**

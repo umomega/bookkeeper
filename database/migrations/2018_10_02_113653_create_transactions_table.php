@@ -22,13 +22,20 @@ class CreateTransactionsTable extends Migration
             ]);
 
             $table->string('name');
+
             $table->bigInteger('amount');
+            $table->unsignedInteger('vat_percentage')->default(0);
+            $table->bigInteger('vat_amount')->default(0);
+            $table->bigInteger('total_amount')->nullable();
+
             $table->unsignedInteger('account_id');
             $table->unsignedInteger('job_id')->nullable();
+
             $table->boolean('received');
             $table->boolean('excluded');
 
             $table->text('notes')->nullable();
+            $table->text('invoice')->nullable();
 
             $table->index('type');
             $table->index('account_id');

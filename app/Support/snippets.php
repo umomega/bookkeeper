@@ -44,3 +44,11 @@ function no_results_row($text)
         </td>
     </tr>';
 }
+
+function transaction_buttons()
+{
+    return '<div class="transaction-controls">
+        <a href="' . route('bookkeeper.transactions.create', ['type' => 'expense']) . '" class="transaction-controls__button transaction-controls__button--expense" data-mode="expense"></a>
+        <a href="' . route('bookkeeper.transactions.create', ['type' => 'income']) . '" class="transaction-controls__button transaction-controls__button--income" data-mode="income"></a>
+    </div>';
+}

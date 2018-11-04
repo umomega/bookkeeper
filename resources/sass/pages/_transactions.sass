@@ -1,0 +1,87 @@
+.transaction-controls
+    font-size: 1.14285714em
+
+    &__button
+        border-radius: 50%
+        box-shadow: $box-shadow
+        display: inline-block
+        position: relative
+        &::before, &::after
+            position: absolute
+            top: 50%
+            left: 50%
+            transform: translate(-50%, -50%)
+            background-color: $white
+            content: ''
+            display: block
+
+        &::before
+            width: 1em
+            height: 2px
+
+        &--income
+            background-color: $success
+            width: 3.5em
+            height: 3.5em
+            &::after
+                width: 2px
+                height: 1em
+
+        &--expense
+            background-color: $danger
+            width: 2.5em
+            height: 2.5em
+            margin: 0.5em
+
+
+#transactionModal
+    .modal-card-body--transaction
+        padding-bottom: 5em
+
+    .modal-content, .modal-card
+        width: calc(100% - 3em)
+        max-width: 60em
+        @media screen and (max-width: $tablet-down)
+            width: 100%
+    .modal-card-title--hidden
+        display: none
+
+    .modal-card-head
+        &.is-success
+            background-color: $success
+        &.is-danger
+            background-color: $danger
+
+    .is-transaction-add
+        margin-right: 1em
+
+    .modal-columns
+        +clearfix
+
+    .modal-column
+        display: inline-block
+        vertical-align: top
+        float: left
+        @media screen and (max-width: $tablet-down)
+            display: block
+            float: none
+
+        &--main
+            width: 66.66666667%
+            padding-right: 0.75em
+            @media screen and (max-width: $tablet-down)
+                width: 100%
+                padding-right: 0
+        &--side
+            padding-right: 0.75em
+            width: 33.33333333%
+            @media screen and (max-width: $tablet-down)
+                width: 100%
+                padding-left: 0
+
+.no-touchevents
+    .transaction-controls__button
+        &--income:hover
+            background-color: darken($success, 10%)
+        &--expense:hover
+            background-color: darken($danger, 10%)

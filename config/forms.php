@@ -4,7 +4,7 @@ return [
     'accounts' => [
         'create' => [
             'name' => ['type' => 'text'],
-            'currency' => ['type' => 'select', 'choices' => Bookkeeper\Support\Currencies\CurrencyHelper::getCurrencies()],
+            'currency' => ['type' => 'select', 'choices' => Bookkeeper\Support\Currencies\CurrencyHelper::getCurrencies(), 'default' => env('DEFAULT_CURRENCY')],
             'balance' => ['type' => 'amount'],
             'default' => ['type' => 'checkbox'],
             'notes' => ['type' => 'textarea'],
@@ -66,12 +66,42 @@ return [
     'settings' => [
         'edit' => [
             'APP_LOCALE' => ['type' => 'select', 'choices' => Bookkeeper\Support\Install\InstallHelper::$locales, 'label' => 'validation.attributes.locale'],
+            'DEFAULT_VAT' => ['type' => 'number', 'label' => 'settings.default_vat_percentage', 'icon' => 'percentage'],
             'DEFAULT_CURRENCY' => ['type' => 'select', 'choices' => Bookkeeper\Support\Currencies\CurrencyHelper::getCurrencies(), 'label' => 'currencies.default_currency']
         ]
     ],
     'tags' => [
         'create' => [
             'name' => ['type' => 'text']
+        ]
+    ],
+    'transactions' => [
+        'create' => [
+            'name' => ['type' => 'text'],
+            'type' => ['type' => 'select', 'choices' => []],
+            'amount' => ['type' => 'amount'],
+            'vat_percentage' => ['type' => 'number', 'icon' => 'percentage', 'default' => env('DEFAULT_VAT')],
+            'account_id' => ['type' => 'select', 'choices' => [], 'label' => 'accounts.self'],
+            'job_id' => ['type' => 'relation', 'search' => 'bookkeeper.jobs.search.json', 'relation_key' => 'job', 'label' => 'jobs.self'],
+            'created_at' => ['type' => 'datetime'],
+            'received' => ['type' => 'checkbox', 'checked' => true],
+            'excluded' => ['type' => 'checkbox'],
+            'invoice' => ['type' => 'file'],
+            'notes' => ['type' => 'textarea'],
+            'tags' => ['type' => 'hidden']
+        ],
+        'edit' => [
+            'name' => ['type' => 'text'],
+            'type' => ['type' => 'select', 'choices' => []],
+            'amount' => ['type' => 'amount'],
+            'vat_percentage' => ['type' => 'number', 'icon' => 'percentage'],
+            'account_id' => ['type' => 'select', 'choices' => [], 'label' => 'accounts.self'],
+            'job_id' => ['type' => 'relation', 'search' => 'bookkeeper.jobs.search.json', 'relation_key' => 'job', 'label' => 'jobs.self'],
+            'created_at' => ['type' => 'datetime'],
+            'received' => ['type' => 'checkbox'],
+            'excluded' => ['type' => 'checkbox'],
+            'invoice' => ['type' => 'file'],
+            'notes' => ['type' => 'textarea'],
         ]
     ],
     'users' => [
