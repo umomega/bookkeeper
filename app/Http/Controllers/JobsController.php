@@ -26,6 +26,30 @@ class JobsController extends BookkeeperController {
     protected $resourceTitleProperty = 'name';
 
     /**
+     * Returns the collection of retrieved jobs by json response
+     *
+     * @param Request $request
+     * @return Response
+     */
+    public function searchJson(Request $request)
+    {
+        $jobs = Job::search($request->input('q'), null, true)
+            ->groupBy('id')->limit(10)->get();
+
+        $results = [];
+
+        foreach($jobs as $job)
+        {
+            $results[$job->getKey()] = [
+                'id' => $job->getKey(),
+                'name' => $job->name,
+            ];
+        }
+
+        return $results;
+    }
+
+    /**
      * List the specified resource jobs.
      *
      * @param Request $request

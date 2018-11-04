@@ -9,7 +9,7 @@
 
 @section('tabs')
     <li><a href="{{ route('bookkeeper.jobs.show', [$parent->getKey(), $job->getKey()]) }}">{{ __('transactions.title') }}</a></li>
-    <li class="is-active"><a href="{{ route('bookkeeper.clients.edit', [$parent->getKey(), $job->getKey()]) }}">{{ __('jobs.self') }}</a></li>
+    <li class="is-active"><a href="{{ route('bookkeeper.jobs.edit', [$parent->getKey(), $job->getKey()]) }}">{{ __('jobs.self') }}</a></li>
 @endsection
 
 @section('form')

@@ -10,3 +10,7 @@ Route::prefix('clients/{client}')->group(function() {
         'destroy' => 'bookkeeper.jobs.destroy',
     ]]);
 });
+
+Route::post('jobs/search', [
+    'uses' => 'JobsController@searchJson',
+    'as'   => 'bookkeeper.jobs.search.json']);
