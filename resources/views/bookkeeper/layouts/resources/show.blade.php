@@ -11,7 +11,11 @@
             </tr>
         </thead>
         <tbody>
-            @include($resourceName . '.list', ['resourceName' => $resourceName])
+            @if($isSearch && count(${$resourceName}) == 0)
+                {!! no_results_row('general.search_no_results') !!}
+            @else
+                @include($resourceName . '.list', ['resourceName' => $resourceName])
+            @endif
         </tbody>
     </table>
 @endsection

@@ -8,6 +8,7 @@ use Bookkeeper\Http\Controllers\Traits\BasicResource;
 use Bookkeeper\Finance\Account;
 use Bookkeeper\Support\Currencies\Cruncher;
 use Carbon\Carbon;
+use Illuminate\Http\Request;
 
 class AccountsController extends BookkeeperController {
 
@@ -27,17 +28,26 @@ class AccountsController extends BookkeeperController {
     /**
      * Shows transactions for the account.
      *
+     * @param Request $request
      * @param int $id
      * @return Response
      */
-    public function transactions($id)
+    public function transactions(Request $request, $id)
     {
         $account = Account::findOrFail($id);
 
-        $transactions = $account->transactions()
-            ->sortable()->paginate();
+        $transactions = $account->transactions();
 
-        return $this->compileView('accounts.transactions', compact('account', 'transactions'), trans('transactions.title'));
+        if(empty($request->input('q')))
+        {
+            $transactions = $transactions->sortable()->paginate();
+            $isSearch = false;
+        } else {
+            $transactions = $transactions->search($request->input('q'), null, true)->get();
+            $isSearch = true;
+        }
+
+        return $this->compileView('accounts.transactions', compact('account', 'transactions', 'isSearch'), $account->name);
     }
 
     /**

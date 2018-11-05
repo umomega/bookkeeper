@@ -23,9 +23,9 @@ var inheritsFrom = function (child, parent) {
     // Tags prototype
     Tags.prototype._init = function () {
         this.initSearcher();
-        this._regenerateValue();
 
         if(this.isPassive) {
+            this._regenerateValue();
             this.additional = '{"passive": true}';
         }
 

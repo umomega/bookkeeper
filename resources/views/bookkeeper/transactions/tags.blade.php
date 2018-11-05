@@ -7,10 +7,17 @@
             </div>
             @if(count($tags) > 0)
                 @foreach($tags as $tag)
-                    <div class="tag-sub control" data-tagid="{{ $tag->getKey() }}"><div class="tags has-addons">
-                        <a class="tag is-medium is-link" href="{{ route('bookkeeper.tags.show', $tag->getKey()) }}">{{ $tag->name }}</a>
-                        <a class="tag is-delete is-medium tag-detach" href="{{ route('bookkeeper.tags.transactions.dissociate', [$tag->getKey(), $transaction->getKey()]) }}"></a>
-                    </div></div>
+                    @if($transaction)
+                        <div class="tag-sub control" data-tagid="{{ $tag->getKey() }}"><div class="tags has-addons">
+                            <a class="tag is-medium is-link" href="{{ route('bookkeeper.tags.show', $tag->getKey()) }}">{{ $tag->name }}</a>
+                            <a class="tag is-delete is-medium tag-detach" href="{{ route('bookkeeper.tags.transactions.dissociate', [$tag->getKey(), $transaction->getKey()]) }}"></a>
+                        </div></div>
+                    @else
+                        <div class="tag-sub control" data-tagid="{{ $tag->getKey() }}"><div class="tags has-addons">
+                            <span class="tag is-medium is-primary">{{ $tag->name }}</span>
+                            <a class="tag is-delete is-medium tag-detach" href="#"></a>
+                        </div></div>
+                    @endif
                 @endforeach
             @endif
         </div>

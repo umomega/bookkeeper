@@ -50,7 +50,7 @@ class JobsController extends BookkeeperController {
     }
 
     /**
-     * List the specified resource jobs.
+     * List the specified resource transactions.
      *
      * @param Request $request
      * @param int $id
@@ -60,20 +60,19 @@ class JobsController extends BookkeeperController {
     {
         $job = Job::findOrFail($id);
 
-        $jobs = $job->jobs();
+        $transactions = $job->transactions();
+        $parent = $job->client;
 
         if(empty($request->input('q')))
         {
-            $jobs = $jobs->sortable()->paginate();
+            $transactions = $transactions->sortable()->paginate();
             $isSearch = false;
         } else {
-            $jobs = $jobs->search($request->input('q'), null, true)->get();
+            $transactions = $transactions->search($request->input('q'), null, true)->get();
             $isSearch = true;
         }
 
-        $people = $job->people()->sortable()->get();
-
-        return $this->compileView('jobs.show', compact('job', 'jobs', 'people', 'isSearch'), $job->name);
+        return $this->compileView('jobs.show', compact('job', 'transactions', 'isSearch', 'parent'), $job->name);
     }
 
 }

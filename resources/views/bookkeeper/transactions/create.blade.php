@@ -9,8 +9,18 @@
 @section('form')
     @inject('formBuilder', 'Bookkeeper\Html\FormBuilder')
     @php
+        $model = new \Bookkeeper\Finance\Transaction;
+        $model->amount = 0;
+
+        if(request()->account) {
+            $model->account_id = request()->account;
+        } elseif(request()->job && $job = \Bookkeeper\Finance\Job::find(request()->job)) {
+            $model->job_id = $job->getKey();
+            $model->job = $job;
+        }
+
         $formBuilder
-            ->configure($errors, 'transactions.create')
+            ->configure($errors, 'transactions.create', $model)
             ->setFieldConfiguration('account_id.choices', $accounts)
             ->setFieldConfiguration('created_at.default', date('Y-m-d G:i:s'))
             ->setFieldConfiguration('type.choices', ['income' => __('transactions.income'), 'expense' => __('transactions.expense')])
@@ -25,7 +35,13 @@
 @endsection
 
 @section('sidebar')
-    @include('transactions.tags', ['tags' => collect(), 'transaction' => null])
+    @php
+    $tags = request()->tag ?
+        \Bookkeeper\Finance\Tag::whereIn('id', [request()->tag])->get() :
+        collect();
+    @endphp
+
+    @include('transactions.tags', ['tags' => $tags, 'transaction' => null])
 @endsection
 
 @push('scripts')

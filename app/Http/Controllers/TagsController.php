@@ -27,17 +27,26 @@ class TagsController extends BookkeeperController {
     /**
      * Shows transactions for the tag.
      *
+     * @param Request $request
      * @param int $id
      * @return Response
      */
-    public function transactions($id)
+    public function transactions(Request $request, $id)
     {
         $tag = Tag::findOrFail($id);
 
-        $transactions = $tag->transactions()
-            ->sortable()->paginate();
+        $transactions = $tag->transactions();
 
-        return $this->compileView('tags.transactions', compact('tag', 'transactions'), trans('transactions.title'));
+        if(empty($request->input('q')))
+        {
+            $transactions = $transactions->sortable()->paginate();
+            $isSearch = false;
+        } else {
+            $transactions = $transactions->search($request->input('q'), null, true)->get();
+            $isSearch = true;
+        }
+
+        return $this->compileView('tags.transactions', compact('tag', 'transactions', 'isSearch'), $tag->name);
     }
 
     /**
