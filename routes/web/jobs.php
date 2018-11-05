@@ -14,3 +14,11 @@ Route::prefix('clients/{client}')->group(function() {
 Route::post('jobs/search', [
     'uses' => 'JobsController@searchJson',
     'as'   => 'bookkeeper.jobs.search.json']);
+
+Route::get('jobs/{id}/offer', [
+    'uses' => 'JobsController@downloadOffer',
+    'as' => 'bookkeeper.jobs.offer.download']);
+
+Route::delete('jobs/{id}/offer', [
+    'uses' => 'JobsController@deleteOffer',
+    'as' => 'bookkeeper.jobs.offer.delete']);

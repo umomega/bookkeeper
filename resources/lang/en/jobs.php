@@ -15,5 +15,6 @@ return [
     'destroy' => 'Delete Job',
     'destroyed' => 'Deleted job.',
     'no_jobs' => 'No jobs were found.',
+    'deleted_offer' => 'Deleted offer.',
 
 ];

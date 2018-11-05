@@ -41,7 +41,7 @@ class TransactionsController extends BookkeeperController {
 
         return $this->compileView('transactions.index', compact('transactions', 'isSearch'));
     }
-    
+
     /**
      * Downloads an invoice
      *
@@ -67,9 +67,10 @@ class TransactionsController extends BookkeeperController {
     {
         $transaction = Transaction::findOrFail($id);
 
-        $info = json_decode($transaction->invoice);
-
-        \Storage::delete('invoices/' . $info->store_name);
+        if($info = json_decode($transaction->invoice)) {
+            \Storage::delete('invoices/' . $info->store_name);
+        }
+        
         $transaction->update(['invoice' => null]);
 
         $this->notify('transactions.deleted_invoice');

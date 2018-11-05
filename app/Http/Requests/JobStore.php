@@ -26,6 +26,7 @@ class JobStore extends FormRequest
         return [
             'name' => 'required|max:255',
             'notes' => 'max:65535',
+            'offer' => 'nullable|file|mimes:jpeg,png,gif,bmp,pdf,doc,docx',
             'client_id' => 'required|integer'
         ];
     }

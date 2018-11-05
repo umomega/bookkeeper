@@ -19,7 +19,7 @@ class Job extends Eloquent {
      * @var array
      */
     protected $fillable = [
-        'name', 'notes', 'client_id'
+        'name', 'notes', 'client_id', 'offer'
     ];
 
     /**
@@ -51,16 +51,6 @@ class Job extends Eloquent {
     }
 
     /**
-     * Offer relation
-     *
-     * @return HasMany
-     */
-    public function offers()
-    {
-        return $this->hasMany(Offer::class);
-    }
-
-    /**
      * Transaction relation
      *
      * @return HasMany
@@ -68,6 +58,26 @@ class Job extends Eloquent {
     public function transactions()
     {
         return $this->hasMany(Transaction::class);
+    }
+
+    /**
+     * Returns the download link for the offer
+     *
+     * @return string
+     */
+    public function getOfferDownloadLinkAttribute()
+    {
+        return route('bookkeeper.jobs.offer.download', $this->getKey());
+    }
+
+    /**
+     * Returns the download link for the offer
+     *
+     * @return string
+     */
+    public function getOfferDeleteLinkAttribute()
+    {
+        return route('bookkeeper.jobs.offer.delete', $this->getKey());
     }
 
 }

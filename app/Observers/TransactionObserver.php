@@ -87,6 +87,10 @@ class TransactionObserver
 
         $account = $transaction->account;
         $account->update(['balance' => (int)$account->balance + $differance]);
+
+        if($info = json_decode($transaction->invoice)) {
+            \Storage::delete('invoices/' . $info->store_name);
+        }
     }
 
 }

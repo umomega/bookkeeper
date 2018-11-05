@@ -15,5 +15,6 @@ return [
     'destroy' => 'İşyi Sil',
     'destroyed' => 'İş silindi.',
     'no_jobs' => 'İş bulunamadı.',
+    'deleted_offer' => 'Teklif silindi.',
 
 ];

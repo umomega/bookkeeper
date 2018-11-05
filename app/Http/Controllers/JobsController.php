@@ -75,4 +75,40 @@ class JobsController extends BookkeeperController {
         return $this->compileView('jobs.show', compact('job', 'transactions', 'isSearch', 'parent'), $job->name);
     }
 
+    /**
+     * Downloads an offer
+     *
+     * @param int $id
+     * @return Download
+     */
+    public function downloadOffer($id)
+    {
+        $job = Job::findOrFail($id);
+
+        $info = json_decode($job->offer);
+
+        return \Storage::download('offers/' . $info->store_name, $info->name);
+    }
+
+    /**
+     * Deletes an offer
+     *
+     * @param int $id
+     * @return response
+     */
+    public function deleteOffer($id)
+    {
+        $job = Job::findOrFail($id);
+
+        if($info = json_decode($job->offer)) {
+            \Storage::delete('offers/' . $info->store_name);
+        }
+
+        $job->update(['offer' => null]);
+
+        $this->notify('jobs.deleted_offer');
+
+        return redirect()->back();
+    }
+
 }

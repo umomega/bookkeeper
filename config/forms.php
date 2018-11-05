@@ -31,6 +31,7 @@ return [
     'jobs' => [
         'create' => [
             'name' => ['type' => 'text'],
+            'offer' => ['type' => 'file'],
             'notes' => ['type' => 'textarea']
         ]
     ],

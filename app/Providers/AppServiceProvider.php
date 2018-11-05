@@ -4,8 +4,10 @@ namespace Bookkeeper\Providers;
 
 use Bookkeeper\Observers\AccountObserver;
 use Bookkeeper\Observers\TransactionObserver;
+use Bookkeeper\Observers\JobObserver;
 use Bookkeeper\Finance\Account;
 use Bookkeeper\Finance\Transaction;
+use Bookkeeper\Finance\Job;
 use Illuminate\Support\ServiceProvider;
 use Bookkeeper\Support\Currencies\CurrencyHelper;
 
@@ -23,6 +25,7 @@ class AppServiceProvider extends ServiceProvider
     {
         Account::observe(AccountObserver::class);
         Transaction::observe(TransactionObserver::class);
+        Job::observe(JobObserver::class);
 
         $this->registerViewBindings();
     }
