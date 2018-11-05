@@ -1,8 +1,8 @@
 {
     "name": "umomega/bookkeeper",
     "description": "Laravel Powered Finance Tracker and CRM.",
-    "keywords": ["umomega", "bookkeeper", "finance", "crm", "multilingual", "laravel", "laravel5"],
-    "version": "1.0-alpha.0",
+    "keywords": ["umomega", "bookkeeper", "finance", "crm", "multilingual", "laravel", "laravel5", "php", "php7", "finance-application", "bookkeeping", "finance-tracker"],
+    "version": "1.0-alpha.1",
     "license": "MIT",
     "type": "project",
     "authors": [
@@ -22,7 +22,8 @@
         "laravel/framework": "5.7.*",
         "laravel/tinker": "^1.0",
         "nicolaslopezj/searchable": "^1.10",
-        "spatie/laravel-html": "^2.19"
+        "spatie/laravel-html": "^2.19",
+        "guzzlehttp/guzzle": "~5.3"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.2",

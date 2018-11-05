@@ -12350,6 +12350,11 @@ label.panel-block:hover {
   }
 }
 
+.contents__body--focus {
+  padding-top: 3em;
+  padding-bottom: 3em;
+}
+
 .contents__head {
   padding-top: 0;
   padding-bottom: 0;
@@ -12395,6 +12400,14 @@ label.panel-block:hover {
   margin-top: 1em;
   color: #263A8A;
   font-weight: 700;
+}
+
+.contents__inner-heading--start {
+  margin-top: 0;
+}
+
+.contents__inner-text--separated {
+  margin-bottom: 2em;
 }
 
 .dropdown-content {
