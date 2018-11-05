@@ -52,5 +52,3 @@
     window.Updater = Updater;
 
 })(window);
-
-var updater = new Updater();

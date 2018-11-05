@@ -131,8 +131,6 @@ module.exports = __webpack_require__(45);
     window.Updater = Updater;
 })(window);
 
-var updater = new Updater();
-
 /***/ })
 
 /******/ });
