@@ -33,10 +33,14 @@
         _request: function (requestURL) {
             var self = this;
 
-            $.post(requestURL, function (response) {
-                self._setProgress(response.progress);
+            axios.post(requestURL)
+            .then(function (response) {
+                self._setProgress(response.data.progress);
 
-                self._next(response);
+                self._next(response.data);
+            })
+            .catch(function (error) {
+                console.log(error);
             });
         },
         _setProgress: function (percent) {
