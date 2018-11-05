@@ -13381,6 +13381,33 @@ label {
   }
 }
 
+.transaction-dot {
+  display: inline-block;
+  height: 1em;
+  width: 1em;
+  border-radius: 50%;
+  border: 2px solid transparent;
+  margin-right: 1em;
+  vertical-align: middle;
+  margin-bottom: 2px;
+}
+
+.transaction-dot--income {
+  border-color: #26A65B;
+}
+
+.transaction-dot--income.transaction-dot--received {
+  background-color: #26A65B;
+}
+
+.transaction-dot--expense {
+  border-color: #C0392B;
+}
+
+.transaction-dot--expense.transaction-dot--received {
+  background-color: #C0392B;
+}
+
 .no-touchevents .transaction-controls__button--income:hover {
   background-color: #1d7d44;
 }

@@ -79,6 +79,26 @@
                 width: 100%
                 padding-left: 0
 
+.transaction-dot
+    display: inline-block
+    height: 1em
+    width: 1em
+    border-radius: 50%
+    border: 2px solid transparent
+    margin-right: 1em
+    vertical-align: middle
+    margin-bottom: 2px
+
+    &--income
+        border-color: $success
+        &.transaction-dot--received
+            background-color: $success
+    &--expense
+        border-color: $danger
+        &.transaction-dot--received
+            background-color: $danger
+
+
 .no-touchevents
     .transaction-controls__button
         &--income:hover

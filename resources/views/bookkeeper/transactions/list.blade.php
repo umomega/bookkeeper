@@ -4,7 +4,7 @@
     @foreach($transactions as $transaction)
         <tr>
             <td>
-                <a href="{{ route('bookkeeper.transactions.edit', $transaction->getKey()) }}">{{ $transaction->name }}</a>
+                <a href="{{ route('bookkeeper.transactions.edit', $transaction->getKey()) }}"><span class="transaction-dot transaction-dot--{{ $transaction->type }} {{ $transaction->received ? 'transaction-dot--received' : '' }}"></span>{{ $transaction->name }}</a>
             </td>
             <td class="is-hidden-mobile">
                 {{ $transaction->presentAmount() }}
