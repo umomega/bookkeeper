@@ -39,7 +39,7 @@ class Transaction extends Eloquent {
      *
      * @var array
      */
-    protected $sortableColumns = ['name', 'amount', 'created_at'];
+    protected $sortableColumns = ['created_at', 'name', 'amount'];
 
     /**
      * Scope for request filter

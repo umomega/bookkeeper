@@ -32,7 +32,7 @@ class TransactionsController extends BookkeeperController {
     {
         if(empty($request->input('q')))
         {
-            $transactions = Transaction::sortable()->filteredByType()->paginate();
+            $transactions = Transaction::sortable(['created_at' => 'desc'])->filteredByType()->paginate();
             $isSearch = false;
         } else {
             $transactions = Transaction::search($request->input('q'), null, true)->groupBy('id')->get();
@@ -70,7 +70,7 @@ class TransactionsController extends BookkeeperController {
         if($info = json_decode($transaction->invoice)) {
             \Storage::delete('invoices/' . $info->store_name);
         }
-        
+
         $transaction->update(['invoice' => null]);
 
         $this->notify('transactions.deleted_invoice');

@@ -40,7 +40,7 @@ class AccountsController extends BookkeeperController {
 
         if(empty($request->input('q')))
         {
-            $transactions = $transactions->sortable()->paginate();
+            $transactions = $transactions->sortable(['created_at' => 'desc'])->paginate();
             $isSearch = false;
         } else {
             $transactions = $transactions->search($request->input('q'), null, true)->get();
