@@ -1,6 +1,8 @@
 # Bookkeeper
 Laravel Powered Finance Tracker and CRM
 
+<img width="1552" alt="screen shot 2018-11-06 at 18 02 38" src="https://user-images.githubusercontent.com/5340560/48072755-4facf080-e1ee-11e8-9de4-1bab9373ba17.png">
+
 Bookkeeper is a flexible finance tracker and CRM powered by [Laravel](https://laravel.com).  
 **Important:** Bookkeeper is still in alpha versions and is still being developed, use it at your own risk!
 
