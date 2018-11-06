@@ -229,8 +229,9 @@ class UpdateService {
     {
         $this->reset();
 
-        \Artisan::call('optimize');
         \Artisan::call('cache:clear');
+        \Artisan::call('optimize:clear');
+        \Artisan::call('optimize');
     }
 
     /**
