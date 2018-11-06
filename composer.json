@@ -40,7 +40,8 @@
             "database/factories"
         ],
         "psr-4": {
-            "Bookkeeper\\": "app/"
+            "Bookkeeper\\": "app/",
+            "Extension\\": "extension/"
         }
     },
     "autoload-dev": {
