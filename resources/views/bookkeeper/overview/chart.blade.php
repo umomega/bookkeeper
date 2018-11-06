@@ -1,4 +1,4 @@
-<div class="contents">
+<div class="contents {{ isset($overrideTab) && $overrideTab ? '' : 'contents--overview' }}">
     <div class="contents__body contents__body--focus">
         <div class="chart" id="chartTabs">
             <div class="chart__container">
