@@ -183,6 +183,8 @@ class UpdateController extends BookkeeperController {
     {
         $updater->finalizeUpdate();
 
+        $this->notify('update.update_complete');
+
         return response()->json([
             'message'  => trans('update.update_complete'),
             'next'     => null,
