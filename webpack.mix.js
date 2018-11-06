@@ -1,5 +1,8 @@
 let mix = require('laravel-mix');
 
+var assetsPath = 'resources/',
+    publicPath = 'public/assets/bookkeeper/';
+
 /*
  |--------------------------------------------------------------------------
  | Mix Asset Management
@@ -11,6 +14,6 @@ let mix = require('laravel-mix');
  |
  */
 
-mix.js('resources/js/app.js', 'public/assets/bookkeeper/js')
-   .js('resources/js/updater.js', 'public/assets/bookkeeper/js')
-   .sass('resources/sass/app.scss', 'public/assets/bookkeeper/css');
+mix.js(assetsPath + 'js/app.js', publicPath + 'js')
+   .js(assetsPath + 'js/updater.js', publicPath + 'js')
+   .sass(assetsPath + 'sass/app.scss', publicPath + 'css');
