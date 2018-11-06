@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'index' => 'Overview',
+    'index' => 'Genel Bakış',
 
     'total_income' => 'Toplam Gelir',
     'total_expense' => 'Toplam Gider',

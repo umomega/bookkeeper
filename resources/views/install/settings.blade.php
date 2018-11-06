@@ -29,7 +29,7 @@
             <div class="field">
                 {!! html()->label(__('settings.default_vat_percentage'), 'default_vat')->class('label') !!}
                 <div class="control">
-                    {!! html()->number('default_vat', env('DEFAULT_VAT', 10))->class('input') !!}
+                    {!! html()->input('number', 'default_vat', env('DEFAULT_VAT', 10))->class('input') !!}
                 </div>
             </div>
 
