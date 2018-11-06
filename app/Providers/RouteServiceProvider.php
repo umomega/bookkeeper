@@ -59,7 +59,7 @@ class RouteServiceProvider extends ServiceProvider
             // Install routes
             if ( ! is_installed())
             {
-                require base_path('routes/web/install.php');
+                require base_path('routes/bookkeeper/install.php');
             }
         });
     }
