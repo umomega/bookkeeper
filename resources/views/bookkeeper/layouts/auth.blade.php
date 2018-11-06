@@ -12,7 +12,7 @@
     <title>@yield('pageTitle') &mdash; Bookkeeper</title>
 
     <!-- Styles -->
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    {!! Theme::css('css/app.css') !!}
 
     @yield('styles')
 
@@ -51,7 +51,7 @@
     </div>
 
     <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}"></script>
+    {!! Theme::js('js/app.js') !!}
 
     @stack('scripts')
 
