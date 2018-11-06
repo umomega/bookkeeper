@@ -11,6 +11,6 @@ let mix = require('laravel-mix');
  |
  */
 
-mix.js('resources/js/app.js', 'public/js')
-   .js('resources/js/updater.js', 'public/js')
-   .sass('resources/sass/app.scss', 'public/css');
+mix.js('resources/js/app.js', 'public/assets/bookkeeper/js')
+   .js('resources/js/updater.js', 'public/assets/bookkeeper/js')
+   .sass('resources/sass/app.scss', 'public/assets/bookkeeper/css');
