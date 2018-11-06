@@ -53,7 +53,6 @@ class ExtractionService {
         'resources/views/install',
         'resources/views/bookkeeper',
         'routes/bookkeeper',
-        'routes/install',
         'artisan',
         'composer.json',
         'composer.lock',
