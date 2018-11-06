@@ -42,19 +42,26 @@ class AppServiceProvider extends ServiceProvider
 
         view()->composer('transactions.create', function ($view)
         {
-            $accounts = Account::all();
-            $view->with('accounts', $accounts->pluck('name', 'id')->toArray());
-            $view->with('accountCurrencies', $accounts
-                ->pluck('currency', 'id')->toArray());
+            $this->associateAccounts($view);
         });
 
         view()->composer('transactions.edit', function ($view)
         {
-            $accounts = Account::all();
-            $view->with('accounts', $accounts->pluck('name', 'id')->toArray());
-            $view->with('accountCurrencies', $accounts
-                ->pluck('currency', 'id')->toArray());
+            $this->associateAccounts($view);
         });
+    }
+
+    /**
+     * Associates accounts to view
+     *
+     * @param View $view
+     */
+    protected function associateAccounts($view)
+    {
+        $accounts = Account::all();
+        $view->with('accounts', $accounts->pluck('name', 'id')->toArray());
+        $view->with('accountCurrencies', $accounts
+            ->pluck('currency', 'id')->toArray());
     }
 
     /**

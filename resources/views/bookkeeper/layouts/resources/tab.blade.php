@@ -11,20 +11,24 @@
             @yield('tabs')
         </ul>
     </div>
-    <div class="contents">
-        <div class="contents__head level is-mobile">
-            <div class="level-left"></div>
-            <div class="level-right">
-                <div class="level-item">
-                    @yield('table-buttons')
+    @if(isset($overrideTab) && $overrideTab)
+        @yield('tab')
+    @else
+        <div class="contents">
+            <div class="contents__head level is-mobile">
+                <div class="level-left"></div>
+                <div class="level-right">
+                    <div class="level-item">
+                        @yield('table-buttons')
+                    </div>
                 </div>
             </div>
+            <div class="contents__body">
+                @yield('tab')
+            </div>
+            @yield('contents-footer')
         </div>
-        <div class="contents__body">
-            @yield('tab')
-        </div>
-        @yield('contents-footer')
-    </div>
+    @endif
 
     @if(!empty($__env->yieldContent('sidebar')))
             </div>

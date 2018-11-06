@@ -13,9 +13,20 @@
         @media screen and (max-width: $desktop)
             padding: 1em 0.75em
 
-    &__body--focus
-        padding-top: 3em
-        padding-bottom: 3em
+    &__body
+        &--focus
+            padding-top: 3em
+            padding-bottom: 3em
+
+    &__interim
+        text-align: right
+        height: 0
+        margin-bottom: -1em
+
+    &__footer
+        &--focus
+            padding-top: 3em
+            padding-bottom: 2em
 
     &__head
         padding-top: 0
@@ -106,6 +117,9 @@
         text-align: left
         &--inverted
             color: rgba($white, 0.7)
+
+    &__item-text
+        color: $grey-darker
 
 .subcontents
     &__item

@@ -55,7 +55,7 @@ class TagsController extends BookkeeperController {
      * @param int $id
      * @return Response
      */
-    public function overview($id)
+    public function show($id)
     {
         $tag = Tag::findOrFail($id);
 
@@ -63,15 +63,14 @@ class TagsController extends BookkeeperController {
         $end = Carbon::now()->endOfMonth();
 
         $transactions = $tag->transactions()
-            ->whereExclude(0)
-            ->whereReceived(1)
+            ->whereExcluded(0)
             ->whereBetween('created_at', [$start, $end])
             ->get();
 
         $statistics = (new Cruncher())
             ->compileStatisticsFor($transactions, $start, $end);
 
-        return $this->compileView('tags.overview', compact('tag', 'statistics'), trans('overview.index'));
+        return $this->compileView('tags.show', compact('tag', 'statistics'), $tag->name);
     }
 
     /**

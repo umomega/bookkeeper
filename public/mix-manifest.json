@@ -1,5 +1,6 @@
 {
     "/assets/bookkeeper/js/app.js": "/assets/bookkeeper/js/app.js",
     "/assets/bookkeeper/css/app.css": "/assets/bookkeeper/css/app.css",
-    "/assets/bookkeeper/js/updater.js": "/assets/bookkeeper/js/updater.js"
+    "/assets/bookkeeper/js/updater.js": "/assets/bookkeeper/js/updater.js",
+    "/assets/bookkeeper/js/charts.js": "/assets/bookkeeper/js/charts.js"
 }

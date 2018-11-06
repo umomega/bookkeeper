@@ -16,4 +16,5 @@ var assetsPath = 'resources/',
 
 mix.js(assetsPath + 'js/app.js', publicPath + 'js')
    .js(assetsPath + 'js/updater.js', publicPath + 'js')
+   .js(assetsPath + 'js/charts.js', publicPath + 'js')
    .sass(assetsPath + 'sass/app.scss', publicPath + 'css');

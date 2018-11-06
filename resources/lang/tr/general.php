@@ -7,6 +7,7 @@ return [
     'no' => 'Hayır',
     'or' => 'ya da',
     'delete' => 'Kaldır',
+    'total' => 'Toplam',
 
     'back' => 'Geri',
     'page' => 'Sayfa',

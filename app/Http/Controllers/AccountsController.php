@@ -56,7 +56,7 @@ class AccountsController extends BookkeeperController {
      * @param int $id
      * @return Response
      */
-    public function overview($id)
+    public function show($id)
     {
         $account = Account::findOrFail($id);
 
@@ -64,15 +64,14 @@ class AccountsController extends BookkeeperController {
         $end = Carbon::now()->endOfMonth();
 
         $transactions = $account->transactions()
-            ->whereExclude(0)
-            ->whereReceived(1)
+            ->whereExcluded(0)
             ->whereBetween('created_at', [$start, $end])
             ->get();
 
         $statistics = (new Cruncher())
             ->compileAccountStatisticsFor($transactions, $account, $start, $end);
 
-        return $this->compileView('accounts.overview', compact('account', 'statistics'), trans('overview.index'));
+        return $this->compileView('accounts.show', compact('account', 'statistics'), $account->name);
     }
 
 }

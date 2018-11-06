@@ -68,11 +68,14 @@ if ( ! function_exists('get_default_account'))
     /**
      * Returns the default account
      *
-     * @return bool
+     * @param bool $returnModel
+     * @return Model|int
      */
-    function get_default_account()
+    function get_default_account($returnModel = false)
     {
-        return env('DEFAULT_ACCOUNT');
+        $account = \Bookkeeper\Finance\Account::where('default', 1)->first();
+
+        return $returnModel ? $account : (is_null($account) ? null : $account->getKey());
     }
 }
 

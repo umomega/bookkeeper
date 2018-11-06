@@ -17,6 +17,8 @@
         } elseif(request()->job && $job = \Bookkeeper\Finance\Job::find(request()->job)) {
             $model->job_id = $job->getKey();
             $model->job = $job;
+        } else {
+            $model->account_id = get_default_account();
         }
 
         $formBuilder

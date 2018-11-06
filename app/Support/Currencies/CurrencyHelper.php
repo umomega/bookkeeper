@@ -5,6 +5,7 @@ namespace Bookkeeper\Support\Currencies;
 
 
 use Bookkeeper\Finance\Account;
+use Cache;
 
 class CurrencyHelper {
 
@@ -73,6 +74,41 @@ class CurrencyHelper {
     }
 
     /**
+     * Returns the exchange rate for account
+     *
+     * @param int $accountId
+     * @return float
+     */
+    public function getRateFor($accountId)
+    {
+        $account = $this->getAccount($accountId);
+
+        $rates = $this->getAllRates();
+
+        // If the currency does not exist, it should be the base
+        return isset($rates[$account->currency]) ? $rates[$account->currency] : 1;
+    }
+
+    /**
+     * Gets all exchange rates for the base and caches them for a day
+     *
+     * @return array
+     */
+    protected function getAllRates()
+    {
+        if ( ! Cache::has('bookkeeper.currency.rates'))
+        {
+            $defaultAccount = $this->getAccount(get_default_account());
+
+            $json = file_get_contents('https://api.exchangeratesapi.io/latest?base=' . $defaultAccount->currency);
+
+            Cache::put('bookkeeper.currency.rates', json_decode($json, true)['rates'], 1440);
+        }
+
+        return Cache::get('bookkeeper.currency.rates');
+    }
+
+    /**
      * Converts amount to currency text
      *
      * @param int $amount
@@ -137,11 +173,21 @@ class CurrencyHelper {
     {
         if ( ! array_key_exists($id, $this->accounts))
         {
-            $account = Account::findOrFail($id);
+            $account = Account::find($id);
             $this->accounts[$id] = $account;
         }
 
         return $this->accounts[$id];
+    }
+
+    /**
+     * Puts an account to cache
+     *
+     * @param Account $account
+     */
+    public function putAccount(Account $account)
+    {
+        $this->accounts[$account->getKey()] = $account;
     }
 
     /**

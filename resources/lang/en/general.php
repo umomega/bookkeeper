@@ -7,6 +7,7 @@ return [
     'no' => 'No',
     'or' => 'or',
     'delete' => 'Delete',
+    'total' => 'Total',
 
     'back' => 'Back',
     'page' => 'Page',

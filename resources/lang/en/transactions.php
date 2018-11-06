@@ -18,11 +18,10 @@ return [
     'new' => 'New Transaction',
     'no_transactions' => 'No transactions were found.',
 
-    'filter_all' => 'All',
-    'filter_income' => 'Incomes',
-    'filter_income-i' => 'Unpaid Incomes',
-    'filter_expense' => 'Expenses',
-    'filter_expense-i' => 'Unpaid Expenses',
+    'c_income' => 'Incomes',
+    'c_income-i' => 'With Unpaid Incomes',
+    'c_expense' => 'Expenses',
+    'c_expense-i' => 'With Unpaid Expenses',
 
     'income' => 'Income',
     'expense' => 'Expense',

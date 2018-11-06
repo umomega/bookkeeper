@@ -43,21 +43,21 @@ class TransactionObserver
         // This is for account balance calculation
         if($originalReceived != $transaction->received)
         {
-            $differance = $transaction->total_amount * ($transaction->type == 'income' ? 1 : -1) * ($transaction->received ? 1 : -1);
+            $difference = $transaction->total_amount * ($transaction->type == 'income' ? 1 : -1) * ($transaction->received ? 1 : -1);
         } else {
             if($transaction->received) {
                 if($transaction->getOriginal('type') != $transaction->type) {
-                    $differance = ((int)$transaction->getOriginal('total_amount') + (int)$transaction->total_amount) * ($transaction->type == 'income' ? 1 : -1);
+                    $difference = ((int)$transaction->getOriginal('total_amount') + (int)$transaction->total_amount) * ($transaction->type == 'income' ? 1 : -1);
                 } else {
-                    $differance = ((int)$transaction->getOriginal('total_amount') - (int)$transaction->total_amount) * ($transaction->type == 'income' ? -1 : 1);
+                    $difference = ((int)$transaction->getOriginal('total_amount') - (int)$transaction->total_amount) * ($transaction->type == 'income' ? -1 : 1);
                 }
             } else {
-                $differance = 0;
+                $difference = 0;
             }
         }
 
         $account = $transaction->account;
-        $account->update(['balance' => (int)$account->balance + $differance]);
+        $account->update(['balance' => (int)$account->balance + $difference]);
 
         // We do this here to be able to store for both creation and updating
         if(!is_null($uploadedInvoice = request()->file('invoice')))
@@ -83,10 +83,10 @@ class TransactionObserver
      */
     public function deleted(Transaction $transaction)
     {
-        $differance = $transaction->received ? ($transaction->total_amount * ($transaction->type == 'income' ? -1 : 1)) : 0;
+        $difference = $transaction->received ? ($transaction->total_amount * ($transaction->type == 'income' ? -1 : 1)) : 0;
 
         $account = $transaction->account;
-        $account->update(['balance' => (int)$account->balance + $differance]);
+        $account->update(['balance' => (int)$account->balance + $difference]);
 
         if($info = json_decode($transaction->invoice)) {
             \Storage::delete('invoices/' . $info->store_name);

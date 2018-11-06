@@ -18,11 +18,10 @@ return [
     'new' => 'Yeni İşlem',
     'no_transactions' => 'İşlem bulunamadı.',
 
-    'filter_all' => 'Tümü',
-    'filter_income' => 'Gelirler',
-    'filter_income-i' => 'Ödenmemiş Gelirler',
-    'filter_expense' => 'Giderler',
-    'filter_expense-i' => 'Ödenmemiş Giderler',
+    'c_income' => 'Gelirler',
+    'c_income-i' => 'Ödenmemiş Gelirlerle',
+    'c_expense' => 'Giderler',
+    'c_expense-i' => 'Ödenmemiş Giderlerle',
 
     'income' => 'Gelir',
     'expense' => 'Gider',
