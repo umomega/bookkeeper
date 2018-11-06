@@ -12,7 +12,7 @@
     <title>@yield('pageTitle') &mdash; Bookkeeper</title>
 
     <!-- Styles -->
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    {!! Theme::css('css/app.css') !!}
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
 
     @yield('styles')
@@ -37,7 +37,7 @@
     </section>
 
     <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}"></script>
+    {!! Theme::js('js/app.js') !!}
 
     @stack('scripts')
 
