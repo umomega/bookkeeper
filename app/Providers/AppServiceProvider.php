@@ -23,6 +23,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        \Schema::defaultStringLength(191);
+
         Account::observe(AccountObserver::class);
         Transaction::observe(TransactionObserver::class);
         Job::observe(JobObserver::class);
