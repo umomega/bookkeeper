@@ -53,10 +53,11 @@ class JobsController extends BookkeeperController {
      * List the specified resource transactions.
      *
      * @param Request $request
+     * @param int $parent
      * @param int $id
      * @return Response
      */
-    public function show(Request $request, $id)
+    public function show(Request $request, $parent, $id)
     {
         $job = Job::findOrFail($id);
 

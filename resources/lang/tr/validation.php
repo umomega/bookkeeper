@@ -185,6 +185,8 @@ return [
         'tax_number'               => 'Vergi Numarası',
         'balance'                  => 'Bakiye',
         'vat_percentage'           => 'KDV Yüzdesi',
+        'invoice'                  => 'Fatura',
+        'offer'                    => 'Teklif',
     ],
 
 ];

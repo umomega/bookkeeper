@@ -185,6 +185,8 @@ return [
         'tax_number'               => 'Tax Number',
         'balance'                  => 'Balance',
         'vat_percentage'           => 'VAT Percentage',
+        'invoice'                  => 'Invoice',
+        'offer'                    => 'Offer',
     ],
 
 ];

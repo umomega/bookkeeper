@@ -14,7 +14,7 @@ use Bookkeeper\Support\Currencies\CurrencyHelper;
 class AppServiceProvider extends ServiceProvider
 {
 
-    const VERSION = '1.0-alpha.2';
+    const VERSION = '1.0-alpha.3';
 
     /**
      * Bootstrap any application services.
