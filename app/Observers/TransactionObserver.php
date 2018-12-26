@@ -2,6 +2,7 @@
 
 namespace Bookkeeper\Observers;
 
+use Bookkeeper\Finance\Account;
 use Bookkeeper\Finance\Transaction;
 
 class TransactionObserver
@@ -40,24 +41,45 @@ class TransactionObserver
     public function saved(Transaction $transaction)
     {
         $originalReceived = is_null($transaction->getOriginal('received')) ? $transaction->received : $transaction->getOriginal('received');
-        // This is for account balance calculation
-        if($originalReceived != $transaction->received)
-        {
-            $difference = $transaction->total_amount * ($transaction->type == 'income' ? 1 : -1) * ($transaction->received ? 1 : -1);
-        } else {
-            if($transaction->received) {
-                if($transaction->getOriginal('type') != $transaction->type) {
-                    $difference = ((int)$transaction->getOriginal('total_amount') + (int)$transaction->total_amount) * ($transaction->type == 'income' ? 1 : -1);
-                } else {
-                    $difference = ((int)$transaction->getOriginal('total_amount') - (int)$transaction->total_amount) * ($transaction->type == 'income' ? -1 : 1);
-                }
-            } else {
-                $difference = 0;
-            }
-        }
+        $originalAccount = is_null($transaction->getOriginal('account_id')) ? $transaction->account_id : $transaction->getOriginal('account_id');
 
-        $account = $transaction->account;
-        $account->update(['balance' => (int)$account->balance + $difference]);
+        /**
+         * We first check if the account has been changed,
+         * if so, we first deduct the original amount from the original account if it was received
+         * than we add the new amount to the new account if it is received
+         */
+        if($originalAccount != $transaction->account_id)
+        {
+            if($originalReceived) {
+                $originalDifference = $transaction->getOriginal('total_amount') * ($transaction->type == 'income' ? -1 : 1);
+                $a = Account::findOrFail($originalAccount);
+                $a->update(['balance' => (int)$a->balance + $originalDifference]);
+            }
+
+            if($transaction->received) {
+                $difference = $transaction->total_amount * ($transaction->type == 'income' ? 1 : -1);
+                $transaction->account->update(['balance' => (int)$transaction->account->balance + $difference]);
+            }
+        } else {
+            // This is for account balance calculation
+            if($originalReceived != $transaction->received)
+            {
+                $difference = $transaction->total_amount * ($transaction->type == 'income' ? 1 : -1) * ($transaction->received ? 1 : -1);
+            } else {
+                if($transaction->received) {
+                    if($transaction->getOriginal('type') != $transaction->type) {
+                        $difference = ((int)$transaction->getOriginal('total_amount') + (int)$transaction->total_amount) * ($transaction->type == 'income' ? 1 : -1);
+                    } else {
+                        $difference = ((int)$transaction->getOriginal('total_amount') - (int)$transaction->total_amount) * ($transaction->type == 'income' ? -1 : 1);
+                    }
+                } else {
+                    $difference = 0;
+                }
+            }
+
+            $account = $transaction->account;
+            $account->update(['balance' => (int)$account->balance + $difference]);
+        }
 
         // We do this here to be able to store for both creation and updating
         if(!is_null($uploadedInvoice = request()->file('invoice')))
