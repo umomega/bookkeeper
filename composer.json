@@ -2,7 +2,7 @@
     "name": "umomega/bookkeeper",
     "description": "Laravel Powered Finance Tracker and CRM.",
     "keywords": ["umomega", "bookkeeper", "finance", "crm", "multilingual", "laravel", "laravel5", "php", "php7", "finance-application", "bookkeeping", "finance-tracker"],
-    "version": "1.0-alpha.3",
+    "version": "1.0-alpha.4",
     "license": "MIT",
     "type": "project",
     "authors": [

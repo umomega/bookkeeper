@@ -33,7 +33,7 @@
 
     @if(!empty($__env->yieldContent('sidebar')))
             </div>
-            <div class="column is-one-third-tablet is-quarter-desktop">
+            <div class="column is-one-third-tablet is-one-quarter-desktop">
                 <div class="contents-sidebar">
                     @yield('sidebar')
                 </div>

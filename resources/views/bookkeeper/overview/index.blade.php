@@ -14,7 +14,7 @@
                 </div>
             @endif
         </div>
-        <div class="column is-one-third-tablet is-quarter-desktop">
+        <div class="column is-one-third-tablet is-one-quarter-desktop">
             <div class="contents-sidebar">
                 <h3 class="contents-sidebar__heading">{{ __('accounts.title') }}</h3>
                 <div class="contents contents--sidebar">
