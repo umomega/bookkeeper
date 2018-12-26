@@ -167,6 +167,13 @@
         outline: none
         +placeholder
             color: rgba($white, 0.7)
+        &--form
+            color: $primary
+            border-bottom-color: $grey-light !important
+            &:focus
+                border-bottom-color: $primary !important
+            +placeholder
+                color: $grey-light
 
     &__hint
         margin-top: 0.5em

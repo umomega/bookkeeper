@@ -253,7 +253,7 @@ class FormBuilder {
                         $builder->hidden($name)->class('relation-input') . '
                         <input type="hidden" name="_exclude" value="' . ((!is_null($this->model) && !is_null($this->model->{$name})) ? json_encode([$this->model->{$name}]) : '') . '">
                         <input type="hidden" name="_additional" value="">
-                        <input type="text" name="_searcher" autocomplete="off" placeholder="' . __('general.search') . '" class="input">
+                        <input type="text" name="_searcher" autocomplete="off" placeholder="' . __('general.search') . '" class="searcher__input searcher__input--form">
 
                         <ul class="searcher__results"></ul>
                     </div>
