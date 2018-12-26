@@ -187,6 +187,10 @@ return [
         'vat_percentage'           => 'VAT Percentage',
         'invoice'                  => 'Invoice',
         'offer'                    => 'Offer',
+        'received'                 => 'Received',
+        'excluded'                 => 'Excluded',
+        'default'                  => 'Default',
+        'state'                    => 'State'
     ],
 
 ];

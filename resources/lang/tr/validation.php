@@ -187,6 +187,10 @@ return [
         'vat_percentage'           => 'KDV Yüzdesi',
         'invoice'                  => 'Fatura',
         'offer'                    => 'Teklif',
+        'received'                 => 'Alındı',
+        'excluded'                 => 'Hariç tut',
+        'default'                  => 'Öntanımlı',
+        'state'                    => 'Eyalet'
     ],
 
 ];

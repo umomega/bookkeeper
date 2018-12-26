@@ -19,7 +19,7 @@ return [
     'no_transactions' => 'İşlem bulunamadı.',
 
     'c_income' => 'Gelirler',
-    'c_income-i' => 'Ödenmemiş Gelirlerle',
+    'c_income-i' => 'Alınmamış Gelirlerle',
     'c_expense' => 'Giderler',
     'c_expense-i' => 'Ödenmemiş Giderlerle',
 
