@@ -249,7 +249,7 @@ class FormBuilder {
                     <div class="subcontents">' .
                         ((!is_null($this->model) && !is_null($this->model->{$name})) ? '<div class="subcontents__item subcontents__item--form">' . $this->model->{$field['relation_key']}->name . '<a href="#" class="delete relation-detach"></a></div>' : '') .
                     '</div>
-                    <div class="searcher">' .
+                    <div class="searcher searcher--form">' .
                         $builder->hidden($name)->class('relation-input') . '
                         <input type="hidden" name="_exclude" value="' . ((!is_null($this->model) && !is_null($this->model->{$name})) ? json_encode([$this->model->{$name}]) : '') . '">
                         <input type="hidden" name="_additional" value="">
