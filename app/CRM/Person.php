@@ -110,9 +110,11 @@ class Person extends Eloquent {
      */
     public function assignClientById($id)
     {
-        return $this->clients()->attach(
-            Client::findOrFail($id)
-        );
+        $client = Client::findOrFail($id);
+
+        $this->update(['company' => $client->name]);
+
+        return $this->clients()->attach($client);
     }
 
     /**
@@ -123,6 +125,8 @@ class Person extends Eloquent {
      */
     public function retractClientById($id)
     {
+        $this->update(['company' => '']);
+
         return $this->clients()->detach(
             Client::findOrFail($id)
         );
