@@ -25,6 +25,7 @@
             ->configure($errors, 'transactions.create', $model)
             ->setFieldConfiguration('account_id.choices', $accounts)
             ->setFieldConfiguration('created_at.default', date('Y-m-d G:i:s'))
+            ->setFieldConfiguration('received_at.default', date('Y-m-d G:i:s'))
             ->setFieldConfiguration('type.choices', ['income' => __('transactions.income'), 'expense' => __('transactions.expense')])
             ->setFieldConfiguration('type.default', request()->get('type'));
     @endphp

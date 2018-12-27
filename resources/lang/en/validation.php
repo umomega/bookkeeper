@@ -190,7 +190,9 @@ return [
         'received'                 => 'Received',
         'excluded'                 => 'Excluded',
         'default'                  => 'Default',
-        'state'                    => 'State'
+        'state'                    => 'State',
+        'billing_date'             => 'Billing Date',
+        'received_date'            => 'Due Date',
     ],
 
 ];

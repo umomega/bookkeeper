@@ -43,6 +43,12 @@ class TransactionObserver
         $originalReceived = is_null($transaction->getOriginal('received')) ? $transaction->received : $transaction->getOriginal('received');
         $originalAccount = is_null($transaction->getOriginal('account_id')) ? $transaction->account_id : $transaction->getOriginal('account_id');
 
+        if(!$originalReceived && $transaction->received)
+        {
+            Transaction::flushEventListeners();
+            $transaction->update(['received_at' => \Carbon\Carbon::now()]);
+        }
+
         /**
          * We first check if the account has been changed,
          * if so, we first deduct the original amount from the original account if it was received

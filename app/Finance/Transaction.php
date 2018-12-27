@@ -20,7 +20,7 @@ class Transaction extends Eloquent {
     protected $fillable = [
         'name', 'type', 'amount', 'account_id', 'job_id',
         'received', 'excluded', 'notes', 'invoice', 'created_at',
-        'vat_percentage', 'vat_amount', 'total_amount'
+        'vat_percentage', 'vat_amount', 'total_amount', 'received_at'
     ];
 
     /**
@@ -40,6 +40,13 @@ class Transaction extends Eloquent {
      * @var array
      */
     protected $sortableColumns = ['created_at', 'name', 'amount'];
+
+    /**
+     * Columns to be formatted as timestamps
+     *
+     * @var array
+     */
+    protected $dates = ['received_at'];
 
     /**
      * Scope for request filter

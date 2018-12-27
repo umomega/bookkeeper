@@ -169,7 +169,7 @@
             color: rgba($white, 0.7)
         &--form
             color: $primary
-            border-bottom-color: $grey-light !important
+            border-bottom-color: $grey-lighter !important
             &:focus
                 border-bottom-color: $primary !important
             +placeholder
@@ -220,3 +220,9 @@
         width: 100%
         z-index: -1
         opacity: 0
+
+.no-touchevents
+    .searcher__input--form:hover
+        border-bottom-color: $grey-light !important
+        &:focus
+            border-bottom-color: $primary !important

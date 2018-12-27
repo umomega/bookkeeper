@@ -190,7 +190,9 @@ return [
         'received'                 => 'Alındı',
         'excluded'                 => 'Hariç tut',
         'default'                  => 'Öntanımlı',
-        'state'                    => 'Eyalet'
+        'state'                    => 'Eyalet',
+        'billing_date'             => 'Fatura Tarihi',
+        'received_date'            => 'Ödeme Tarihi',
     ],
 
 ];

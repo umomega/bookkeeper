@@ -43,6 +43,8 @@ class CreateTransactionsTable extends Migration
             $table->index('received');
             $table->index('excluded');
 
+            $table->dateTime('received_at');
+
             $table->foreign('account_id')
                 ->references('id')
                 ->on('accounts')
