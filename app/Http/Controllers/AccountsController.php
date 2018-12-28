@@ -7,7 +7,6 @@ namespace Bookkeeper\Http\Controllers;
 use Bookkeeper\Http\Controllers\Traits\BasicResource;
 use Bookkeeper\Finance\Account;
 use Bookkeeper\Support\Currencies\Cruncher;
-use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class AccountsController extends BookkeeperController {
@@ -60,16 +59,7 @@ class AccountsController extends BookkeeperController {
     {
         $account = Account::findOrFail($id);
 
-        $start = Carbon::now()->endOfMonth()->subYear()->addSecond();
-        $end = Carbon::now()->endOfMonth();
-
-        $transactions = $account->transactions()
-            ->whereExcluded(0)
-            ->whereBetween('created_at', [$start, $end])
-            ->get();
-
-        $statistics = (new Cruncher())
-            ->compileAccountStatisticsFor($transactions, $account, $start, $end);
+        $statistics = (new Cruncher())->compileStatisticsFor(['filter' => 'account', 'id' => (int)$account->getKey()]);
 
         return $this->compileView('accounts.show', compact('account', 'statistics'), $account->name);
     }

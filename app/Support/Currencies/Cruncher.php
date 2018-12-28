@@ -6,7 +6,8 @@ namespace Bookkeeper\Support\Currencies;
 
 use Bookkeeper\Finance\Account;
 use Carbon\Carbon;
-use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\DB;
 
 class Cruncher {
 
@@ -43,58 +44,110 @@ class Cruncher {
     /**
      * Crunches transactions for given transactions
      *
-     * @param Collection $transactions
-     * @param Carbon $start
-     * @param Carbon $end
+     * @param array $params
+     * @param Carbon|null $start
+     * @param Carbon|null $end
      * @return array
      */
-    public function compileStatisticsFor(Collection $transactions, Carbon $start, Carbon $end)
+    public function compileStatisticsFor(array $params, Carbon $start = null, Carbon $end = null)
     {
-        if(is_null($this->defaultAccount))
-        {
-            return false;
-        }
+        if(is_null($this->defaultAccount)) return false;
+
+        list($start, $end) = $this->validateStartAndEndDates($start, $end);
+
+        // Get the transactions before the start value has been modified by the base intervals func
+        list($transactions, $transactionsVAT) = $this->retrieveTransactions($params, $start, $end);
 
         list($statistics, $labels) = $this->getNewBaseForInterval($start, $end);
 
-        $accounts = $transactions->groupBy('account_id');
+        list($statistics, $summary) = $this->calculateMonthlySums($params, $statistics, $transactions);
 
-        foreach ($accounts as $accountId => $transactionsGrouped)
-        {
-            $rate = $this->getCurrencyHelper()->getRateFor($accountId);
-
-            $statistics = $this->mergeTransactionsWith($transactionsGrouped, $statistics, $rate);
-        }
-
-        $summary = $this->generateSummary($statistics, $this->defaultAccount);
-        $statistics = $this->normalizeStatistics($statistics, $this->defaultAccount);
-
-        $vatDifference = $this->calculateVATDifference($transactions, $end);
+        $vatDifference = $this->calculateVATDifference($transactionsVAT, $end);
 
         return array_merge($summary, compact('statistics', 'labels', 'vatDifference'));
     }
 
     /**
-     * Crunches transactions for an account
+     * Calculates monthly sums
      *
+     * @param array $params
+     * @param array $statistics
      * @param Collection $transactions
-     * @param Account $account
+     * @return array
+     */
+    protected function calculateMonthlySums(array $params, array $statistics, Collection $transactions)
+    {
+        if($params['filter'] == 'account')
+        {
+            $statistics = $this->mergeTransactionsWith($transactions, $statistics, 1);
+
+            $summary = $this->generateSummary($statistics, $params['id']);
+            $statistics = $this->normalizeStatistics($statistics, $params['id']);
+        } else {
+            // Need to group by account id
+            $accounts = $transactions->groupBy('account_id');
+
+            foreach ($accounts as $accountId => $transactionsGrouped)
+            {
+                $rate = $this->getCurrencyHelper()->getRateFor($accountId);
+
+                $statistics = $this->mergeTransactionsWith($transactionsGrouped, $statistics, $rate);
+            }
+
+            $summary = $this->generateSummary($statistics, $this->defaultAccount);
+            $statistics = $this->normalizeStatistics($statistics, $this->defaultAccount);
+        }
+
+        return [$statistics, $summary];
+    }
+
+    /**
+     * Retrieves transactions for given time period and filters
+     *
+     * @param array $params
      * @param Carbon $start
      * @param Carbon $end
      * @return array
      */
-    public function compileAccountStatisticsFor(Collection $transactions, Account $account, Carbon $start, Carbon $end)
+    protected function retrieveTransactions(array $params, Carbon $start, Carbon $end)
     {
-        list($statistics, $labels) = $this->getNewBaseForInterval($start, $end);
+        $startMonth = $end->copy()->startOfMonth();
 
-        $statistics = $this->mergeTransactionsWith($transactions, $statistics, 1);
+        if($params['filter'] == 'account')
+        {
+            $query =  DB::table('transactions')->whereExcluded(0)
+                ->where('account_id', $params['id']);
+        }
+        elseif ($params['filter'] == 'tag')
+        {
+            $query = DB::table('transactions')->whereExcluded(0)
+                ->join('tag_transaction', 'transactions.id', 'tag_transaction.transaction_id')
+                ->where('tag_transaction.tag_id', $params['id']);
+        }
+        else
+        {
+            $query = DB::table('transactions')->whereExcluded(0);
+        }
 
-        $summary = $this->generateSummary($statistics, $account->getKey());
-        $statistics = $this->normalizeStatistics($statistics, $account->getKey());
+        return [
+            $query->whereBetween('received_at', [$start, $end])->get(),
+            $query->whereBetween('created_at', [$startMonth, $end])->get()
+        ];
+    }
 
-        $vatDifference = $this->calculateVATDifference($transactions, $end);
+    /**
+     * Validates start and end dates
+     *
+     * @param Carbon|null $start
+     * @param Carbon|null $end
+     * @return array
+     */
+    protected function validateStartAndEndDates(Carbon $start = null, Carbon $end = null)
+    {
+        $end = $end ?: Carbon::now()->endOfMonth();
+        $start = $start ?: $end->copy()->subYear()->addSecond();
 
-        return array_merge($summary, compact('statistics', 'labels', 'vatDifference'));
+        return [$start, $end];
     }
 
 
@@ -143,9 +196,9 @@ class Cruncher {
             $value = intval($transaction->total_amount)/$rate;
 
             if($transaction->received) {
-                $statistics[$transaction->type][$transaction->created_at->month] +=  $value;
+                $statistics[$transaction->type][date_parse($transaction->received_at)['month']] +=  $value;
             }
-            $statistics[$transaction->type . '-i'][$transaction->created_at->month] +=  $value;
+            $statistics[$transaction->type . '-i'][date_parse($transaction->received_at)['month']] +=  $value;
         }
 
         return $statistics;
@@ -202,14 +255,6 @@ class Cruncher {
      */
     public function calculateVATDifference(Collection $transactions, Carbon $end)
     {
-        $start = $end->copy()->startOfMonth();
-
-        $transactions = $transactions->where('received', 1);
-
-        $transactions = $transactions->filter(function ($transaction) use ($start, $end) {
-            return ($transaction->created_at > $start) && ($transaction->created_at < $end);
-        });
-
         $accounts = $transactions->groupBy('account_id');
 
         $totalTaxDifference = 0;

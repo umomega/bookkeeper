@@ -7,7 +7,6 @@ namespace Bookkeeper\Http\Controllers;
 use Bookkeeper\Http\Controllers\Traits\BasicResource;
 use Bookkeeper\Finance\Tag;
 use Bookkeeper\Support\Currencies\Cruncher;
-use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class TagsController extends BookkeeperController {
@@ -59,16 +58,7 @@ class TagsController extends BookkeeperController {
     {
         $tag = Tag::findOrFail($id);
 
-        $start = Carbon::now()->endOfMonth()->subYear()->addSecond();
-        $end = Carbon::now()->endOfMonth();
-
-        $transactions = $tag->transactions()
-            ->whereExcluded(0)
-            ->whereBetween('created_at', [$start, $end])
-            ->get();
-
-        $statistics = (new Cruncher())
-            ->compileStatisticsFor($transactions, $start, $end);
+        $statistics = (new Cruncher())->compileStatisticsFor(['filter' => 'tag', 'id' => (int)$tag->getKey()]);
 
         return $this->compileView('tags.show', compact('tag', 'statistics'), $tag->name);
     }

@@ -7,7 +7,6 @@ namespace Bookkeeper\Http\Controllers;
 use Bookkeeper\Finance\Transaction;
 use Bookkeeper\Finance\Account;
 use Bookkeeper\Support\Currencies\Cruncher;
-use Carbon\Carbon;
 
 class OverviewController extends BookkeeperController {
 
@@ -17,15 +16,7 @@ class OverviewController extends BookkeeperController {
      * @return view
      */
     public function index() {
-        $start = Carbon::now()->endOfMonth()->subYear()->addSecond();
-        $end = Carbon::now()->endOfMonth();
-
-        $transactions = Transaction::whereExcluded(0)
-            ->whereBetween('created_at', [$start, $end])
-            ->get();
-
-        $statistics = (new Cruncher())
-            ->compileStatisticsFor($transactions, $start, $end);
+        $statistics = (new Cruncher())->compileStatisticsFor(['filter' => 'overview']);
 
         $accounts = Account::all();
         $total = 0;
