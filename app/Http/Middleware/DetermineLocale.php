@@ -18,7 +18,7 @@ class DetermineLocale {
      */
     public function handle($request, Closure $next)
     {
-        $locale = env('APP_LOCALE');
+        $locale = config('app.locale');
 
         if (array_key_exists($locale, InstallHelper::$locales))
         {
