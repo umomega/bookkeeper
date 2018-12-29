@@ -8,6 +8,8 @@ use Bookkeeper\Http\Controllers\Traits\BasicResource;
 use Bookkeeper\Finance\Tag;
 use Bookkeeper\Support\Currencies\Cruncher;
 use Illuminate\Http\Request;
+use Bookkeeper\Exports\TransactionsWithTagExport;
+use Maatwebsite\Excel\Facades\Excel;
 
 class TagsController extends BookkeeperController {
 
@@ -140,6 +142,20 @@ class TagsController extends BookkeeperController {
         $tag->retractTransactionById($transaction);
 
         return ['success' => true];
+    }
+
+    /**
+     * Exports the given resource
+     *
+     * @param int $id
+     * @return download
+     */
+    public function export($id)
+    {
+        $export = new TransactionsWithTagExport;
+        $export->id = $id;
+
+        return Excel::download($export, 'tag-' . date('Y-m-d H:i:s') . '.' . request('format', 'xlsx'));
     }
 
 }

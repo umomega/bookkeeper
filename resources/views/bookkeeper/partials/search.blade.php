@@ -13,5 +13,5 @@
         <input type="hidden" name="f" value="{{ request('f', 'all') }}">
     </form>
 
-    @yield('filters')
+    @yield('options')
 </div>

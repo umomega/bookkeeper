@@ -28,3 +28,7 @@ Route::put('people/{id}/clients/{client}', [
 Route::delete('people/{id}/clients/{client}', [
     'uses' => 'PeopleController@dissociateClient',
     'as'   => 'bookkeeper.people.clients.dissociate']);
+
+Route::get('people/export', [
+    'as' => 'bookkeeper.people.export',
+    'uses' => 'PeopleController@export']);

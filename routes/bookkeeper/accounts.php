@@ -13,3 +13,7 @@ Route::resource('accounts', 'AccountsController', ['names' => [
 Route::get('accounts/{id}/transactions', [
     'uses' => 'AccountsController@transactions',
     'as' => 'bookkeeper.accounts.transactions']);
+
+Route::get('accounts/{id}/export', [
+    'as' => 'bookkeeper.accounts.export',
+    'uses' => 'AccountsController@export']);

@@ -2,6 +2,12 @@
 
 @php $resourceName = 'people'; $showRoute = route('bookkeeper.lists.show', $list->getKey()) @endphp
 
+@section('options')
+    @include('partials.export', ['baseURL' =>
+        route('bookkeeper.lists.export', $list->getKey()) .
+        '?q=' . request('q', '') . '&sort=' . request('sort', '') .  '&direction=' . request('direction')])
+@endsection
+
 @section('breadcrumbs')
     <a href="{{ route('bookkeeper.lists.index') }}" class="breadcrumbs__crumb">{{ uppercase(__('lists.title')) }}</a>
 @endsection

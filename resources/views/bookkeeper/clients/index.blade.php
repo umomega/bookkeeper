@@ -2,6 +2,12 @@
 
 @php $resourceName = 'clients' @endphp
 
+@section('options')
+    @include('partials.export', ['baseURL' =>
+        route('bookkeeper.clients.export') .
+        '?q=' . request('q', '') . '&sort=' . request('sort', '') .  '&direction=' . request('direction')])
+@endsection
+
 @section('table-head')
     @if($isSearch)
         <th>{{ __('validation.attributes.name') }}</th>

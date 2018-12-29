@@ -9,3 +9,7 @@ Route::resource('lists', 'ListsController', ['names' => [
     'update'  => 'bookkeeper.lists.update',
     'destroy' => 'bookkeeper.lists.destroy',
 ]]);
+
+Route::get('lists/{id}/export', [
+    'as' => 'bookkeeper.lists.export',
+    'uses' => 'ListsController@export']);

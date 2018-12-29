@@ -20,3 +20,7 @@ Route::get('transactions/{id}/invoice', [
 Route::delete('transactions/{id}/invoice', [
     'uses' => 'TransactionsController@deleteInvoice',
     'as' => 'bookkeeper.transactions.invoice.delete']);
+
+Route::get('transactions/export', [
+    'as' => 'bookkeeper.transactions.export',
+    'uses' => 'TransactionsController@export']);

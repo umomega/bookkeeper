@@ -8,6 +8,8 @@ use Bookkeeper\CRM\PeopleList;
 use Bookkeeper\CRM\Person;
 use Bookkeeper\Http\Controllers\Traits\BasicResource;
 use Illuminate\Http\Request;
+use Bookkeeper\Exports\PeopleExport;
+use Maatwebsite\Excel\Facades\Excel;
 
 class PeopleController extends BookkeeperController {
 
@@ -150,6 +152,16 @@ class PeopleController extends BookkeeperController {
         $this->notify('people.dissociated');
 
         return redirect()->back();
+    }
+
+    /**
+     * Exports the given resource
+     *
+     * @return download
+     */
+    public function export()
+    {
+        return Excel::download(new PeopleExport, 'people-' . date('Y-m-d H:i:s') . '.' . request('format', 'xlsx'));
     }
 
 }

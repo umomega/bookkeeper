@@ -2,8 +2,12 @@
 
 @php $resourceName = 'transactions' @endphp
 
-@section('filters')
+@section('options')
     @include('transactions.filter')
+
+    @include('partials.export', ['baseURL' =>
+        route('bookkeeper.transactions.export') .
+        '?q=' . request('q', '') . '&sort=' . request('sort', '') .  '&direction=' . request('direction') . '&f=' . request('f')])
 @endsection
 
 @section('table-buttons')

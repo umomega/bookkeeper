@@ -7,6 +7,8 @@ namespace Bookkeeper\Http\Controllers;
 use Bookkeeper\CRM\PeopleList;
 use Bookkeeper\Http\Controllers\Traits\BasicResource;
 use Illuminate\Http\Request;
+use Bookkeeper\Exports\PeopleInListExport;
+use Maatwebsite\Excel\Facades\Excel;
 
 class ListsController extends BookkeeperController {
 
@@ -46,6 +48,20 @@ class ListsController extends BookkeeperController {
         }
 
         return $this->compileView('lists.show', compact('list', 'people', 'isSearch'), $list->name);
+    }
+
+    /**
+     * Exports the given resource
+     *
+     * @param int $id
+     * @return download
+     */
+    public function export($id)
+    {
+        $export = new PeopleInListExport;
+        $export->id = $id;
+
+        return Excel::download($export, 'list-' . date('Y-m-d H:i:s') . '.' . request('format', 'xlsx'));
     }
 
 }

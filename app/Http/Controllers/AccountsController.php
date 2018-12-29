@@ -8,6 +8,8 @@ use Bookkeeper\Http\Controllers\Traits\BasicResource;
 use Bookkeeper\Finance\Account;
 use Bookkeeper\Support\Currencies\Cruncher;
 use Illuminate\Http\Request;
+use Bookkeeper\Exports\TransactionsInAccountExport;
+use Maatwebsite\Excel\Facades\Excel;
 
 class AccountsController extends BookkeeperController {
 
@@ -62,6 +64,20 @@ class AccountsController extends BookkeeperController {
         $statistics = (new Cruncher())->compileStatisticsFor(['filter' => 'account', 'id' => (int)$account->getKey()]);
 
         return $this->compileView('accounts.show', compact('account', 'statistics'), $account->name);
+    }
+
+    /**
+     * Exports the given resource
+     *
+     * @param int $id
+     * @return download
+     */
+    public function export($id)
+    {
+        $export = new TransactionsInAccountExport;
+        $export->id = $id;
+
+        return Excel::download($export, 'account-' . date('Y-m-d H:i:s') . '.' . request('format', 'xlsx'));
     }
 
 }

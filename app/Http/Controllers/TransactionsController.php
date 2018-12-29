@@ -7,6 +7,8 @@ namespace Bookkeeper\Http\Controllers;
 use Bookkeeper\Finance\Transaction;
 use Bookkeeper\Http\Controllers\Traits\BasicResource;
 use Illuminate\Http\Request;
+use Bookkeeper\Exports\TransactionsExport;
+use Maatwebsite\Excel\Facades\Excel;
 
 class TransactionsController extends BookkeeperController {
 
@@ -89,6 +91,16 @@ class TransactionsController extends BookkeeperController {
         $this->notify('transactions.deleted_invoice');
 
         return redirect()->back();
+    }
+
+    /**
+     * Exports the given resource
+     *
+     * @return download
+     */
+    public function export()
+    {
+        return Excel::download(new TransactionsExport, 'transactions-' . date('Y-m-d H:i:s') . '.' . request('format', 'xlsx'));
     }
 
 }

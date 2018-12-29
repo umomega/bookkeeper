@@ -7,6 +7,8 @@ namespace Bookkeeper\Http\Controllers;
 use Bookkeeper\CRM\Client;
 use Bookkeeper\Http\Controllers\Traits\BasicResource;
 use Illuminate\Http\Request;
+use Bookkeeper\Exports\ClientsExport;
+use Maatwebsite\Excel\Facades\Excel;
 
 class ClientsController extends BookkeeperController {
 
@@ -50,4 +52,13 @@ class ClientsController extends BookkeeperController {
         return $this->compileView('clients.show', compact('client', 'jobs', 'people', 'isSearch'), $client->name);
     }
 
+    /**
+     * Exports the given resource
+     *
+     * @return download
+     */
+    public function export()
+    {
+        return Excel::download(new ClientsExport, 'clients-' . date('Y-m-d H:i:s') . '.' . request('format', 'xlsx'));
+    }
 }

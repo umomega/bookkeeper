@@ -24,3 +24,7 @@ Route::put('tags/{id}/transactions/{transaction}', [
 Route::delete('tags/{id}/transactions/{transaction}', [
     'uses' => 'TagsController@dissociateTransaction',
     'as'   => 'bookkeeper.tags.transactions.dissociate']);
+
+Route::get('tags/{id}/export', [
+    'as' => 'bookkeeper.tags.export',
+    'uses' => 'TagsController@export']);

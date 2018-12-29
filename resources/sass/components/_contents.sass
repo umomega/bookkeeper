@@ -225,12 +225,25 @@
         z-index: -1
         opacity: 0
 
+.content-option
+    height: 2.5em
+    border-color: $grey-lighter !important
+
+.content-option-dropdown
+    padding-top: 0.5rem
+
 .no-touchevents
     a
         transition: color $duration-short, opacity $duration-short, background-color $duration-short
+
     .searcher__input
         transition: border-bottom-color $duration-short
         &--form:hover
             border-bottom-color: $grey-light !important
             &:focus
                 border-bottom-color: $primary !important
+
+    .content-option
+        transition: border-color $duration-short
+        &:hover
+            border-color: $grey-light !important

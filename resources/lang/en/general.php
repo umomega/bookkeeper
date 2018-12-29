@@ -21,6 +21,7 @@ return [
 
     'search' => 'Search',
     'filter' => 'Filter',
+    'export' => 'Export',
     'options' => 'Options',
     'search_no_results' => 'Your search returned no results.',
 

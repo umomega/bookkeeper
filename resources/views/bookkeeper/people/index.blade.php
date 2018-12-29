@@ -2,6 +2,12 @@
 
 @php $resourceName = 'people' @endphp
 
+@section('options')
+    @include('partials.export', ['baseURL' =>
+        route('bookkeeper.people.export') .
+        '?q=' . request('q', '') . '&sort=' . request('sort', '') .  '&direction=' . request('direction')])
+@endsection
+
 @section('table-buttons')
     <a class="button is-primary is-overlay" href="{{ route('bookkeeper.people.create') }}"><i class="fa fa-user-plus"></i><span class="is-hidden-mobile">&nbsp;&nbsp;{{ __('people.create') }}</span></a>
 @endsection

@@ -21,6 +21,7 @@ return [
 
     'search' => 'Arama',
     'filter' => 'Filtre',
+    'export' => 'Dışa Aktar',
     'options' => 'Seçenekler',
     'search_no_results' => 'Aramanız herhangi bir sonuç getirmedi.',
 

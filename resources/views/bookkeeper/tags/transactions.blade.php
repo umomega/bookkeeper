@@ -6,8 +6,12 @@
     <a href="{{ route('bookkeeper.tags.index') }}" class="breadcrumbs__crumb">{{ uppercase(__('accounts.title')) }}</a>
 @endsection
 
-@section('filters')
+@section('options')
     @include('transactions.filter')
+
+    @include('partials.export', ['baseURL' =>
+        route('bookkeeper.tags.export', $tag->getKey()) .
+        '?q=' . request('q', '') . '&sort=' . request('sort', '') .  '&direction=' . request('direction') . '&f=' . request('f')])
 @endsection
 
 @section('table-buttons')
