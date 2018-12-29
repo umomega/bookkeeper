@@ -1,3 +1,14 @@
+.modal
+    display: flex
+    height: 0
+    overflow: hidden
+    transition: opacity $duration-medium, height 0ms ease $duration-medium-up
+    opacity: 0
+    &.is-active
+        transition: opacity $duration-medium
+        opacity: 1
+        height: 100%
+
 .modal-card-head.is-danger
     background-color: $danger
     .modal-card-title

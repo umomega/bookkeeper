@@ -106,6 +106,8 @@
 .contents-sidebar
     &__spacer
         height: 2.75em
+        @media screen and (max-width: $tablet)
+            display: none
 
     &__heading
         padding-left: $radius
@@ -166,6 +168,7 @@
         border: 0 !important
         border-bottom: 1px solid $white !important
         outline: none
+        border-radius: 0 !important
         +placeholder
             color: rgba($white, 0.7)
         &--form
@@ -223,7 +226,11 @@
         opacity: 0
 
 .no-touchevents
-    .searcher__input--form:hover
-        border-bottom-color: $grey-light !important
-        &:focus
-            border-bottom-color: $primary !important
+    a
+        transition: color $duration-short, opacity $duration-short, background-color $duration-short
+    .searcher__input
+        transition: border-bottom-color $duration-short
+        &--form:hover
+            border-bottom-color: $grey-light !important
+            &:focus
+                border-bottom-color: $primary !important

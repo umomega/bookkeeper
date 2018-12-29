@@ -1,5 +1,4 @@
 <div class="filter">
-    <p class="filter__label">{{ uppercase(trans('general.filter')) }}</p>
     <div class="field">
         <div class="control">
             <div class="select is-rounded is-fullwidth">

@@ -45,9 +45,9 @@ function no_results_row($text)
     </tr>';
 }
 
-function transaction_buttons(array $additional = [])
+function transaction_buttons(array $additional = [], $isFixed = true)
 {
-    return '<div class="transaction-controls">
+    return '<div class="transaction-controls' . ($isFixed ? ' transaction-controls--fixed' : '') . '">
         <a href="' . route('bookkeeper.transactions.create', array_merge(['type' => 'expense'], $additional)) . '" class="transaction-controls__button transaction-controls__button--expense" data-mode="expense"></a>
         <a href="' . route('bookkeeper.transactions.create', array_merge(['type' => 'income'], $additional)) . '" class="transaction-controls__button transaction-controls__button--income" data-mode="income"></a>
     </div>';

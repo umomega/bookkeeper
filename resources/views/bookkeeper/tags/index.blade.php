@@ -11,7 +11,7 @@
     </div>
     <div class="level-right">
         <div class="level-item">
-            <a class="button is-primary is-overlay" href="{{ route('bookkeeper.tags.create') }}"><i class="fa fa-tag"></i><span class="is-hidden-mobile">&nbsp;&nbsp;{{ __('tags.create') }}</span></a>
+            <a class="tags-add button is-primary is-overlay" href="{{ route('bookkeeper.tags.create') }}"><i class="fa fa-tag"></i><span class="is-hidden-mobile">&nbsp;&nbsp;{{ __('tags.create') }}</span></a>
         </div>
     </div>
 </div>

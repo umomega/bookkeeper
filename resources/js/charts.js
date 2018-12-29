@@ -10,7 +10,7 @@ Chart.defaults.global.tooltips.titleFontSize = 12;
 Chart.defaults.global.tooltips.titleMarginBottom = 10;
 Chart.defaults.global.legend.position = 'bottom';
 Chart.defaults.global.legend.labels.boxWidth = 16;
-Chart.defaults.global.legend.labels.padding = 32;
+Chart.defaults.global.legend.labels.padding = 24;
 Chart.defaults.global.legend.labels.usePointStyle = true;
 Chart.defaults.global.legend.labels.fontSize = 8;
 Chart.defaults.global.legend.padding = 20;
@@ -50,3 +50,5 @@ window.chartColors = {
         borderDash: [2,2]
     }
 }
+
+$(window).resize()

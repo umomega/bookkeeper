@@ -2,11 +2,14 @@
     <div class="contents__body contents__body--focus">
         <div class="chart" id="chartTabs">
             <div class="chart__container">
-                <canvas height="{{ isset($overrideTab) && $overrideTab ? 96 : 112 }}" id="overviewGraph"></canvas>
+                <div class="chart__warning">
+                    <div class="chart__warning-inner">{!! __('overview.screen_size_warning') !!}</div>
+                </div>
+                <canvas height="{{ isset($overrideTab) && $overrideTab ? 96 : 112 }}" width="320" id="overviewGraph"></canvas>
             </div>
         </div>
         <div class="contents__interim">
-            {!! transaction_buttons($transactionButtonsOptions) !!}
+            {!! transaction_buttons($transactionButtonsOptions, false) !!}
         </div>
     </div>
     <div class="contents__footer contents__footer--inverted contents__footer--focus">

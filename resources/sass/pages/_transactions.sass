@@ -1,5 +1,11 @@
 .transaction-controls
     font-size: 1.14285714em
+    @media screen and (max-width: $tablet)
+        &--fixed
+            position: fixed
+            right: 0.75em
+            bottom: 2em
+            z-index: 10
 
     &__button
         border-radius: 50%

@@ -1,6 +1,5 @@
 <div class="contents__search">
     <form class="search" method="GET" action="{{ (isset($route) ? $route : route('bookkeeper.' . $resourceName . '.index')) }}">
-        <p class="search__label">{{ uppercase(trans('general.search')) }}</p>
         <div class="field has-addons">
             <p class="control">
                 <input class="input is-rounded" type="search" placeholder="{{ __($resourceName . '.search') }}" name="q" value="{{ request('q') }}">

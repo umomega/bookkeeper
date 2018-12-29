@@ -9,5 +9,7 @@ return [
     'month_vat_difference' => ':month VAT Difference',
 
     'welcome_to_bookkeeper' => 'Welcome to Bookkeeper!',
-    'create_an_account_first' => '<a href=":route">Create an account</a> to start using Bookkeeper.'
+    'create_an_account_first' => '<a href=":route">Create an account</a> to start using Bookkeeper.',
+
+    'screen_size' => 'Overview does not support this screen width.<br>Please use your device horizontally.',
 ];
