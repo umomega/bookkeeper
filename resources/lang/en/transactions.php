@@ -23,6 +23,12 @@ return [
     'c_expense' => 'Expenses',
     'c_expense-i' => 'With Unpaid Expenses',
 
+    'f_all' => 'All Transactions',
+    'f_income' => 'Incomes',
+    'f_income-i' => 'Unpaid Incomes',
+    'f_expense' => 'Expenses',
+    'f_expense-i' => 'Unpaid Expenses',
+
     'income' => 'Income',
     'expense' => 'Expense',
     'add_income' => 'Add Income',

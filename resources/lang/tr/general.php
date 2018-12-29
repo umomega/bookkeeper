@@ -20,6 +20,7 @@ return [
     'dismiss' => 'Kapat',
 
     'search' => 'Arama',
+    'filter' => 'Filtre',
     'options' => 'Seçenekler',
     'search_no_results' => 'Aramanız herhangi bir sonuç getirmedi.',
 

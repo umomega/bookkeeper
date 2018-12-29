@@ -20,6 +20,7 @@ return [
     'dismiss' => 'Dismiss',
 
     'search' => 'Search',
+    'filter' => 'Filter',
     'options' => 'Options',
     'search_no_results' => 'Your search returned no results.',
 

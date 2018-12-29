@@ -49,6 +49,20 @@ class Transaction extends Eloquent {
     protected $dates = ['received_at'];
 
     /**
+     * The "booting" method of the model.
+     *
+     * @return void
+     */
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::addGlobalScope('filteredByType', function(Builder $query) {
+            $query->filteredByType();
+        });
+    }
+
+    /**
      * Scope for request filter
      *
      * @param Builder $query

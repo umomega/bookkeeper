@@ -98,15 +98,29 @@ label
         box-shadow: $box-shadow
         overflow: hidden
 
-.search
+.search, .filter
+    margin-right: 0.5em
     display: inline-block
     max-width: 24em
+    width: 100%
     @media screen and (max-width: $tablet-down)
         margin: 0 auto
+
+    &__label
+        text-align: center
+        font-weight: $weight-bold
+        font-size: 0.75em
+        color: $grey-light
+        margin-bottom: 0.5em
 
     .input
         height: 2.5em
         padding-left: 1em
+
+    .select
+        height: 2.5em
+        select
+            height: 100%
 
 .button.is-overlay
     padding-left: 2em

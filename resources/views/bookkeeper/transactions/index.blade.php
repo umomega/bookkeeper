@@ -2,6 +2,10 @@
 
 @php $resourceName = 'transactions' @endphp
 
+@section('filters')
+    @include('transactions.filter')
+@endsection
+
 @section('table-buttons')
     {!! transaction_buttons() !!}
 @endsection

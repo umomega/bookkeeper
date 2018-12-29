@@ -23,6 +23,12 @@ return [
     'c_expense' => 'Giderler',
     'c_expense-i' => 'Ödenmemiş Giderlerle',
 
+    'f_all' => 'Tüm İşlemler',
+    'f_income' => 'Gelirler',
+    'f_income-i' => 'Alınmamış Gelirler',
+    'f_expense' => 'Giderler',
+    'f_expense-i' => 'Ödenmemiş Giderler',
+
     'income' => 'Gelir',
     'expense' => 'Gider',
     'add_income' => 'Gelir Ekle',
