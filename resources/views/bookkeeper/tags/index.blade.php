@@ -36,7 +36,7 @@
             @foreach($tags as $tag)
                 <div class="control">
                     <div class="tags has-addons">
-                        <a class="tag is-medium is-link" href="{{ route('bookkeeper.tags.show', $tag->getKey()) }}">{{ $tag->name }}</a>
+                        <a class="tag is-medium is-link" href="{{ route('bookkeeper.tags.transactions', $tag->getKey()) }}">{{ $tag->name }}</a>
                         <a class="tag is-delete is-medium delete-option" href="{{ route('bookkeeper.tags.destroy', $tag->getKey()) }}" data-message="{{ __('general.confirm_delete') }}"></a>
                     </div>
                 </div>
