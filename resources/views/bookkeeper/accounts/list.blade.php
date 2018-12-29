@@ -4,7 +4,7 @@
     @foreach($accounts as $account)
         <tr>
             <td>
-                <a href="{{ route('bookkeeper.accounts.show', $account->getKey()) }}">{{ $account->name }}</a>
+                <a href="{{ route('bookkeeper.accounts.transactions', $account->getKey()) }}">{{ $account->name }}</a>
             </td>
             <td class="is-hidden-mobile">
                 {{ currency_string_for($account->balance, $account) }}

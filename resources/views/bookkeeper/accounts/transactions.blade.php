@@ -11,8 +11,8 @@
 @endsection
 
 @section('tabs')
-    <li><a href="{{ route('bookkeeper.accounts.show', $account->getKey()) }}">{{ __('overview.index') }}</a></li>
     <li class="is-active"><a href="{{ route('bookkeeper.accounts.transactions', $account->getKey()) }}">{{ __('transactions.title') }}</a></li>
+    <li><a href="{{ route('bookkeeper.accounts.show', $account->getKey()) }}">{{ __('overview.index') }}</a></li>
     <li><a href="{{ route('bookkeeper.accounts.edit', $account->getKey()) }}">{{ __('accounts.self') }}</a></li>
 @endsection
 

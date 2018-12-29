@@ -23,8 +23,8 @@
                             @if(count($accounts) > 0)
                                 @foreach($accounts as $account)
                                     <div class="subcontents__item">
-                                        <h4 class="contents-sidebar__item-heading"><a href="{{ route('bookkeeper.accounts.show', $account->getKey()) }}">{{ uppercase($account->name) }}</a></h4>
-                                        <a href="{{ route('bookkeeper.accounts.show', $account->getKey()) }}" class="is-size-5 contents-sidebar__item-text">{{ currency_string_for($account->balance, $account) }}</a>
+                                        <h4 class="contents-sidebar__item-heading"><a href="{{ route('bookkeeper.accounts.transactions', $account->getKey()) }}">{{ uppercase($account->name) }}</a></h4>
+                                        <a href="{{ route('bookkeeper.accounts.transactions', $account->getKey()) }}" class="is-size-5 contents-sidebar__item-text">{{ currency_string_for($account->balance, $account) }}</a>
                                     </div>
                                 @endforeach
                             @else
