@@ -9,6 +9,7 @@ require('./bootstrap');
 require('./vendor/modernizr.min');
 require('./modules/all');
 require('flatpickr');
+require('flatpickr/dist/l10n/tr.js');
 
 // NOTIFICATIONS
 $('.notification > button.delete').click(function(e) {

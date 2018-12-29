@@ -95,11 +95,12 @@
 
     @stack('modules')
 
-    <!-- Scripts -->
-    {!! Theme::js('js/app.js') !!}
     <script type="text/javascript">
         window.locale = '{{ config('app.locale') }}';
     </script>
+    <!-- Scripts -->
+    {!! Theme::js('js/app.js') !!}
+
 
     @stack('scripts')
 
