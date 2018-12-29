@@ -9,6 +9,10 @@ Route::resource('transactions', 'TransactionsController', ['except' => ['show'],
     'destroy' => 'bookkeeper.transactions.destroy',
 ]]);
 
+Route::get('transactions/{id}/repeat', [
+    'uses' => 'TransactionsController@repeat',
+    'as' => 'bookkeeper.transactions.repeat']);
+
 Route::get('transactions/{id}/invoice', [
     'uses' => 'TransactionsController@downloadInvoice',
     'as' => 'bookkeeper.transactions.invoice.download']);

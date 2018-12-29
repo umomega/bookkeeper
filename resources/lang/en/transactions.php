@@ -10,6 +10,7 @@ return [
     'index' => 'Manage Transactions',
     'create' => 'Create Transaction',
     'created' => 'Transaction was created.',
+    'repeat' => 'Repeat Transaction',
     'edit' => 'Edit Transaction',
     'edited' => 'Transaction was edited.',
     'destroy' => 'Delete Transaction',

@@ -43,6 +43,19 @@ class TransactionsController extends BookkeeperController {
     }
 
     /**
+     * Show the form for repeating the specified resource.
+     *
+     * @param  int $id
+     * @return \Illuminate\Http\Response
+     */
+    public function repeat($id)
+    {
+        $transaction = Transaction::findOrFail($id);
+
+        return $this->compileView('transactions.repeat', compact('transaction'));
+    }
+
+    /**
      * Downloads an invoice
      *
      * @param int $id

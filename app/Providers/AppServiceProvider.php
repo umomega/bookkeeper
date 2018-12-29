@@ -51,6 +51,11 @@ class AppServiceProvider extends ServiceProvider
         {
             $this->associateAccounts($view);
         });
+
+        view()->composer('transactions.repeat', function ($view)
+        {
+            $this->associateAccounts($view);
+        });
     }
 
     /**

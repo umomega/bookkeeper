@@ -10,6 +10,7 @@ return [
     'index' => 'İşlemleri Yönet',
     'create' => 'İşlem Oluştur',
     'created' => 'İşlem oluşturuldu.',
+    'repeat' => 'İşlemi Tekrarla',
     'edit' => 'İşlemi Düzenle',
     'edited' => 'İşlem düzenlendi.',
     'destroy' => 'İşlemi Sil',
