@@ -13,6 +13,7 @@
         "axios": "^0.18",
         "bulma": "^0.7.2",
         "cross-env": "^5.1",
+        "flatpickr": "^4.5.2",
         "jquery": "^3.2",
         "jquery-mousewheel": "^3.1.13",
         "laravel-mix": "^2.0",

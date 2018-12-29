@@ -7,8 +7,8 @@
 
 require('./bootstrap');
 require('./vendor/modernizr.min');
-require('./vendor/datetimepicker.min');
 require('./modules/all');
+require('flatpickr');
 
 // NOTIFICATIONS
 $('.notification > button.delete').click(function(e) {
@@ -52,10 +52,11 @@ $('.control--password').each(function () {
 });
 
 // DATE FIELDS
-$.datetimepicker.setLocale(window.locale);
 $('.datetime').each(function() {
-    $(this).datetimepicker({
-        format:'Y-m-d H:i:s'
+    $(this).flatpickr({
+        enableTime: true,
+        dateFormat:'Y-m-d H:i:S',
+        locale: window.locale
     });
 });
 
