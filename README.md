@@ -15,7 +15,7 @@ Bookkeeper is a flexible finance tracker and CRM powered by [Laravel](https://la
 Bookkeeper has a pretty installer which is initialized at the first run. So, to install Bookkeeper just download the latest release and extract the zip in your server, then navigate in your browser to where Bookkeeper is hosted. Installer will guide you through some easy steps to setup Bookkeeper.
 
 ## Documentation
-Bookkeeper documentation is still being worked on. It will be published as soon as the first full release is dispatched.
+[Bookkeeper documentation](https://umomega.github.io/bookkeeper-docs/) is hosted on GitHub Pages.
 
 ## License
 Bookkeeper is released under [MIT License](https://github.com/umomega/Bookkeeper/blob/master/LICENSE).
