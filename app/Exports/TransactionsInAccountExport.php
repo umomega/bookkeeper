@@ -3,7 +3,6 @@
 namespace Bookkeeper\Exports;
 
 use Maatwebsite\Excel\Concerns\FromCollection;
-use Bookkeeper\Finance\Account;
 
 class TransactionsInAccountExport implements FromCollection
 {
@@ -16,7 +15,8 @@ class TransactionsInAccountExport implements FromCollection
     */
     public function collection()
     {
-        $account = Account::findOrFail($this->id);
+        $modelName = config('models.account', \Bookkeeper\Finance\Account::class);
+        $account = $modelName::findOrFail($this->id);
 
         $q = request('q', null);
 

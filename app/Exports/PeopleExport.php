@@ -3,7 +3,6 @@
 namespace Bookkeeper\Exports;
 
 use Maatwebsite\Excel\Concerns\FromCollection;
-use Bookkeeper\CRM\Person;
 
 class PeopleExport implements FromCollection
 {
@@ -14,10 +13,11 @@ class PeopleExport implements FromCollection
     public function collection()
     {
         $q = request('q', null);
+        $modelName = config('models.person', \Bookkeeper\CRM\Person::class);
 
-        if(empty($q)) return Person::sortable()->get();
+        if(empty($q)) return $modelName::sortable()->get();
 
-        return Person::search($q, null, true)->groupBy('id')->get();
+        return $modelName::search($q, null, true)->groupBy('id')->get();
     }
 
 }

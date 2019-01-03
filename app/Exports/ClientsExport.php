@@ -3,7 +3,6 @@
 namespace Bookkeeper\Exports;
 
 use Maatwebsite\Excel\Concerns\FromCollection;
-use Bookkeeper\CRM\Client;
 
 class ClientsExport implements FromCollection
 {
@@ -13,9 +12,10 @@ class ClientsExport implements FromCollection
     public function collection()
     {
         $q = request('q', null);
+        $modelName = config('models.client', \Bookkeeper\CRM\Client::class);
 
-        if(empty($q)) return Client::sortable()->get();
+        if(empty($q)) return $modelName::sortable()->get();
 
-        return Client::search($q, null, true)->groupBy('id')->get();
+        return $modelName::search($q, null, true)->groupBy('id')->get();
     }
 }

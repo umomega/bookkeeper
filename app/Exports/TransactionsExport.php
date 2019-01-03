@@ -3,7 +3,6 @@
 namespace Bookkeeper\Exports;
 
 use Maatwebsite\Excel\Concerns\FromCollection;
-use Bookkeeper\Finance\Transaction;
 
 class TransactionsExport implements FromCollection
 {
@@ -13,9 +12,10 @@ class TransactionsExport implements FromCollection
     public function collection()
     {
         $q = request('q', null);
+        $modelName = config('models.transaction', \Bookkeeper\Finance\Transaction::class);
 
-        if(empty($q)) return Transaction::sortable()->get();
+        if(empty($q)) return $modelName::sortable()->get();
 
-        return Transaction::search($q, null, true)->groupBy('id')->get();
+        return $modelName::search($q, null, true)->groupBy('id')->get();
     }
 }

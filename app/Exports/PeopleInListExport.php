@@ -3,7 +3,6 @@
 namespace Bookkeeper\Exports;
 
 use Maatwebsite\Excel\Concerns\FromCollection;
-use Bookkeeper\CRM\PeopleList;
 
 class PeopleInListExport implements FromCollection
 {
@@ -16,7 +15,8 @@ class PeopleInListExport implements FromCollection
     */
     public function collection()
     {
-        $list = PeopleList::findOrFail($this->id);
+        $modelName = config('models.people_list', \Bookkeeper\CRM\PeopleList::class);
+        $list = $modelName::findOrFail($this->id);
 
         $q = request('q', null);
 

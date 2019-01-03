@@ -3,7 +3,6 @@
 namespace Bookkeeper\Exports;
 
 use Maatwebsite\Excel\Concerns\FromCollection;
-use Bookkeeper\Finance\Tag;
 
 class TransactionsWithTagExport implements FromCollection
 {
@@ -16,7 +15,8 @@ class TransactionsWithTagExport implements FromCollection
     */
     public function collection()
     {
-        $tag = Tag::findOrFail($this->id);
+        $modelName = config('models.tag', \Bookkeeper\Finance\Tag::class);
+        $tag = $modelName::findOrFail($this->id);
 
         $q = request('q', null);
 
