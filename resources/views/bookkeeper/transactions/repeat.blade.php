@@ -11,6 +11,7 @@
     @php
         $transaction->created_at = date('Y-m-d G:i:s');
         $transaction->received_at = date('Y-m-d G:i:s');
+        $transaction->invoice = '';
         $formBuilder
             ->configure($errors, 'transactions.create', $transaction)
             ->setFieldConfiguration('account_id.choices', $accounts)
