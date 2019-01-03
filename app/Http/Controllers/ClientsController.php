@@ -59,6 +59,6 @@ class ClientsController extends BookkeeperController {
      */
     public function export()
     {
-        return Excel::download(new ClientsExport, 'clients-' . date('Y-m-d H:i:s') . '.' . request('format', 'xlsx'));
+        return Excel::download(new ClientsExport, 'companies-' . date('Y-m-d H:i:s') . '.' . request('format', 'xlsx'));
     }
 }

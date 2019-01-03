@@ -2,18 +2,18 @@
 
 return [
 
-    'title' => 'Clients',
-    'search' => 'Search Clients',
-    'all' => 'All Clients',
-    'self' => 'Client',
+    'title' => 'Companies',
+    'search' => 'Search Companies',
+    'all' => 'All Companies',
+    'self' => 'Company',
 
-    'index' => 'Manage Clients',
-    'create' => 'New Client',
-    'created' => 'Client was created.',
-    'edit' => 'Edit Client',
-    'edited' => 'Client was edited.',
-    'destroy' => 'Delete Client',
-    'destroyed' => 'Deleted client.',
-    'no_clients' => 'No clients were found.',
+    'index' => 'Manage Companies',
+    'create' => 'New Company',
+    'created' => 'Company was created.',
+    'edit' => 'Edit Company',
+    'edited' => 'Company was edited.',
+    'destroy' => 'Delete Company',
+    'destroyed' => 'Deleted company.',
+    'no_companies' => 'No companies were found.',
 
 ];

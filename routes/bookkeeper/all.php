@@ -16,7 +16,7 @@ Route::group(['middleware' => [
 ]], function ()
 {
     require 'accounts.php';
-    require 'clients.php';
+    require 'companies.php';
     require 'jobs.php';
     require 'lists.php';
     require 'overview.php';
