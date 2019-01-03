@@ -5,7 +5,6 @@ namespace Bookkeeper\Http\Controllers;
 
 
 use Bookkeeper\Http\Controllers\Traits\BasicResource;
-use Bookkeeper\Finance\Account;
 use Bookkeeper\Support\Currencies\Cruncher;
 use Illuminate\Http\Request;
 use Bookkeeper\Exports\TransactionsInAccountExport;
@@ -20,11 +19,19 @@ class AccountsController extends BookkeeperController {
      *
      * @var string
      */
-    protected $modelPath = Account::class;
+    protected $modelPath = '';
     protected $resourceMultiple = 'accounts';
     protected $resourceSingular = 'account';
     protected $resourceName = 'Account';
     protected $resourceTitleProperty = 'name';
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->modelPath = config('models.account', \Bookkeeper\Finance\Account::class);
+    }
 
     /**
      * Shows transactions for the account.
@@ -35,7 +42,7 @@ class AccountsController extends BookkeeperController {
      */
     public function transactions(Request $request, $id)
     {
-        $account = Account::findOrFail($id);
+        $account = $this->modelPath::findOrFail($id);
 
         $transactions = $account->transactions();
 
@@ -59,7 +66,7 @@ class AccountsController extends BookkeeperController {
      */
     public function show($id)
     {
-        $account = Account::findOrFail($id);
+        $account = $this->modelPath::findOrFail($id);
 
         $statistics = (new Cruncher())->compileStatisticsFor(['filter' => 'account', 'id' => (int)$account->getKey()]);
 

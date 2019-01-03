@@ -4,7 +4,6 @@
 namespace Bookkeeper\Http\Controllers;
 
 
-use Bookkeeper\CRM\Client;
 use Bookkeeper\Http\Controllers\Traits\BasicResource;
 use Illuminate\Http\Request;
 use Bookkeeper\Exports\ClientsExport;
@@ -19,11 +18,19 @@ class ClientsController extends BookkeeperController {
      *
      * @var string
      */
-    protected $modelPath = Client::class;
+    protected $modelPath = '';
     protected $resourceMultiple = 'clients';
     protected $resourceSingular = 'client';
     protected $resourceName = 'Client';
     protected $resourceTitleProperty = 'name';
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->modelPath = config('models.client', \Bookkeeper\CRM\Client::class);
+    }
 
     /**
      * List the specified resource jobs.
@@ -34,7 +41,7 @@ class ClientsController extends BookkeeperController {
      */
     public function show(Request $request, $id)
     {
-        $client = Client::findOrFail($id);
+        $client = $this->modelPath::findOrFail($id);
 
         $jobs = $client->jobs();
 

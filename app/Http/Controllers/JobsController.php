@@ -4,8 +4,6 @@
 namespace Bookkeeper\Http\Controllers;
 
 
-use Bookkeeper\Finance\Job;
-use Bookkeeper\CRM\Client;
 use Bookkeeper\Http\Controllers\Traits\BasicResource;
 use Illuminate\Http\Request;
 
@@ -18,12 +16,21 @@ class JobsController extends BookkeeperController {
      *
      * @var string
      */
-    protected $modelPath = Job::class;
-    protected $parentModelPath = Client::class;
+    protected $modelPath = '';
+    protected $parentModelPath = '';
     protected $resourceMultiple = 'jobs';
     protected $resourceSingular = 'job';
     protected $resourceName = 'Job';
     protected $resourceTitleProperty = 'name';
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->modelPath = config('models.job', \Bookkeeper\Finance\Job::class);
+        $this->parentModelPath = config('models.client', \Bookkeeper\CRM\Client::class);
+    }
 
     /**
      * Returns the collection of retrieved jobs by json response
@@ -33,7 +40,7 @@ class JobsController extends BookkeeperController {
      */
     public function searchJson(Request $request)
     {
-        $jobs = Job::search($request->input('q'), null, true)
+        $jobs = $this->modelPath::search($request->input('q'), null, true)
             ->groupBy('id')->limit(10)->get();
 
         $results = [];
@@ -59,7 +66,7 @@ class JobsController extends BookkeeperController {
      */
     public function show(Request $request, $parent, $id)
     {
-        $job = Job::findOrFail($id);
+        $job = $this->modelPath::findOrFail($id);
 
         $transactions = $job->transactions();
         $parent = $job->client;
@@ -84,7 +91,7 @@ class JobsController extends BookkeeperController {
      */
     public function downloadOffer($id)
     {
-        $job = Job::findOrFail($id);
+        $job = $this->modelPath::findOrFail($id);
 
         $info = json_decode($job->offer);
 
@@ -99,7 +106,7 @@ class JobsController extends BookkeeperController {
      */
     public function deleteOffer($id)
     {
-        $job = Job::findOrFail($id);
+        $job = $this->modelPath::findOrFail($id);
 
         if($info = json_decode($job->offer)) {
             \Storage::delete('offers/' . $info->store_name);

@@ -5,7 +5,6 @@ namespace Bookkeeper\Http\Controllers;
 
 
 use Bookkeeper\Http\Controllers\Traits\BasicResource;
-use Bookkeeper\Finance\Tag;
 use Bookkeeper\Support\Currencies\Cruncher;
 use Illuminate\Http\Request;
 use Bookkeeper\Exports\TransactionsWithTagExport;
@@ -20,10 +19,18 @@ class TagsController extends BookkeeperController {
      *
      * @var string
      */
-    protected $modelPath = Tag::class;
+    protected $modelPath = '';
     protected $resourceMultiple = 'tags';
     protected $resourceSingular = 'tag';
     protected $resourceName = 'Tag';
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->modelPath = config('models.tag', \Bookkeeper\Finance\Tag::class);
+    }
 
     /**
      * Shows transactions for the tag.
@@ -34,7 +41,7 @@ class TagsController extends BookkeeperController {
      */
     public function transactions(Request $request, $id)
     {
-        $tag = Tag::findOrFail($id);
+        $tag = $this->modelPath::findOrFail($id);
 
         $transactions = $tag->transactions();
 
@@ -58,7 +65,7 @@ class TagsController extends BookkeeperController {
      */
     public function show($id)
     {
-        $tag = Tag::findOrFail($id);
+        $tag = $this->modelPath::findOrFail($id);
 
         $statistics = (new Cruncher())->compileStatisticsFor(['filter' => 'tag', 'id' => (int)$tag->getKey()]);
 
@@ -73,7 +80,7 @@ class TagsController extends BookkeeperController {
      */
     public function searchJson(Request $request)
     {
-        $tags = Tag::search($request->input('q'), null, true)
+        $tags = $this->modelPath::search($request->input('q'), null, true)
             ->groupBy('id')->limit(10)->get();
 
         $additional = json_decode($request->input('additional'));
@@ -115,7 +122,7 @@ class TagsController extends BookkeeperController {
      */
     public function associateTransaction(Request $request, $id, $transaction)
     {
-        $tag = Tag::findOrFail($id);
+        $tag = $this->modelPath::findOrFail($id);
 
         $tag->assignTransactionById($transaction);
 
@@ -137,7 +144,7 @@ class TagsController extends BookkeeperController {
      */
     public function dissociateTransaction(Request $request, $id, $transaction)
     {
-        $tag = Tag::findOrFail($id);
+        $tag = $this->modelPath::findOrFail($id);
 
         $tag->retractTransactionById($transaction);
 

@@ -4,8 +4,6 @@
 namespace Bookkeeper\Http\Controllers;
 
 
-use Bookkeeper\CRM\PeopleList;
-use Bookkeeper\CRM\Person;
 use Bookkeeper\Http\Controllers\Traits\BasicResource;
 use Illuminate\Http\Request;
 use Bookkeeper\Exports\PeopleExport;
@@ -20,11 +18,19 @@ class PeopleController extends BookkeeperController {
      *
      * @var string
      */
-    protected $modelPath = Person::class;
+    protected $modelPath = '';
     protected $resourceMultiple = 'people';
     protected $resourceSingular = 'person';
     protected $resourceName = 'Person';
     protected $resourceTitleProperty = 'full_name';
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->modelPath = config('models.person', \Bookkeeper\CRM\Person::class);
+    }
 
     /**
      * List the specified resource lists.
@@ -34,9 +40,9 @@ class PeopleController extends BookkeeperController {
      */
     public function lists($id)
     {
-        $person = Person::with('lists')->findOrFail($id);
+        $person = $this->modelPath::with('lists')->findOrFail($id);
 
-        $availableLists = PeopleList::all()
+        $availableLists = config('models.people_list', \Bookkeeper\CRM\PeopleList::class)::all()
             ->diff($person->lists)
             ->pluck('name', 'id')
             ->toArray();
@@ -53,7 +59,7 @@ class PeopleController extends BookkeeperController {
      */
     public function associateList(Request $request, $id)
     {
-        $person = Person::findOrFail($id);
+        $person = $this->modelPath::findOrFail($id);
 
         $validated = $request->validate([
             'list' => 'required'
@@ -76,7 +82,7 @@ class PeopleController extends BookkeeperController {
      */
     public function dissociateList(Request $request, $id, $list)
     {
-        $person = Person::findOrFail($id);
+        $person = $this->modelPath::findOrFail($id);
 
         $person->retractListById($list);
 
@@ -93,7 +99,7 @@ class PeopleController extends BookkeeperController {
      */
     public function searchJson(Request $request)
     {
-        $people = Person::search($request->input('q'), null, true)
+        $people = $this->modelPath::search($request->input('q'), null, true)
             ->groupBy('id')->limit(10)->get();
 
         $clientId = json_decode($request->input('additional'))->client_id;
@@ -122,7 +128,7 @@ class PeopleController extends BookkeeperController {
      */
     public function associateClient(Request $request, $id, $client)
     {
-        $person = Person::findOrFail($id);
+        $person = $this->modelPath::findOrFail($id);
 
         $person->assignClientById($client);
 
@@ -145,7 +151,7 @@ class PeopleController extends BookkeeperController {
      */
     public function dissociateClient(Request $request, $id, $client)
     {
-        $person = Person::findOrFail($id);
+        $person = $this->modelPath::findOrFail($id);
 
         $person->retractClientById($client);
 

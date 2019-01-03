@@ -4,7 +4,6 @@
 namespace Bookkeeper\Http\Controllers;
 
 
-use Bookkeeper\Finance\Transaction;
 use Bookkeeper\Http\Controllers\Traits\BasicResource;
 use Illuminate\Http\Request;
 use Bookkeeper\Exports\TransactionsExport;
@@ -19,11 +18,18 @@ class TransactionsController extends BookkeeperController {
      *
      * @var string
      */
-    protected $modelPath = Transaction::class;
+    protected $modelPath = '';
     protected $resourceMultiple = 'transactions';
     protected $resourceSingular = 'transaction';
     protected $resourceName = 'Transaction';
 
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->modelPath = config('models.transaction', \Bookkeeper\Finance\Transaction::class);
+    }
 
     /**
      * Display a listing of the resource.
@@ -34,10 +40,10 @@ class TransactionsController extends BookkeeperController {
     {
         if(empty($request->input('q')))
         {
-            $transactions = Transaction::sortable(['created_at' => 'desc'])->filteredByType()->paginate();
+            $transactions = $this->modelPath::sortable(['created_at' => 'desc'])->filteredByType()->paginate();
             $isSearch = false;
         } else {
-            $transactions = Transaction::search($request->input('q'), null, true)->groupBy('id')->get();
+            $transactions = $this->modelPath::search($request->input('q'), null, true)->groupBy('id')->get();
             $isSearch = true;
         }
 
@@ -52,7 +58,7 @@ class TransactionsController extends BookkeeperController {
      */
     public function repeat($id)
     {
-        $transaction = Transaction::findOrFail($id);
+        $transaction = $this->modelPath::findOrFail($id);
 
         return $this->compileView('transactions.repeat', compact('transaction'));
     }
@@ -65,7 +71,7 @@ class TransactionsController extends BookkeeperController {
      */
     public function downloadInvoice($id)
     {
-        $transaction = Transaction::findOrFail($id);
+        $transaction = $this->modelPath::findOrFail($id);
 
         $info = json_decode($transaction->invoice);
 
@@ -80,7 +86,7 @@ class TransactionsController extends BookkeeperController {
      */
     public function deleteInvoice($id)
     {
-        $transaction = Transaction::findOrFail($id);
+        $transaction = $this->modelPath::findOrFail($id);
 
         if($info = json_decode($transaction->invoice)) {
             \Storage::delete('invoices/' . $info->store_name);

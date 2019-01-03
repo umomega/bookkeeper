@@ -4,7 +4,6 @@
 namespace Bookkeeper\Http\Controllers;
 
 
-use Bookkeeper\CRM\PeopleList;
 use Bookkeeper\Http\Controllers\Traits\BasicResource;
 use Illuminate\Http\Request;
 use Bookkeeper\Exports\PeopleInListExport;
@@ -19,11 +18,19 @@ class ListsController extends BookkeeperController {
      *
      * @var string
      */
-    protected $modelPath = PeopleList::class;
+    protected $modelPath = '';
     protected $resourceMultiple = 'lists';
     protected $resourceSingular = 'list';
     protected $resourceName = 'List';
     protected $resourceTitleProperty = 'name';
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->modelPath = config('models.people_list', \Bookkeeper\CRM\PeopleList::class);
+    }
 
     /**
      * List the specified resource people.
@@ -34,7 +41,7 @@ class ListsController extends BookkeeperController {
      */
     public function show(Request $request, $id)
     {
-        $list = PeopleList::findOrFail($id);
+        $list = $this->modelPath::findOrFail($id);
 
         $people = $list->people();
 
