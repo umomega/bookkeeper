@@ -22,3 +22,7 @@ Route::get('jobs/{id}/offer', [
 Route::delete('jobs/{id}/offer', [
     'uses' => 'JobsController@deleteOffer',
     'as' => 'bookkeeper.jobs.offer.delete']);
+
+Route::get('jobs/{id}/export', [
+    'as' => 'bookkeeper.jobs.export',
+    'uses' => 'JobsController@export']);

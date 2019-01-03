@@ -5,7 +5,9 @@ namespace Bookkeeper\Http\Controllers;
 
 
 use Bookkeeper\Http\Controllers\Traits\BasicResource;
+use Bookkeeper\Exports\TransactionsForJobExport;
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
 
 class JobsController extends BookkeeperController {
 
@@ -117,6 +119,20 @@ class JobsController extends BookkeeperController {
         $this->notify('jobs.deleted_offer');
 
         return redirect()->back();
+    }
+
+    /**
+     * Exports the given resource
+     *
+     * @param int $id
+     * @return download
+     */
+    public function export($id)
+    {
+        $export = new TransactionsForJobExport;
+        $export->id = $id;
+
+        return Excel::download($export, 'job-' . date('Y-m-d H:i:s') . '.' . request('format', 'xlsx'));
     }
 
 }

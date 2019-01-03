@@ -7,6 +7,14 @@
     <a href="{{ route('bookkeeper.clients.show', $parent->getKey()) }}" class="breadcrumbs__crumb">{{ uppercase($parent->name) }}</a>
 @endsection
 
+@section('options')
+    @include('transactions.filter')
+
+    @include('partials.export', ['baseURL' =>
+        route('bookkeeper.jobs.export', $job->getKey()) .
+        '?q=' . request('q', '') . '&sort=' . request('sort', '') .  '&direction=' . request('direction') . '&f=' . request('f')])
+@endsection
+
 @section('table-buttons')
     {!! transaction_buttons(['job' => $job->getKey()]) !!}
 @endsection
