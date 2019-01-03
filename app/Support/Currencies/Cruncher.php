@@ -113,20 +113,17 @@ class Cruncher {
     {
         $startMonth = $end->copy()->startOfMonth();
 
+        $query = DB::table('transactions')->whereExcluded(0);
+
         if($params['filter'] == 'account')
         {
-            $query =  DB::table('transactions')->whereExcluded(0)
-                ->where('account_id', $params['id']);
+            $query = $query->where('account_id', $params['id']);
         }
         elseif ($params['filter'] == 'tag')
         {
-            $query = DB::table('transactions')->whereExcluded(0)
+            $query = $query
                 ->join('tag_transaction', 'transactions.id', 'tag_transaction.transaction_id')
                 ->where('tag_transaction.tag_id', $params['id']);
-        }
-        else
-        {
-            $query = DB::table('transactions')->whereExcluded(0);
         }
 
         return [
@@ -144,8 +141,8 @@ class Cruncher {
      */
     protected function validateStartAndEndDates(Carbon $start = null, Carbon $end = null)
     {
-        $end = $end ?: Carbon::now()->endOfMonth();
-        $start = $start ?: $end->copy()->subYear()->addSecond();
+        $end = $end ?: (request()->has('o_end') ? (new Carbon(request('o_end')))->endOfMonth() : Carbon::now()->endOfMonth());
+        $start = $start ?: (request()->has('o_start') ? (new Carbon(request('o_start')))->startOfMonth() : $end->copy()->subYear()->addSecond());
 
         return [$start, $end];
     }
@@ -165,7 +162,7 @@ class Cruncher {
 
         while ($start->lt($end))
         {
-            $months[$start->month] = 0;
+            $months[$start->year . '-' . $start->month] = 0;
             $labels[] = uppercase($start->formatLocalized('%b'));
             $start->addMonth();
         }
@@ -194,11 +191,12 @@ class Cruncher {
         foreach ($transactions as $transaction)
         {
             $value = intval($transaction->total_amount)/$rate;
+            $date = date_parse($transaction->received_at);
 
             if($transaction->received) {
-                $statistics[$transaction->type][date_parse($transaction->received_at)['month']] +=  $value;
+                $statistics[$transaction->type][$date['year'] . '-' . $date['month']] +=  $value;
             }
-            $statistics[$transaction->type . '-i'][date_parse($transaction->received_at)['month']] +=  $value;
+            $statistics[$transaction->type . '-i'][$date['year'] . '-' . $date['month']] +=  $value;
         }
 
         return $statistics;

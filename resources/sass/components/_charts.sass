@@ -22,3 +22,28 @@
         padding: 1em
         text-align: center
         transform: translateY(-50%)
+
+.chart-filter
+    position: relative
+    height: 0
+    width: 100%
+    top: -4.25em
+    text-align: right
+    .dropdown-menu
+        text-align: left
+        min-width: 18em
+    .dropdown-content
+        padding-top: 0.5em
+
+    &__button
+        background-color: $white !important
+        box-shadow: $box-shadow
+        border: 0
+        height: 2.5em
+        transition: background-color $duration-short
+        img
+            height: 100%
+
+.no-touchevents
+    .chart-filter__button:hover
+        background-color: $white-ter !important
