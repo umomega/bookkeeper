@@ -6,7 +6,6 @@ namespace Bookkeeper\Finance;
 
 use Illuminate\Database\Eloquent\Model as Eloquent;
 use Nicolaslopezj\Searchable\SearchableTrait;
-use Bookkeeper\CRM\Client;
 use Kyslik\ColumnSortable\Sortable;
 
 class Job extends Eloquent {
@@ -47,7 +46,7 @@ class Job extends Eloquent {
      */
     public function client()
     {
-        return $this->belongsTo(Client::class);
+        return $this->belongsTo(config('models.client', \Bookkeeper\CRM\Client::class));
     }
 
     /**
