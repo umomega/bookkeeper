@@ -8,7 +8,7 @@ return [
     'self' => 'List',
 
     'index' => 'Manage Lists',
-    'create' => 'Create List',
+    'create' => 'New List',
     'created' => 'List was created.',
     'edit' => 'Edit List',
     'edited' => 'List was edited.',

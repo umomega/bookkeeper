@@ -8,7 +8,7 @@ return [
     'self' => 'Account',
 
     'index' => 'Manage Accounts',
-    'create' => 'Create Account',
+    'create' => 'New Account',
     'created' => 'Account was created.',
     'edit' => 'Edit Account',
     'edited' => 'Account was edited.',

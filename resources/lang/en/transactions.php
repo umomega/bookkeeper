@@ -8,7 +8,7 @@ return [
     'self' => 'Transaction',
 
     'index' => 'Manage Transactions',
-    'create' => 'Create Transaction',
+    'create' => 'New Transaction',
     'created' => 'Transaction was created.',
     'repeat' => 'Repeat Transaction',
     'edit' => 'Edit Transaction',

@@ -8,7 +8,7 @@ return [
     'self' => 'Person',
 
     'index' => 'Manage People',
-    'create' => 'Create Person',
+    'create' => 'New Person',
     'created' => 'Person was created.',
     'edit' => 'Edit Person',
     'edited' => 'Person was edited.',

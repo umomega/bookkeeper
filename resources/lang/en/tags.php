@@ -8,7 +8,7 @@ return [
     'self' => 'Tag',
 
     'index' => 'Manage Tags',
-    'create' => 'Create Tag',
+    'create' => 'New Tag',
     'created' => 'Tag was created.',
     'edit' => 'Edit Tag',
     'edited' => 'Tag was edited.',
