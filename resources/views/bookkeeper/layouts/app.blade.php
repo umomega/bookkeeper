@@ -11,6 +11,12 @@
 
     <title>{{ $pageTitle }} &mdash; Bookkeeper</title>
 
+    <meta name="msapplication-config" content="{{ Theme::url('browserconfig.xml') }}">
+    <link rel="manifest" href="{{ Theme::url('site.webmanifest') }}">
+    <link rel="shortcut icon" href="{{ Theme::url('favicon.ico') }}">
+    <link rel="icon" sizes="32x32 16x16" href="{{ Theme::url('favicon.ico') }}">
+    <link rel="mask-icon" color="#263a8a" href="{{ Theme::url('safari-pinned-tab.svg') }}">
+
     <!-- Styles -->
     {!! Theme::css('css/app.css') !!}
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
