@@ -2,18 +2,18 @@
 
 return [
 
-    'title' => 'Müşteriler',
-    'search' => 'Müşteri Ara',
-    'all' => 'Tüm Müşteriler',
-    'self' => 'Müşteri',
+    'title' => 'Firmalar',
+    'search' => 'Firma Ara',
+    'all' => 'Tüm Firmalar',
+    'self' => 'Firma',
 
-    'index' => 'Müşterileri Yönet',
-    'create' => 'Müşteri Oluştur',
-    'created' => 'Müşteri oluşturuldu.',
-    'edit' => 'Müşteriyi Düzenle',
-    'edited' => 'Müşteri düzenlendi.',
-    'destroy' => 'Müşteriyi Sil',
-    'destroyed' => 'Müşteri silindi.',
-    'no_clients' => 'Müşteri bulunamadı.',
+    'index' => 'Firmaları Yönet',
+    'create' => 'Firma Oluştur',
+    'created' => 'Firma oluşturuldu.',
+    'edit' => 'Firmayı Düzenle',
+    'edited' => 'Firma düzenlendi.',
+    'destroy' => 'Firmayı Sil',
+    'destroyed' => 'Firma silindi.',
+    'no_clients' => 'Firma bulunamadı.',
 
 ];
