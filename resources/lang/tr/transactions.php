@@ -8,7 +8,7 @@ return [
     'self' => 'İşlem',
 
     'index' => 'İşlemleri Yönet',
-    'create' => 'İşlem Oluştur',
+    'create' => 'Yeni İşlem',
     'created' => 'İşlem oluşturuldu.',
     'repeat' => 'İşlemi Tekrarla',
     'edit' => 'İşlemi Düzenle',

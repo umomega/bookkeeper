@@ -8,7 +8,7 @@ return [
     'self' => 'Hesap',
 
     'index' => 'Hesapları Yönet',
-    'create' => 'Hesap Oluştur',
+    'create' => 'Yeni Hesap',
     'created' => 'Hesap oluşturuldu.',
     'edit' => 'Hesabı Düzenle',
     'edited' => 'Hesap düzenlendi.',

@@ -8,7 +8,7 @@ return [
     'self' => 'Liste',
 
     'index' => 'Listeleri Yönet',
-    'create' => 'Liste Oluştur',
+    'create' => 'Yeni Liste',
     'created' => 'Liste oluşturuldu.',
     'edit' => 'Listeyi Düzenle',
     'edited' => 'Liste düzenlendi.',

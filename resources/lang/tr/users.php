@@ -8,7 +8,7 @@ return [
     'profile' => 'Profil',
 
     'index' => 'Kullanıcıları Yönet',
-    'create' => 'Kullanıcı Oluştur',
+    'create' => 'Yeni Kullanıcı',
     'created' => 'Kullanıcı oluşturuldu.',
     'edit' => 'Kullanıcıyı Düzenle',
     'edited' => 'Kullanıcı düzenlendi.',

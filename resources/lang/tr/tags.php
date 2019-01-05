@@ -8,7 +8,7 @@ return [
     'self' => 'Etiket',
 
     'index' => 'Etiketleri Yönet',
-    'create' => 'Etiket Oluştur',
+    'create' => 'Yeni Etiket',
     'created' => 'Etiket oluşturuldu.',
     'edit' => 'Etiketi Düzenle',
     'edited' => 'Etiket düzenlendi.',

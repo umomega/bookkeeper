@@ -8,7 +8,7 @@ return [
     'self' => 'Kişi',
 
     'index' => 'Kişileri Yönet',
-    'create' => 'Kişi Oluştur',
+    'create' => 'Yeni Kişi',
     'created' => 'Kişi oluşturuldu.',
     'edit' => 'Kişiyi Düzenle',
     'edited' => 'Kişi düzenlendi.',

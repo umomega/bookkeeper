@@ -8,7 +8,7 @@ return [
     'self' => 'Firma',
 
     'index' => 'Firmaları Yönet',
-    'create' => 'Firma Oluştur',
+    'create' => 'Yeni Firma',
     'created' => 'Firma oluşturuldu.',
     'edit' => 'Firmayı Düzenle',
     'edited' => 'Firma düzenlendi.',

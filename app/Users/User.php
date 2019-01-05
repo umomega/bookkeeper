@@ -84,7 +84,7 @@ class User extends Authenticatable
     {
         return '<span class="navbar-avatar">' . str_limit($this->first_name, 1, '') .
             str_limit($this->last_name, 1, '') .
-            '<img src="http://www.gravatar.com/avatar/' . md5($this->email) . '?d=blank"></span>';
+            '<img src="https://www.gravatar.com/avatar/' . md5($this->email) . '?d=blank"></span>';
     }
 
     /**
