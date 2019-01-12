@@ -128,6 +128,9 @@ class InstallHelper {
         'tr' => 'Türkçe'
     ];
 
+    /** @var array */
+    public static $localesImploded = 'en,tr';
+
     /**
      * Sets an env variable
      *

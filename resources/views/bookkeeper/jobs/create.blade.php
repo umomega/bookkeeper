@@ -9,9 +9,12 @@
 
 @section('form')
     @inject('formBuilder', 'Bookkeeper\Html\FormBuilder')
-    @php $formBuilder->configure($errors, 'jobs.create'); @endphp
+    @php
+        $formBuilder
+            ->configure($errors, 'jobs.create')
+            ->setFieldConfiguration('client_id.default', $parent->getKey());
+    @endphp
 
-    <input type="hidden" name="client_id" value="{{ $parent->getKey() }}">
     {!! $formBuilder->build() !!}
 @endsection
 

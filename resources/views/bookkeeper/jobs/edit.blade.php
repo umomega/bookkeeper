@@ -14,7 +14,7 @@
 
 @section('form')
     @inject('formBuilder', 'Bookkeeper\Html\FormBuilder')
-    @php $formBuilder->configure($errors, 'jobs.create', $job); @endphp
+    @php $formBuilder->configure($errors, 'jobs.edit', $job); @endphp
 
     {!! $formBuilder->build() !!}
 @endsection

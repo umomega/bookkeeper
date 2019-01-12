@@ -26,6 +26,16 @@ class CurrencyHelper {
     /** @var array */
     public static $singleDecimalCurrencies = ['CNY'];
 
+    /**
+     * Returns the currencies imploded
+     *
+     * @return string
+     */
+    public static function currenciesImploded()
+    {
+        return implode(',', self::$currencies);
+    }
+
     /** @var Account */
     protected $accounts = [];
 
