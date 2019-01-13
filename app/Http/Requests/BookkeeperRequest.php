@@ -30,7 +30,7 @@ abstract class BookkeeperRequest extends FormRequest
 
         foreach($config as $field => $params)
         {
-            if(!array_key_exists($params['rules'])) continue;
+            if(!array_key_exists('rules', $params)) continue;
 
             $fieldRules = $params['rules'];
 
