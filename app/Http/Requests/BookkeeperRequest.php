@@ -30,6 +30,8 @@ abstract class BookkeeperRequest extends FormRequest
 
         foreach($config as $field => $params)
         {
+            if(!array_key_exists($params['rules'])) continue;
+
             $fieldRules = $params['rules'];
 
             if(preg_match('/\[\!ROUTE>(.*?)\!\]/', $fieldRules, $o))
