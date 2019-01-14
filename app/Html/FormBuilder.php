@@ -155,7 +155,7 @@ class FormBuilder {
         // Hidden fields
         if($field['type'] == 'hidden')
         {
-            return $this->htmlBuilder->hidden($name);
+            return $this->htmlBuilder->hidden($name, (isset($field['default']) ? $field['default'] : null));
         }
 
         return $this->buildFieldStart($name, $field) . $this->buildFieldInput($name, $field) . $this->buildFieldEnd($name, $field);
